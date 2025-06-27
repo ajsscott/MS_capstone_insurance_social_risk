@@ -1,0 +1,26 @@
+project:
+  output-dir: analysis/report
+
+extensions:
+  - quarto-journals-elsevier
+
+format:
+  quarto-journals-elsevier-pdf:
+    number-sections: true
+    keep-tex: true
+    fig-cap-location: bottom
+    fig-align: center
+    fig-pos: 'H'
+    journal:
+      name: elsarticle
+      formatting: published
+      model: 3p
+      cite-style: authoryear
+
+bibliography: bibliography.bib
+csl: https://www.zotero.org/styles/elsevier-harvard
+
+execute:
+  freeze: auto
+
+editor: visual

@@ -1,0 +1,164 @@
+<?xml version="1.0" ?>
+<!DOCTYPE config SYSTEM "http://www.matsim.org/files/dtd/config_v2.dtd">
+
+<config>
+    <module name="counts">
+        <param name="analyzedModes" value="car,taxi" />
+        <param name="averageCountsOverIterations" value="5" /> <!-- Weekly -->
+    </module>
+
+    <module name="global">
+        <param name="randomSeed" value="4711" />
+        <param name="coordinateSystem" value="EPSG:3628" />
+        <param name="numberOfThreads" value="6" />
+    </module>
+
+    <module name="network">
+        <param name="inputNetworkFile" value="/Users/seshat/Documents/GitHub/PUBLIC_pct_nyc_transit_simulation/data/input/xml/separated-network.xml" />
+    </module>
+
+    <module name="transit">
+        <param name="transitScheduleFile" value="separated-schedule.xml" />
+        <param name="useTransit" value="true" />
+        <param name="transitModes" value="transit" />
+    </module>
+
+    <module name="plans">
+        <param name="inputPlansFile" value="sample_plans_10pct.xml.gz" />
+        <param name="inputPersonAttributesFile" value="sample_personAttributes_10pct.xml" />
+    </module>
+
+    <module name="controler">
+        <param name="outputDirectory" value="data/output/raw" />
+        <param name="firstIteration" value="0" />
+        <param name="lastIteration" value="130" />
+        <param name="writePlansInterval" value="5" />
+        <param name="writeEventsInterval" value="5" />
+        <param name="createGraphs" value="false" />
+        <param name="dumpDataAtEnd" value="false" />
+        <param name="overwriteFiles" value="deleteDirectoryIfExists"/>
+    </module>
+
+    <module name="qsim">
+        <param name="mainMode" value="car,transit,taxi,bike,walk" />
+        <param name="numberOfThreads" value="4" />
+        <param name="startTime" value="06:00:00"/>
+        <param name="endTime" value="10:00:00"/>
+        <param name="flowCapacityFactor" value="0.10"/>
+        <param name="storageCapacityFactor" value="1.0"/>
+        <param name="stuckTime" value="10"/>
+        <param name="removeStuckVehicles" value="true"/>
+    </module>
+
+    <module name="planCalcScore">
+        <param name="writeExperiencedPlans" value="false" />
+        <parameterset type="scoringParameters">
+            <param name="subpopulation" value="default"/>
+            <param name="earlyDeparture" value="0"/>
+            <param name="lateArrival" value="0"/>
+            <param name="performing" value="0"/>
+            <param name="waiting" value="0"/>
+            <param name="waitingPt" value="0"/>
+            <param name="utilityOfLineSwitch" value="0"/>
+            <param name="marginalUtilityOfMoney" value="0.05" />
+
+            <parameterset type="activityParams">
+                <param name="activityType" value="generic"/>
+                <param name="scoringThisActivityAtAll" value="false"/>
+            </parameterset>
+
+            <parameterset type="activityParams">
+                <param name="activityType" value="Work" />
+                <param name="typicalDuration" value="08:00:00" />
+                <param name="openingTime" value="07:00:00" />
+                <param name="latestStartTime" value="11:00:00" />
+                <param name="closingTime" value="20:00:00" />
+                <param name="priority" value="1.0" />
+            </parameterset>
+
+            <parameterset type="modeParams">
+                <param name="mode" value="car" />
+                <param name="constant" value="-0.05" />
+                <param name="marginalUtilityOfTraveling_util_hr" value="-6" />
+                <param name="monetaryDistanceRate" value="-0.0005" />
+            </parameterset>
+            <parameterset type="modeParams">
+                <param name="mode" value="walk" />
+                <param name="constant" value="0" />
+                <param name="marginalUtilityOfTraveling_util_hr" value="0" />
+            </parameterset>
+            <parameterset type="modeParams">
+                <param name="mode" value="transit" />
+                <param name="constant" value="0.5" />
+                <param name="marginalUtilityOfTraveling_util_hr" value="-4" />
+            </parameterset>
+            <parameterset type="modeParams">
+                <param name="mode" value="taxi" />
+                <param name="constant" value="-0.05" />
+                <param name="marginalUtilityOfTraveling_util_hr" value="-6" />
+                <param name="monetaryDistanceRate" value="-0.00075" />
+            </parameterset>
+            <parameterset type="modeParams">
+                <param name="mode" value="bike" />
+                <param name="constant" value="0" />
+                <param name="marginalUtilityOfTraveling_util_hr" value="0" />
+            </parameterset>
+        </parameterset>
+    </module>
+
+    <module name="planscalcroute">
+        <param name="networkModes" value="car,taxi" />
+        
+        <!-- For Walk -->
+        <parameterset type="teleportedModeParameters">
+            <param name="mode" value="walk" />
+            <param name="teleportedModeSpeed" value="1.9" /> <!-- ~5 km/h -->
+        </parameterset>
+        
+        <!-- For Bike -->
+        <parameterset type="teleportedModeParameters">
+            <param name="mode" value="bike" />
+            <param name="teleportedModeSpeed" value="4.2" /> <!-- ~15 km/h -->
+        </parameterset>
+    </module>
+    
+    <module name="vehicles">
+        <param name="vehiclesFile" value="vehicle_type.xml" />
+    </module>
+
+    <module name="strategy">
+        <param name="maxAgentPlanMemorySize" value="1" />
+        <param name="fractionOfIterationsToDisableInnovation" value="0" />
+        <parameterset type="strategysettings">
+            <param name="strategyName" value="ReRoute"/>
+            <param name="weight" value="0.5"/>
+        </parameterset>
+        <parameterset type="strategysettings">
+            <param name="strategyName" value="ChangeExpBeta"/>
+            <param name="weight" value="0.5"/>
+        </parameterset>
+    </module>
+
+    <module name="travelTimeCalculator">
+        <param name="analyzedModes" value="car,taxi" />
+    </module>
+
+    <module name="parallelEventHandling">
+        <param name="numberOfThreads" value="4" /> <!-- Match CPU cores -->
+        <param name="synchronizeOnSimSteps" value="false" /> <!-- Faster but less deterministic -->
+    </module>
+
+    <module name="log4j">
+        <param name="log4j.rootLogger" value="DEBUG, stdout, file" />
+        <param name="log4j.appender.stdout" value="org.apache.log4j.ConsoleAppender" />
+        <param name="log4j.appender.stdout.layout" value="org.apache.log4j.PatternLayout" />
+        <param name="log4j.appender.stdout.layout.ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+        <param name="log4j.appender.file" value="org.apache.log4j.FileAppender" />
+        <param name="log4j.appender.file.File" value="matsim-debug.log" />
+        <param name="log4j.appender.file.layout" value="org.apache.log4j.PatternLayout" />
+        <param name="log4j.appender.file.layout.ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+        <param name="log4j.logger.org.matsim" value="WARN" />
+        <param name="log4j.logger.org.matsim.nyc2025" value="DEBUG" />
+    </module>
+
+</config>
