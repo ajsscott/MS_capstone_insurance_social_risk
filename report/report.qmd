@@ -1,6 +1,6 @@
 ---
-title: "Algorithmic Redlining in Transit Access"
-subtitle: "A Graph-Based Clustering Approach to Identifying Transit Deserts and Mobility Inequities"
+title: "TITLE TBD"
+subtitle: "Bayesian Spatial Hierarchical Modeling of Rent Burden in New York City"
 
 author:
   - name: AJ Strauman-Scott
@@ -19,16 +19,16 @@ abstract: |
   PUT AN ABSTRACT HERE!!
 
 keywords: 
-    - transit deserts
-    - algorithmic redlining
-    - graph-based clustering
-    - leiden algorithm
-    - geospatial network analysis
-    - OSMnx
-    - Accessibility disparity index (ADI)
-    - Mobility equity
-    - Public transportation inequities
-    - Urban informatics
+    - Bayesian Spatial Modeling
+    - multilevel logistic regression
+    - housing cost burden
+    - small area estimation
+    - census tract-level analysis
+    - American Community Survey (ACS)
+    - Conditional Autoregressive (CAR) models
+    - urban socioeconomic inequality
+    - measurement error modeling
+    - posterior predictive mapping
 
 date: last-modified
 bibliography: bibliography.bib
@@ -41,128 +41,76 @@ format:
 
 ## Introduction
 
-This study investigates the phenomenon of "transit deserts"—areas where marginalized demographic groups (e.g., low-income, Black, and Latino populations) face systemic disadvantages in access to public transportation, jobs, and essential amenities. Using high-resolution American Community Survey (ACS) data and transit network data (GTFS), we apply unsupervised graph-based clustering (Leiden algorithm) and geospatial network analysis (OSMnx) to detect and quantify these inequities. The project introduces a novel accessibility disparity index (ADI) to measure gaps in transit access and evaluates policy interventions to mitigate algorithmic redlining in urban planning.
+### Research Question
 
-### Research Questions
-    -  Can unsupervised learning (Leiden algorithm) identify distinct clusters of transit access inequities across NYC block groups? How do these clusters correlate with demographic variables (income, race, occupation)?
-    -   What are the key structural factors (e.g., transit frequency, job proximity, last-mile connectivity) that contribute to transit deserts? Do historically redlined neighborhoods exhibit persistent transit access disparities?
+How does the probability of experiencing rent burden vary across NYC neighborhoods, after accounting for demographic and socioeconomic differences — and how much of this variation is explained by boroughs, census tracts, and spatial proximity?
 
 ## Literature Review
 
-## Methodology
-# **Research Proposal: Algorithmic Redlining in Transit Access**  
-### **A Graph-Based Clustering Approach to Identifying Transit Deserts and Mobility Inequities**  
+### The Importance of Measuring Housing Cost Burden
 
-## **Abstract**  
-This study investigates the phenomenon of "transit deserts"—areas where marginalized demographic groups (e.g., low-income, Black, and Latino populations) face systemic disadvantages in access to public transportation, jobs, and essential amenities. Using high-resolution American Community Survey (ACS) data and transit network data (GTFS), we apply **unsupervised graph-based clustering (Leiden algorithm)** and **geospatial network analysis (OSMnx)** to detect and quantify these inequities. The project introduces a novel **accessibility disparity index (ADI)** to measure gaps in transit access and evaluates policy interventions to mitigate algorithmic redlining in urban planning.  
+-   Define **rent burden** as spending \>30% of income on rent.
+-   Summarize its significance in **housing policy, urban equity, and planning**.
+-   Motivate the need for **fine-grained, neighborhood-level estimates**.
+-   Highlight NYC as a critical case: extreme variation in burden, inequality, and housing market pressures.
 
-## **Keywords**  
-- Transit deserts  
-- Algorithmic redlining  
-- Graph-based clustering (Leiden algorithm)  
-- Geospatial network analysis (OSMnx)  
-- Accessibility disparity index (ADI)  
-- Mobility equity  
-- Public transportation inequities  
-- Urban informatics  
+### Challenges in Estimating Rent Burden at Small Spatial Scales
 
-## **Research Questions**  
-1. **Detection & Mapping**:  
-   - Can unsupervised learning (Leiden algorithm) identify distinct clusters of transit access inequities across NYC block groups?  
-   - How do these clusters correlate with demographic variables (income, race, occupation)?  
+-   ACS as the main data source: **rich in detail but limited in precision** at the tract level.
+-   Explain how **sampling error and small sample sizes** affect reliability.
+-   Review critiques of using ACS tract-level estimates without accounting for **uncertainty or spatial dependence**.
 
-2. **Mechanisms & Disparities**:  
-   - What are the key structural factors (e.g., transit frequency, job proximity, last-mile connectivity) that contribute to transit deserts?  
-   - Do historically redlined neighborhoods exhibit persistent transit access disparities?  
+### Small Area Estimation and Multilevel Modeling Approaches
 
-3. **Policy Implications**:  
-   - How might transit agencies use this framework to prioritize infrastructure investments in underserved areas?  
-   - Can predictive modeling simulate the equity impacts of proposed transit expansions?  
+-   Introduce **small area estimation (SAE)** as a statistical response to sparse local data.
+-   Review **Fay-Herriot models** and **Bayesian hierarchical models** for proportions or counts.
+-   Highlight applications using ACS data to estimate poverty, unemployment, or housing outcomes.
+-   Emphasize **partial pooling** and **shrinkage** as tools to stabilize noisy tract-level estimates.
 
----
+### Spatial Statistical Models and Urban Inequality
 
-# **Methodology Outline**  
+-   Explain the need to account for **spatial autocorrelation** in urban settings.
+-   Describe **Conditional Autoregressive (CAR) models** and the **Besag–York–Mollié (BYM)** formulation.
+-   Cite examples where spatial models improved small-area estimates for health, crime, homelessness, or housing variables.
+-   Discuss findings that **spatially structured residuals reveal important policy-relevant patterns** (e.g., spillovers, clustering).
 
-## **1. Data Acquisition & Preprocessing**  
-### **Datasets:**  
-- **ACS 2023** (merged/geocoded): Demographic, income, occupation, and commuting behavior.  
-- **GTFS (MTA & Other NYC Transit Feeds):** Real-time transit schedules, stops, and routes.  
-- **OpenStreetMap (OSMnx):** Street networks, pedestrian pathways, and amenity locations (jobs, healthcare, schools).  
+### Handling ACS Measurement Error and Margins of Error in Modeling
 
-### **Preprocessing Steps:**  
-- **Geospatial Joining:** Link ACS block groups to nearest transit nodes.  
-- **Network Construction:** Build a multimodal transit graph (subway, bus, walking) with OSMnx.  
-- **Accessibility Metrics:** Compute:  
-  - **Job accessibility** (number of jobs reachable within 30 mins).  
-  - **Frequency-weighted transit coverage** (stops × service hours).  
-  - **Last-mile disconnectivity** (distance from transit to key amenities).  
+-   Present literature emphasizing **integration of MOEs** or survey design features into regression models.
+-   Explain **measurement error modeling** within a Bayesian framework.
+-   Highlight importance of propagating uncertainty from predictors (e.g., income, poverty) as well as outcomes.
 
-## **2. Unsupervised Learning for Transit Desert Detection**  
-### **Graph-Based Clustering (Leiden Algorithm)**  
-- **Input Features:**  
-  - Transit accessibility scores.  
-  - Demographic variables (% low-income, % Black/Latino, vehicle ownership).  
-- **Method:**  
-  - Construct a **k-nearest neighbor (KNN) graph** from feature space.  
-  - Apply **Leiden algorithm** (resolution-optimized community detection) to identify transit desert clusters.  
-  - Validate clusters via **silhouette score** and spatial autocorrelation (Moran’s I).  
+### Limitations of Prior Work and Opportunities for Innovation
 
-### **Interpretability (SHAP + Spatial Regression)**  
-- Use **SHAP values** to rank feature importance in cluster formation.  
-- Fit a **spatial error model (SEM)** to assess whether transit deserts persist after controlling for income/race.  
+-   Prior models often:
 
-## **3. Equity Analysis & Policy Tools**  
-### **Accessibility Disparity Index (ADI)**  
-- Formula:  
-  \[
-  ADI = \frac{\text{Transit Access (High-Income Areas)} - \text{Transit Access (Low-Income Areas)}}{\text{Max Transit Access}}
-  \]  
-- **Visualization:** Heatmaps of ADI across NYC, overlaid with historical redlining maps.  
+    -   Ignore **spatial correlation**
+    -   Do not model **binomial outcomes directly**
+    -   Omit **MOEs** for covariates or use post-hoc smoothing
 
-### **Interactive Policy Simulator (Dash/Leaflet)**  
-- A web tool allowing planners to:  
-  - Simulate new transit routes/stops and predict ADI changes.  
-  - Identify priority zones for equity-focused interventions.  
+-   Few studies apply **full Bayesian spatial models** to *rent burden* specifically—especially for NYC at the tract level.
 
----
+-   No studies found that simultaneously model:
 
-## **Expected Contributions**  
-1. **Technical:**  
-   - Novel integration of **Leiden algorithm** for transit equity analysis.  
-   - Open-source Python pipeline for replicability in other cities.  
-2. **Policy:**  
-   - Evidence-based framework for targeting transit investments.  
-   - Quantification of "algorithmic redlining" in mobility systems.  
+    -   Binomial outcome + MOE covariates
+    -   Tract-level + borough-level + spatial structure
 
-## **Timeline**  
-| Phase | Tasks | Duration |  
-|--------|--------------------------------|------------|  
-| 1 | Data collection & network modeling | 3 weeks |  
-| 2 | Graph clustering & disparity analysis | 4 weeks |  
-| 3 | Causal inference (historical redlining effects) | 2 weeks |  
-| 4 | Policy simulator development | 3 weeks |  
+### Positioning This Study in the Literature
 
-## **Next Steps**  
-- Refine clustering features (e.g., include eviction data for displacement risk).  
-- Partner with NYC transit advocacy groups for validation.  
+-   Your model bridges multiple strands:
 
-This project bridges **computational urban science**, **transportation equity**, and **algorithmic fairness**—areas absent from your prior work. Let me know if you'd like to adjust the emphasis (e.g., deeper causal analysis vs. tool development).
+    -   **SAE** via hierarchical structure
+    -   **Spatial modeling** via CAR priors
+    -   **Survey uncertainty** via latent covariates
 
-## Conclusion
+-   Your work advances the literature by:
 
+    -   Providing **posterior credible estimates of rent burden** at high resolution
+    -   Quantifying and visualizing **uncertainty**
+    -   Comparing **flat, hierarchical, and spatial model variants**
 
-## Data Access Statement
+-   Strong contribution to:
 
--   ACS 2023 tables: \[link\]
--   CMS Mobility Survey: \[link\]
--   OSM: <https://download.geofabrik.de/north-america/us/new-york.html>
--   Census NTA: \[link\]
--   Code repositories:
-    -   Synthetic population generation: `github.com/...`
-    -   MATSim-NYC model: `github.com/...`
-
-## Acknowledgments
-
-*Include collaborators, advisors, data providers, and any funding or institutional support.*
-
-## References
+    -   **Urban policy analysis**
+    -   **Statistical methodology for public data**
+    -   **Applied Bayesian modeling**
