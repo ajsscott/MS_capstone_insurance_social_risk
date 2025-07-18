@@ -1,6 +1,6 @@
 ---
-title: "TITLE TBD"
-subtitle: "Bayesian Spatial Hierarchical Modeling of Rent Burden in New York City"
+title: "Predicting Auto Insurance Risk Using Gradient Boosting: Analyzing Socio-Economic and Crash Data in New York City"
+subtitle: "A Machine Learning Approach with SHAP Explainability"
 
 author:
   - name: AJ Strauman-Scott
@@ -19,16 +19,15 @@ abstract: |
   PUT AN ABSTRACT HERE!!
 
 keywords: 
-    - Bayesian Spatial Modeling
-    - multilevel logistic regression
-    - housing cost burden
-    - small area estimation
-    - census tract-level analysis
+    - Gradient Boosting
+    - XGBoost
+    - LightGBM
+    - SHAP explainability
+    - hyperparameter optimization
+    - auto insurance risk
     - American Community Survey (ACS)
-    - Conditional Autoregressive (CAR) models
-    - urban socioeconomic inequality
-    - measurement error modeling
-    - posterior predictive mapping
+    - NYC Open Data
+    - predictive modeling
 
 date: last-modified
 bibliography: bibliography.bib
@@ -39,78 +38,143 @@ format:
     citation-style: authoryear 
 ---
 
-## Introduction
+## Abstract
 
-### Research Question
+-   Introduce the importance of predictive modeling for auto insurance risk.
+-   Highlight the integration of **NYC crash data and ACS socio-economic data** via APIs.
+-   Summarize the use of **gradient boosting models and SHAP explainability**.
+-   Note the inclusion of **advanced geospatial and interactive visualizations** for insights.
 
-How does the probability of experiencing rent burden vary across NYC neighborhoods, after accounting for demographic and socioeconomic differences — and how much of this variation is explained by boroughs, census tracts, and spatial proximity?
+## 1. Introduction 
 
-## Literature Review
+### 1.1 Context and Motivation 
 
-### The Importance of Measuring Housing Cost Burden
+\* Briefly highlight the importance of accurate insurance risk modeling for pricing and risk management.
 
--   Define **rent burden** as spending \>30% of income on rent.
--   Summarize its significance in **housing policy, urban equity, and planning**.
--   Motivate the need for **fine-grained, neighborhood-level estimates**.
--   Highlight NYC as a critical case: extreme variation in burden, inequality, and housing market pressures.
+\* Introduce NYC as a complex urban environment with abundant open data (MVC crash data and ACS socio-economic indicators) that can serve as proxies for insurance claims risk.
 
-### Challenges in Estimating Rent Burden at Small Spatial Scales
+### 1.2 Limitations of Traditional Methods 
 
--   ACS as the main data source: **rich in detail but limited in precision** at the tract level.
--   Explain how **sampling error and small sample sizes** affect reliability.
--   Review critiques of using ACS tract-level estimates without accounting for **uncertainty or spatial dependence**.
+\* Note the constraints of traditional actuarial models (e.g., GLMs) in capturing nonlinear relationships and socio-economic variability.
 
-### Small Area Estimation and Multilevel Modeling Approaches
+\* Mention the need for more flexible, data-driven approaches.
 
--   Introduce **small area estimation (SAE)** as a statistical response to sparse local data.
--   Review **Fay-Herriot models** and **Bayesian hierarchical models** for proportions or counts.
--   Highlight applications using ACS data to estimate poverty, unemployment, or housing outcomes.
--   Emphasize **partial pooling** and **shrinkage** as tools to stabilize noisy tract-level estimates.
+### 1.3 Machine Learning Approach 
 
-### Spatial Statistical Models and Urban Inequality
+\* Introduce gradient boosting (XGBoost/LightGBM) as powerful ML techniques for risk prediction.
 
--   Explain the need to account for **spatial autocorrelation** in urban settings.
--   Describe **Conditional Autoregressive (CAR) models** and the **Besag–York–Mollié (BYM)** formulation.
--   Cite examples where spatial models improved small-area estimates for health, crime, homelessness, or housing variables.
--   Discuss findings that **spatially structured residuals reveal important policy-relevant patterns** (e.g., spillovers, clustering).
+\* Briefly emphasize the role of SHAP explainability in making ML outputs interpretable for insurers.
 
-### Handling ACS Measurement Error and Margins of Error in Modeling
+### 1.4 Research Gap and Objectives 
 
--   Present literature emphasizing **integration of MOEs** or survey design features into regression models.
--   Explain **measurement error modeling** within a Bayesian framework.
--   Highlight importance of propagating uncertainty from predictors (e.g., income, poverty) as well as outcomes.
+\* State the gap: lack of integrated studies using public crash and socio-economic data with explainable ML .
 
-### Limitations of Prior Work and Opportunities for Innovation
+\* Research question: \*Which socio-economic and transportation-related features most strongly influence crash-related insurance risk outcomes in New York City?\*
 
--   Prior models often:
+\* Key contributions: predictive modeling, SHAP-based explainability, and advanced geospatial visualizations.
 
-    -   Ignore **spatial correlation**
-    -   Do not model **binomial outcomes directly**
-    -   Omit **MOEs** for covariates or use post-hoc smoothing
+Objectives and research question: identifying socio-economic and transportation factors influencing claim frequency/severity.
 
--   Few studies apply **full Bayesian spatial models** to *rent burden* specifically—especially for NYC at the tract level.
+Outline remaining sections.
 
--   No studies found that simultaneously model:
+## 2. Related Work 
 
-    -   Binomial outcome + MOE covariates
-    -   Tract-level + borough-level + spatial structure
+### 2.1 Machine Learning in Insurance Risk Modeling 
 
-### Positioning This Study in the Literature
+\* Transition from traditional actuarial models to ML:
 
--   Your model bridges multiple strands:
+\* Discuss the limitations of generalized linear models (GLMs) and actuarial pricing techniques in capturing nonlinear relationships between variables like driving behavior, socio-economic factors, and claims.
 
-    -   **SAE** via hierarchical structure
-    -   **Spatial modeling** via CAR priors
-    -   **Survey uncertainty** via latent covariates
+\* Cite studies that show improved predictive performance of ML methods (e.g., gradient boosting, random forests, neural networks) over traditional methods in auto insurance risk.
 
--   Your work advances the literature by:
+\* Applications of gradient boosting:
 
-    -   Providing **posterior credible estimates of rent burden** at high resolution
-    -   Quantifying and visualizing **uncertainty**
-    -   Comparing **flat, hierarchical, and spatial model variants**
+\* Highlight prior research on XGBoost and LightGBM for predicting claim frequency, severity, or fraud detection in insurance.
 
--   Strong contribution to:
+\* Emphasize the importance of boosting methods for handling mixed data types (categorical + continuous) and interpretable feature importance .
 
-    -   **Urban policy analysis**
-    -   **Statistical methodology for public data**
-    -   **Applied Bayesian modeling**
+### 2.2 Use of Crash and Socio-Economic Data 
+
+\* Crash data as a proxy for claim frequency:
+
+\* Support the argument that crash severity and frequency strongly correlate with insurance claims (cite studies using police reports, telematics, or open data as predictors).
+
+\* Integration of socio-economic features:
+
+\* Review studies showing how income, commuting patterns, and vehicle ownership affect driving risk and claim likelihood.
+
+\* Include evidence of regional disparities in crash frequency linked to demographics and urban infrastructure.
+
+\* NYC-specific or urban data studies:
+
+\* Reference prior research analyzing transportation risk factors in large urban environments (NYC, Chicago, or similar).
+
+### 2.3 Geospatial Analytics in Risk Assessment 
+
+\* Spatial heterogeneity of risk:
+
+\* Cite work that demonstrates how crash risks and claim rates vary spatially due to road design, population density, and socio-economic clustering.
+
+\* Include examples of geospatial analysis applied to insurance pricing or traffic safety interventions .
+
+\* Techniques used:
+
+\* Contrast traditional spatial clustering (e.g., Moran’s I, k-means) with modern ML approaches that incorporate spatial features.
+
+### 2.4 Explainability in Machine Learning Models 
+
+\* The importance of interpretability in insurance ML models:
+
+\* Highlight the regulatory and business requirement for explainable AI in high-stakes fields like insurance pricing and underwriting.
+
+\* Applications of SHAP (SHapley Additive exPlanations):
+
+\* Cite literature where SHAP is applied to interpret ML models in finance, insurance, or risk analytics.
+
+\* Discuss the benefits of SHAP over traditional feature importance metrics (e.g., accounting for interactions between features).
+
+### 2.5 Gaps in the Literature
+
+\* Lack of studies combining socio-economic and crash data with gradient boosting:
+
+\* Point out that while ML is used in insurance, few studies integrate publicly available crash data (NYC MVC) with ACS socio-economic features for claim risk modeling.
+
+\* Need for advanced visualization and explainability:
+
+\* Argue that previous work often neglects interpretable dashboards or SHAP-driven analysis that stakeholders can use for policy decisions.
+
+## 3. Materials and Methods
+
+### 3.1 Data Sources
+
+-   NYC Open Data Motor Vehicle Collisions (via API).
+-   ACS 5-Year socio-economic indicators (via U.S. Census Bureau API).
+
+### 3.2 Key Metrics
+
+-   Claim frequency proxy: crashes per 1,000 residents.
+-   Claim severity proxy: injury/fatality ratios.
+
+### 3.3 Modeling Approach
+
+-   Gradient boosting (XGBoost/LightGBM).
+
+Hyperparameter optimization (Optuna).
+
+### 3.4 Explainability
+
+SHAP-based global and local feature analysis.
+
+## 4. Results
+
+-   Model performance metrics (AUC, RMSE).
+-   Feature importance rankings (SHAP).
+-   Visual findings (maps, animations, dashboards).
+
+## 5. Conclusions and Future Work
+
+-   Key insights and implications for insurance risk modeling.
+-   Limitations and suggested extensions (e.g., telematics, temporal models).
+-   Potential improvements in visualization and explainability.
+
+## References

@@ -1,64 +1,73 @@
-# Project Plan: Bayesian Social Risk Modeling for Insurance
 
-## Goal
+# Gradient Boosting Pipeline for Auto Insurance Risk Prediction
 
-To model the latent insurance-relevant risk exposure of NYC census tracts by linking ACS-based social vulnerability factors with observed crash rates. The model will inform how social determinants correlate with risk across space and allow for uncertainty-aware comparisons between neighborhoods.
-
----
-
-## Phases
-
-### Phase 1: Data Acquisition & Cleaning
-- [ ] Download 2023 ACS 5-Year data at tract level for NYC (already complete)
-- [ ] Download NYC Open Data motor vehicle collision dataset
-- [ ] Clean and geocode crash data; aggregate total crashes and crash rate per 1,000 residents by tract
-- [ ] Join ACS and crash data by census tract GEOID
-
-### Phase 2: Feature Engineering
-- [ ] Select key ACS predictors relevant to insurance risk
-- [ ] Normalize or transform skewed variables (e.g., log-transform household income)
-- [ ] Create borough ID for hierarchical grouping
-- [ ] Compute spatial neighbor structure for tracts (adjacency matrix)
-
-### Phase 3: Modeling
-- [ ] Fit Bayesian Poisson (or Gaussian) model with:
-  - ACS predictors as fixed effects
-  - Borough random intercepts
-  - Conditional autoregressive (CAR) spatial error term
-- [ ] Validate model using posterior predictive checks
-- [ ] Summarize posterior distributions: means, SDs, 95% credible intervals
-
-### Phase 4: Visualization & Communication
-- [ ] Generate choropleths of predicted risk and uncertainty
-- [ ] Highlight tracts with high predicted risk but low crash counts (underreported risk)
-- [ ] Build an interactive Streamlit or Tableau dashboard
+## Overview
+This project builds an **end-to-end machine learning pipeline** to predict auto insurance risk using **NYC Open Data Motor Vehicle Collisions (MVC)** and **ACS 5-Year socio-economic data** accessed via APIs. The pipeline leverages **gradient boosting models (XGBoost/LightGBM)** and **SHAP explainability** to identify which demographic and behavioral features drive crash-related risk outcomes. From ingestion to interpretability, this project demonstrates **API-based ETL, scalable data engineering, hyperparameter tuning, and model explainability**—all highly in-demand skills.
 
 ---
 
-## Deliverables
-
-- Final R or Python notebook with full modeling pipeline
-- Public GitHub repository with cleaned data and code
-- Written summary or blog post explaining modeling decisions
-- Interactive dashboard for exploratory use
+## Research Question
+**Which socio-economic and transportation-related features (e.g., income, commuting behavior, vehicle ownership) most strongly influence crash-related insurance risk outcomes in New York City?**
 
 ---
 
-## Key Skills Demonstrated
+## Pipeline Design (Skills-Oriented)
+### **Phase 1: Data Acquisition (API-Driven ETL)**
+- **API Integration:**  
+  - Use the **NYC Open Data API** (Socrata) to pull MVC datasets (2018–2023).  
+  - Use the **U.S. Census Bureau API** for ACS 5-Year data (e.g., income, vehicle availability, commute modes).
+- **Incremental Ingestion:** Design ETL to fetch new data incrementally and store in a version-controlled data lake (AWS S3 or local staging).
+- **Data Engineering Tools:** Automate ingestion with Python scripts and Prefect (or Airflow) for scheduling.
 
-- Bayesian hierarchical modeling  
-- Spatial econometrics with CAR priors  
-- ACS data engineering and transformation  
-- Public sector insurance risk analysis  
-- Uncertainty-aware geospatial analytics  
+### **Phase 2: Data Cleaning & Transformation**
+- **Big Data Wrangling:** Use **Dask** or **PySpark** to handle large-scale crash records efficiently.
+- **Geospatial Joins:** Map crashes to boroughs or census tracts for spatial aggregation.
+- **Feature Harmonization:** Align ACS socio-economic features with crash data by GEOID/borough mapping.
+
+### **Phase 3: Feature Engineering**
+- **Risk Metrics:**  
+  - Crash frequency per 1,000 residents.  
+  - Severity index (weighted injuries/fatalities).
+- **Derived Features:**  
+  - Interaction variables (e.g., car ownership × median income).
+  - ACS commute patterns (e.g., % of population using cars vs. public transit).
+
+### **Phase 4: Modeling**
+- **Gradient Boosting Models:**  
+  - Train both **XGBoost** and **LightGBM** for risk prediction.  
+  - Optimize hyperparameters using **Optuna** (automated tuning).
+- **Model Validation:**  
+  - Evaluate classification performance (AUC, F1 score) for frequency predictions.  
+  - Evaluate regression performance (RMSE, MAE) for severity metrics.
+
+### **Phase 5: Explainability**
+- **SHAP Analysis:**  
+  - Compute SHAP values for feature importance.  
+  - Create **SHAP summary plots** and **dependence plots** to show the influence of income, commute patterns, and vehicle ownership on risk.
+
+### **Phase 6: Visualization & Insights**
+- **Interactive Maps:** Visualize crash risk and socio-economic features by borough/tract (e.g., Folium or Plotly).
+- **Dashboards:** Create a **Plotly Dash dashboard** summarizing key results.
+- **Narrative Reporting:** Summarize the predictive findings and insurance implications.
 
 ---
 
-## Timeline (Suggested)
+## **Deliverables**
 
-| Week | Milestone |
-|------|-----------|
-| 1 | Finalize predictors, acquire + clean crash data |
-| 2 | Join datasets, begin modeling |
-| 3 | Tune priors, evaluate convergence |
-| 4 | Visualizations, dashboard, documentation |
+1. **API-driven ETL Pipeline:** Python scripts (with Prefect orchestration) for ingesting and cleaning NYC crash and ACS data.
+2. **Feature Engineering and Modeling Scripts:** Modular code for XGBoost/LightGBM training, evaluation, and hyperparameter optimization.
+3. **Explainability Reports:** SHAP-based visualizations, including force plots, decision plots, and feature importance rankings.
+4. **Advanced Visualization Suite:**
+   * **Interactive Geospatial Dashboards** using Folium/Plotly (borough-level risk maps and crash hotspots).
+   * **Interactive SHAP Dashboard** (built with Dash/Panel) for local vs. global feature importance exploration.
+5. **Interactive Risk Segmentation Dashboard:** A Plotly Dash app to explore borough-level risk and socio-economic drivers dynamically.
+6. **Technical Report & Executive Summary:** Methodology, findings, and insurance implications, with embedded visual narratives.
+
+---
+
+## Skills Demonstrated
+- **Machine Learning:** Gradient Boosting (XGBoost/LightGBM), clustering, SHAP explainability.
+- **Data Engineering:** API ingestion (NYC Open Data API, U.S. Census Bureau API), ETL orchestration (Prefect), Dask/PySpark for scalable wrangling.
+- **Cloud & Storage:** AWS S3 (optional for storing raw and processed data).
+- **Visualization & BI:** Plotly Dash, Folium maps, SHAP plots.
+- **Geospatial & Socio-Economic Analytics:** Mapping crash patterns with ACS socio-demographics.

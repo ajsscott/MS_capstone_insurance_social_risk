@@ -1,81 +1,40 @@
-# Bayesian Social Risk Modeling for Insurance Applications in NYC
+
+# Auto Insurance Risk Prediction with Gradient Boosting
 
 ## Overview
-
-This project builds a Bayesian spatial model to estimate area-level insurance-relevant risk in New York City, based on social vulnerability indicators from the American Community Survey (ACS) and historical traffic crash statistics from NYC Open Data. It aims to identify census tracts with elevated latent risk—such as accident exposure or underinsurance likelihood—driven by socioeconomic and demographic factors.
-
-The final output includes:
-- A fully Bayesian hierarchical model with spatial random effects
-- An interactive map and dashboard visualizing tract-level risk estimates with uncertainty
-- A replicable pipeline demonstrating applied insurance analytics using public data
+This project builds a **comprehensive machine learning pipeline** to predict auto insurance risk by combining **NYC Open Data Motor Vehicle Collisions (MVC)** and **ACS socio-economic data** via APIs. We apply **gradient boosting models (XGBoost and LightGBM)** and **SHAP explainability** to uncover key demographic and transportation-related factors influencing crash-related risks. The project highlights **API-driven ETL, explainable AI, and advanced visualizations** as part of the deliverables.
 
 ---
 
-## Objectives
-
-- Quantify how social and demographic factors contribute to variation in insurance-relevant risks
-- Model latent "social risk" using ACS data and observed motor vehicle crash data
-- Demonstrate Bayesian hierarchical and spatial modeling techniques
-- Surface equity-relevant insights for insurers, risk managers, and public agencies
+## Research Question
+**Which socio-economic and transportation-related features most strongly influence auto insurance risk outcomes in New York City?**
 
 ---
 
-## Data Sources
-
-| Dataset | Source | Description |
-|--------|--------|-------------|
-| ACS 2023 | US Census Bureau | Tract-level demographics, poverty, housing, commuting, insurance coverage |
-| NYC Motor Vehicle Collisions | NYC Open Data | Geolocated crash records with time, injury counts, and contributing factors |
-
----
-
-## Target Variables
-
-**Outcome**:  
-- Crash incidents per 1,000 residents by census tract (aggregated from NYC crash data)
-
-**Predictors** (ACS-derived):  
-- % without health insurance  
-- % in poverty  
-- % of residents with a disability  
-- % of households without a vehicle  
-- % with commute over 60 minutes  
-- % over age 65  
-- % in single-parent households  
-- Median household income  
+## Features
+- **API-Driven ETL Pipeline:** Automated data ingestion from NYC Open Data and U.S. Census Bureau APIs, orchestrated with Prefect.
+- **Machine Learning:** Gradient boosting models (XGBoost/LightGBM) with hyperparameter tuning (Optuna).
+- **Explainability:** SHAP-based analysis with force plots, decision plots, and feature importance rankings.
+- **Advanced Visualizations:**  
+  - Interactive geospatial dashboards (Folium/Plotly).  
+  - Time-lapse crash density animations (Kepler.gl/Plotly).  
+  - SHAP dashboards for local vs. global feature analysis.  
+  - 3D risk visualizations using Plotly or Pydeck.
 
 ---
 
-## Methodology
-
-- Build a tract-level dataset joining ACS predictors with aggregated crash data  
-- Specify a **Bayesian hierarchical spatial model** using a Poisson or Gaussian likelihood depending on crash count distribution
-- Include:
-  - Tract-level fixed effects for social factors
-  - Borough-level random intercepts
-  - Spatially structured error terms (e.g., ICAR prior)
-- Estimate posterior distributions and credible intervals for all tract-level risk scores
+## Deliverables
+1. **API-driven ETL Pipeline:** Python scripts with Prefect orchestration.  
+2. **Feature Engineering and Modeling Scripts:** For XGBoost/LightGBM training and evaluation.  
+3. **Explainability Reports:** SHAP visualizations and feature-level analysis.  
+4. **Advanced Visualization Suite:** Geospatial dashboards, time-lapse animations, and SHAP exploration tools.  
+5. **Interactive Risk Segmentation Dashboard:** Plotly Dash app for borough-level risk exploration.  
+6. **Technical Report & Executive Summary:** Detailed findings and insurance implications.
 
 ---
 
-## Tools & Technologies
-
-- **R**: `brms`, `tidyverse`, `sf`, `tigris`, `spdep` 
-- **Mapping**: Choropleths using `leaflet` or `folium`
-
----
-
-## Sample Dashboard Metrics
-
-- Estimated tract-level social insurance risk score (posterior mean + uncertainty)
-- Top 10 tracts by predicted latent risk
-- Spatial clusters of elevated crash rates
-- Correlation matrix: social factors vs. crash density
-
----
-
-## 👤 Author
-
-**AJ Strauman-Scott**  
-Data Scientist | Storyteller | ML & Geospatial Modeling  
-[LinkedIn](https://linkedin.com/in/ajstraumanscott) | [GitHub](https://github.com/ajsscott)
+## Tech Stack
+- **Languages & Libraries:** Python, pandas, scikit-learn, XGBoost, LightGBM, SHAP, Plotly, Folium, Pydeck.  
+- **Data Engineering:** Prefect, Dask, or PySpark for scalable ETL.  
+- **Data Sources:** NYC Open Data (MVC), ACS 5-Year API.  
+- **Visualization:** Plotly Dash, Kepler.gl, SHAP interactive plots.  
