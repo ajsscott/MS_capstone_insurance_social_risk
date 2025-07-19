@@ -108,6 +108,7 @@
 \bibliographystyle{elsarticle-harv}
 
 
+\setcitestyle{authoryear,open={(},close={)}}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -178,7 +179,7 @@ City} }
 \author[1]{AJ Strauman-Scott%
 %
 }
- \ead{ajstraumanscott@pm.me} 
+ \ead{true} 
 
 \affiliation[1]{organization={City University Of New York
 (CUNY), Department of Data Science},city={New York City},country={United
@@ -208,21 +209,20 @@ risk \sep American Community Survey (ACS) \sep NYC Open Data \sep
 
 Accurate insurance risk modeling is critical for setting fair premiums,
 mitigating losses, and ensuring financial stability within the insurance
-industry \citep[\citep{clemente}]{henckaerts}. Predicting claim
-frequency and severity not only supports pricing but also enables
-insurers to manage portfolio-level risk and optimize resource allocation
-\citep{mohamed}.
+industry \citep{henckaerts, clemente}. Predicting claim frequency and
+severity not only supports pricing but also enables insurers to manage
+portfolio-level risk and optimize resource allocation \citep{mohamed}.
 
 New York City (NYC) presents a complex urban environment where traffic
 risks are shaped by socio-economic factors, dense infrastructure, and
 scaling dynamics typical of large metropolitan areas
-\citep[\citep{bettencourt}]{cabrera}. The availability of open
-datasets---such as NYC's Motor Vehicle Collision (MVC) data and
-socio-economic indicators from the American Community Survey
-(ACS)---offers a unique opportunity to develop proxy models for
-insurance claim risk. These data sources provide detailed insights into
-crash frequency, injury severity, commuting behaviors, and
-neighborhood-level demographics \citep[\citep{brubacher}]{adeniyi}.
+\citep{cabrera, bettencourt}. The availability of open datasets---such
+as NYC's Motor Vehicle Collision (MVC) data and socio-economic
+indicators from the American Community Survey (ACS)---offers a unique
+opportunity to develop proxy models for insurance claim risk. These data
+sources provide detailed insights into crash frequency, injury severity,
+commuting behaviors, and neighborhood-level demographics
+\citep{adeniyi, brubacher}.
 
 Traditional actuarial methods, such as Generalized Linear Models (GLMs),
 have long been the foundation of risk pricing and underwriting due to
@@ -232,38 +232,36 @@ relationships and interactions among complex predictors like
 socio-economic factors, urban infrastructure, and driving behavior
 \citep{clemente}. These limitations are particularly pronounced in urban
 contexts, where crash risk is shaped by heterogeneous population
-dynamics and localized factors \citep[\citep{brubacher}]{cabrera}.
+dynamics and localized factors \citep{cabrera, brubacher}.
 
 There is a growing need for data-driven approaches that can flexibly
 incorporate diverse predictors---such as open crash data and
 socio-economic variables---while addressing the complex temporal and
 spatial patterns of accidents highlighted in recent reviews
-\citep[\citep{behboudi}]{grigorev}. Recent studies and systematic
-reviews confirm that machine learning (ML) methods, particularly
-ensemble models like Gradient Boosting Machines (GBMs), XGBoost, and
-LightGBM, outperform traditional GLMs for predicting both claim
-frequency and severity \citep[\citep{mohamed},
-\citep{behboudi}]{clemente}. These models are capable of handling mixed
-data types (categorical and continuous) and capturing complex feature
-interactions that linear models often miss.
+\citep{grigorev, behboudi}. Recent studies and systematic reviews
+confirm that machine learning (ML) methods, particularly ensemble models
+like Gradient Boosting Machines (GBMs), XGBoost, and LightGBM,
+outperform traditional GLMs for predicting both claim frequency and
+severity \citep{clemente, mohamed, behboudi}. These models are capable
+of handling mixed data types (categorical and continuous) and capturing
+complex feature interactions that linear models often miss.
 
 To address the interpretability challenge of ``black box'' ML models,
 SHAP (SHapley Additive exPlanations) offers a principled framework for
 feature attribution, allowing insurers and policymakers to understand
 both global feature importance and instance-level predictions
-\citep[\citep{dong}, \citep{ning}]{lundberg}. This combination of
-high-performance prediction and explainability provides a strong
-foundation for modern risk modeling, as demonstrated in other domains
-such as maritime safety where interpretable models like SHAP have been
-applied \citep{kim}.
+\citep{lundberg, dong, ning}. This combination of high-performance
+prediction and explainability provides a strong foundation for modern
+risk modeling, as demonstrated in other domains such as maritime safety
+where interpretable models like SHAP have been applied \citep{kim}.
 
 Despite the growing body of work applying ML to insurance modeling, few
 studies integrate publicly available crash data with socio-economic
 indicators to model claim-related risks. Most research remains limited
-to proprietary policyholder data \citep[\citep{mohamed}]{henckaerts},
-while systematic reviews highlight that few studies combine open crash
-data with socio-economic indicators in insurance modeling
-\citep[\citep{behboudi}]{ali}.
+to proprietary policyholder data \citep{henckaerts, mohamed}, while
+systematic reviews highlight that few studies combine open crash data
+with socio-economic indicators in insurance modeling
+\citep{ali, behboudi}.
 
 This study aims to integrate ACS socio-economic features with NYC MVC
 crash data to develop an explainable gradient boosting framework. The
@@ -295,11 +293,11 @@ interpretability and regulatory acceptance. However, they are limited by
 their linearity and inability to naturally capture complex interactions
 and nonlinear relationships among predictors, such as driver
 demographics, vehicle characteristics, socio-economic factors, and
-driving behavior. As \citep{clemente} note, while GLMs remain effective
+driving behavior. As \citet{clemente} note, while GLMs remain effective
 for modeling claim severity with smaller and noisier datasets, they
 often underperform compared to ensemble methods when modeling claim
 frequency, where nonlinearities and heterogeneous risk patterns are
-prevalent. Similarly, \citep{jonkheijm} demonstrated that tree-based
+prevalent. Similarly, \citet{jonkheijm} demonstrated that tree-based
 models, especially XGBoost, substantially improved predictive accuracy
 over linear regression, particularly when incorporating both actuarial
 features (e.g., policyholder age, vehicle value) and behavioral
@@ -312,10 +310,10 @@ methods, such as XGBoost and LightGBM, have emerged as particularly
 effective tools in auto insurance risk modeling \citep{henckaerts}.
 Their iterative boosting framework enables them to handle mixed data
 types (categorical and continuous) and capture intricate patterns that
-GLMs and single decision trees may miss. \citep{clemente} applied
+GLMs and single decision trees may miss. \citet{clemente} applied
 gradient boosting to both claim frequency and severity modeling,
 demonstrating significant performance gains in frequency prediction over
-Poisson-based GLMs. Similarly, \citep{jonkheijm} employed XGBoost for
+Poisson-based GLMs. Similarly, \citet{jonkheijm} employed XGBoost for
 forecasting individual claim amounts, outperforming both regression
 trees and random forests.
 
@@ -333,20 +331,20 @@ income levels, commuting patterns, vehicle ownership rates, and
 population density---has been shown to enhance the explanatory power of
 crash and claim prediction models.
 
-For example, \citep{adeniyi} utilized a decade of NYC crash data
+For example, \citet{adeniyi} utilized a decade of NYC crash data
 (2013--2023) to identify key predictors of accident severity---such as
 unsafe speed, alcohol involvement, and adverse weather---which align
 closely with the variables insurers use to model claim likelihood.
-Similarly, \citep{dong} applied boosting-based ensemble models to
+Similarly, \citet{dong} applied boosting-based ensemble models to
 traffic injury severity prediction, finding that vehicle type, collision
 mode, and environmental conditions strongly influenced both injury
-outcomes and, by extension, potential claim costs. \citep{brubacher}
+outcomes and, by extension, potential claim costs. \citet{brubacher}
 conducted a geospatial analysis of 10 years of crashes in British
 Columbia and found that regions with lower income and higher
 socio-economic deprivation exhibited higher rates of pedestrian crashes,
 severe injuries, and fatalities, reflecting disparities in road safety
 linked to infrastructure quality and enforcement intensity.
-\citep{cabrera} expanded on this by identifying superlinear scaling of
+\citet{cabrera} expanded on this by identifying superlinear scaling of
 road accidents in urban areas, where higher population densities led to
 disproportionate increases in crash frequency, especially for minor
 collisions. These findings are directly relevant for insurers, as they
@@ -357,10 +355,10 @@ for underlying risk exposure.
 Urban-focused studies have further illuminated the unique risk dynamics
 in metropolitan environments like New York City, Chicago, and London,
 where complex traffic patterns, dense road networks, and high pedestrian
-activity elevate accident risk. \citep{adeniyi} analyzed NYC crash data
+activity elevate accident risk. \citet{adeniyi} analyzed NYC crash data
 to show how the COVID-19 pandemic altered accident patterns, with fewer
 total crashes but an increase in injury severity due to higher vehicle
-speeds on less congested roads. \citep{feng}, studying UK traffic data,
+speeds on less congested roads. \citet{feng}, studying UK traffic data,
 emphasized the value of big data platforms and spatial clustering
 techniques (e.g., accident hotspot detection) to identify urban risk
 zones, a concept that parallels insurer efforts to assess region-based
@@ -391,14 +389,14 @@ predictions that influence financial decisions or customer premiums.
 Regulatory frameworks, including the EU's General Data Protection
 Regulation (GDPR) and U.S. state-level insurance guidelines,
 increasingly require transparency in algorithmic decision-making,
-further amplifying the need for explainable AI (XAI). \citep{henckaerts}
+further amplifying the need for explainable AI (XAI). \citet{henckaerts}
 further underscore this, showing that variable importance plots and PDPs
 can yield actionable insights into driver and policyholder risk factors,
 blending predictive power with interpretability.
 
 Among XAI methods, SHAP (SHapley Additive exPlanations) has become the
 state-of-the-art framework for interpreting complex ML models. Developed
-by \citep{lundberg}, SHAP is grounded in cooperative game theory,
+by \citet{lundberg}, SHAP is grounded in cooperative game theory,
 assigning each feature a Shapley value that quantifies its contribution
 to individual predictions. Unlike traditional feature importance
 metrics---such as Gini importance in random forests or split gain in
@@ -408,18 +406,18 @@ model outputs.
 
 Tools like SHAP allow practitioners to interpret complex models by
 quantifying the contribution of each variable to the predictions.
-Studies like \citep{mohamed} highlight the value of such
+Studies like \citet{mohamed} highlight the value of such
 interpretability when using gradient boosting for pricing and fraud
 detection, as insurers must justify rating factors for regulatory
 compliance.
 
 In the insurance domain, SHAP has been widely applied to interpret
 models for claims prediction, fraud detection, and risk scoring.
-\citep{dong} used SHAP in conjunction with boosting-based models
+\citet{dong} used SHAP in conjunction with boosting-based models
 (LightGBM and CatBoost) to analyze the contribution of driver age,
 vehicle type, and collision type to injury severity predictions,
 providing insights that aligned with domain expertise. Similarly,
-\citep{ning} demonstrated how Shapley Variable Importance Cloud
+\citet{ning} demonstrated how Shapley Variable Importance Cloud
 (ShapleyVIC) builds on SHAP principles to assess variable significance
 with uncertainty intervals, enabling fairer and more transparent risk
 predictions. These approaches not only improve trust in ML-driven
@@ -434,13 +432,13 @@ gradient boosting---have gained traction in insurance risk modeling,
 there is a notable absence of studies that combine socio-economic and
 crash data for claim risk prediction. Most existing research focuses on
 proprietary insurance datasets containing policyholder and vehicle
-information \citep[\citep{henckaerts}, \citep{jonkheijm}]{clemente}.
-However, publicly available crash datasets, such as NYC's Motor Vehicle
-Collision (MVC) reports, and socio-economic features from the American
-Community Survey (ACS) remain underutilized in insurance modeling. This
-gap limits the development of robust, regionally sensitive models that
-capture the real-world interaction between driving risk factors (e.g.,
-crash frequency) and socio-economic indicators (e.g., income, commuting
+information \citep{clemente, henckaerts, jonkheijm}. However, publicly
+available crash datasets, such as NYC's Motor Vehicle Collision (MVC)
+reports, and socio-economic features from the American Community Survey
+(ACS) remain underutilized in insurance modeling. This gap limits the
+development of robust, regionally sensitive models that capture the
+real-world interaction between driving risk factors (e.g., crash
+frequency) and socio-economic indicators (e.g., income, commuting
 patterns, and vehicle ownership rates). By integrating ACS data with
 urban crash records, it becomes possible to construct granular,
 location-aware risk models that better reflect variations in driving
@@ -466,7 +464,7 @@ Data Portal, covering the years 2018--2023. Each record includes details
 such as crash location, number of injuries and fatalities, vehicle type,
 and contributing factors (e.g., driver behavior, environmental
 conditions). These variables are well-documented predictors of both
-accident severity and insurance claims \citep[\citep{dong}]{adeniyi}.
+accident severity and insurance claims \citep{adeniyi, dong}.
 
 Crash frequency is aggregated at the borough and neighborhood level and
 normalized by population to calculate crashes per 1,000 residents as a
@@ -485,8 +483,8 @@ include: Median income, age distribution, and educational attainment.
 Mode share (car, subway, walking), average commute times, and vehicle
 ownership rates. Household size, population density, and residential
 occupancy patterns. These features have been shown to correlate with
-traffic risk and claim likelihood, as evidenced by \citep{brubacher} and
-\citep{cabrera}, who found that socio-economic deprivation and commuting
+traffic risk and claim likelihood, as evidenced by \citet{brubacher} and
+\citet{cabrera}, who found that socio-economic deprivation and commuting
 behaviors strongly influence crash frequency and severity.
 
 \textbf{Preprocessing Steps}
@@ -507,7 +505,7 @@ This integrated dataset allows us to examine how socio-economic
 conditions interact with crash patterns to inform insurance claim
 frequency and severity modeling, addressing a gap in the literature
 where these public data sources have rarely been combined
-\citep[\citep{jonkheijm}]{mohamed}.
+\citep{mohamed, jonkheijm}.
 
 \subsection{3.2 Key Metrics}\label{key-metrics}
 
@@ -515,22 +513,22 @@ To model insurance risk in the absence of proprietary claims data,
 publicly available crash data is used as a proxy for both claim
 frequency and severity, a practice supported by prior research that
 links traffic accidents directly to insurance losses
-\citep[\citep{dong}]{adeniyi}.
+\citep{adeniyi, dong}.
 
 The metric crashes per 1,000 residents is employed to approximate claim
 frequency, following the approach of studies that normalized accident
 counts by population density to assess relative risk across regions
-\citep[\citep{cabrera}]{brubacher}. This population-adjusted measure
-accounts for differences in exposure between neighborhoods or boroughs,
-enabling fair comparisons of risk levels.
+\citep{brubacher, cabrera}. This population-adjusted measure accounts
+for differences in exposure between neighborhoods or boroughs, enabling
+fair comparisons of risk levels.
 
 To estimate claim severity, we compute injury-to-fatality ratios based
 on reported crashes, reflecting the likelihood and severity of bodily
 harm resulting from incidents. This metric is consistent with the
 severity-focused modeling frameworks used in both insurance
-\citep[\citep{henckaerts}]{clemente} and traffic safety studies
-\citep{dong}, where injury severity is treated as a key determinant of
-financial impact.
+\citep{clemente, henckaerts} and traffic safety studies \citep{dong},
+where injury severity is treated as a key determinant of financial
+impact.
 
 \subsection{3.3 Modeling Approach}\label{modeling-approach}
 
@@ -540,8 +538,7 @@ gradient boosting algorithms, specifically XGBoost and LightGBM.
 Gradient boosting has consistently outperformed traditional GLMs and
 linear models in insurance claim prediction and crash severity modeling
 due to its ability to handle heterogeneous data types (categorical and
-continuous) and capture feature interactions
-\citep[\citep{mohamed}]{clemente}.
+continuous) and capture feature interactions \citep{clemente, mohamed}.
 
 XGBoost is chosen for its strong track record in insurance risk modeling
 and interpretability when combined with SHAP \citep{dong}, while
@@ -556,12 +553,12 @@ Optuna, a state-of-the-art optimization framework leveraging Bayesian
 search and pruning strategies to efficiently navigate large
 hyperparameter spaces. This approach is supported by prior research
 showing that systematic hyperparameter optimization significantly
-improves boosting model accuracy \citep[\citep{liu}]{dong}.
+improves boosting model accuracy \citep{liu}.
 
 \subsection{3.4 Explainability}\label{explainability}
 
 Given the regulatory and operational need for transparent, explainable
-models in insurance \citep[\citep{lundberg}]{henckaerts}, we employ SHAP
+models in insurance \citep{henckaerts, lundberg}, we employ SHAP
 (SHapley Additive exPlanations) for both global and local feature
 analysis. SHAP values are aggregated across the dataset to quantify
 overall feature importance, revealing which socio-economic and

@@ -18,7 +18,9 @@ format:
       name: elsarticle
       formatting: review  
       model: 3p  
-    cite-style: authoryear
+    include-in-header:
+      text: |
+        \setcitestyle{authoryear,open={(},close={)}}
 
 
 bibliography: bibliography.bib
