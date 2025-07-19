@@ -1,11 +1,14 @@
 project:
-  output-dir: analysis/report
+  output-dir: output
+
+cite-method: natbib 
 
 extensions:
-  - quarto-journals-elsevier
+  - quarto-journals/elsevier  
 
 format:
-  quarto-journals-elsevier-pdf:
+  elsevier-pdf:  
+    biblio-style: elsarticle-harv
     number-sections: true
     keep-tex: true
     fig-cap-location: bottom
@@ -13,12 +16,12 @@ format:
     fig-pos: 'H'
     journal:
       name: elsarticle
-      formatting: published
-      model: 3p
-      cite-style: authoryear
+      formatting: review  
+      model: 3p  
+    cite-style: authoryear
+
 
 bibliography: bibliography.bib
-csl: https://www.zotero.org/styles/elsevier-harvard
 
 execute:
   freeze: auto

@@ -33,7 +33,7 @@ date: last-modified
 bibliography: bibliography.bib
 
 format:
-  quarto-journals-elsevier-pdf:
+  elsevier-pdf:
     keep-tex: true
     citation-style: authoryear 
 ---
