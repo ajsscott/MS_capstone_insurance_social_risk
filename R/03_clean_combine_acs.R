@@ -31,7 +31,7 @@ suppressPackageStartupMessages({
 # 1. File Paths
 # ---------------------------
 acs_dir <- "data/raw/acs"
-output_dir <- "data/processed"
+output_dir <- "data/raw"
 crosswalk_path <- "data/processed/census_tract_relationships.csv"
 
 if (!dir.exists(output_dir)) dir.create(output_dir, recursive = TRUE)
@@ -191,9 +191,19 @@ acs_wide <- acs_long %>%
     )
 
 # ---------------------------
-# 9. Save Outputs
+# 9. Normalize Column Names
 # ---------------------------
-write_csv(acs_wide, file.path(output_dir, "acs_2018_2023_wide.csv"))
+acs_wide <- acs_wide %>%
+    rename_with(~ gsub("[ $']", "", .x)) %>%  # remove spaces, $, and '
+    rename_with(~ gsub(" ", "_", .x)) %>%     # replace spaces with underscores
+    rename_with(~ gsub(",", "_", .x)) %>%
+    rename_with(~ gsub("\\s+", "_", .x)) %>%  # handle multiple spaces
+    rename_with(~ tolower(.x)) 
+
+# ---------------------------
+# 10. Save Outputs
+# ---------------------------
+write_csv(acs_wide, file.path(output_dir, "acs_2018_2023_raw.csv"))
 write_csv(variable_dict, file.path(output_dir, "acs_variable_dictionary.csv"))
 
-message("ACS data normalized (2018–2019 only) and saved: acs_2018_2023_wide.csv and acs_variable_dictionary.csv")
+message("ACS data normalized (2018–2019 only) and saved: acs_2018_2023_raw.csv and acs_variable_dictionary.csv om /data/raw/")

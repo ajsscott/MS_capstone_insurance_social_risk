@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 # 04_bin_acs_variables.R
-# Bins ACS variables with robust error handling and race-stratified aggregation
+# Bins ACS variables with robust error handling
 
 # ---------------------------
 # 0. Package Setup
@@ -25,7 +25,7 @@ suppressPackageStartupMessages({
 # ---------------------------
 # 1. Load Data
 # ---------------------------
-acs_path <- "data/processed/acs_2018_2023_wide.csv"
+acs_path <- "data/raw/acs_2018_2023_raw.csv"
 acs <- read_csv(acs_path, show_col_types = FALSE)
 
 # ---------------------------
@@ -40,202 +40,197 @@ safe_agg <- function(df, pattern) {
     cols <- grep(pattern, names(df), value = TRUE)
     if (length(cols) == 0) {
         warning("No columns found for pattern: ", pattern)
-        return(rep(NA_real_, nrow(df))))
+        return(rep(NA_real_, nrow(df)))
     }
     safe_sum(df, cols)
+}
+
+safe_mean <- function(df, col) {
+    if (length(col) == 0 || !col %in% names(df)) {
+        warning("Column not found: ", col)
+        return(rep(NA_real_, nrow(df)))
+    }
+    df[[col]]
 }
 
 # ---------------------------
 # 3. Binning with Error Handling
 # ---------------------------
 
-## --- Age ---
-age_vars <- list(
-    under_18 = "^b01001[a-i]_(00[3-6]|00[18-9]|010|026|027|028|029|030)$",
-    18_34 = "^b01001[a-i]_(0(0[7-9]|1[0-2])$",
-    35_64 = "^b01001[a-i]_(0(1[3-5])$",
-    65_plus = "^b01001[a-i]_(0(1[6-9]|2[0-5])$"
+## --- Basic Demographics ---
+acs <- acs %>% mutate(
+    # Population totals
+    total_population = safe_mean(., "estimate_total"),
+    male_population = safe_mean(., "estimate_total_male"),
+    female_population = safe_mean(., "estimate_total_female"),
+    
+    # Race/Ethnicity
+    white_population = safe_mean(., "estimate_total_whitealone"),
+    black_population = safe_mean(., "estimate_total_blackorafricanamericanalone"),
+    asian_population = safe_mean(., "estimate_total_asianalone"),
+    hispanic_population = safe_mean(., "estimate_total_hispanicorlatino"),
+    foreign_born = safe_mean(., "estimate_total_foreignborn")
 )
 
+## --- Age Groups ---
 acs <- acs %>% mutate(
-    pop_under_18 = safe_agg(., age_vars$under_18),
-    pop_18_34 = safe_agg(., age_vars$18_34),
-    pop_35_64 = safe_agg(., age_vars$35_64),
-    pop_65_plus = safe_agg(., age_vars$65_plus)
+    age_under_18 = safe_sum(., c(
+        "estimate_total_male_under5years", "estimate_total_male_5to9years", 
+        "estimate_total_male_10to14years", "estimate_total_male_15to17years",
+        "estimate_total_female_under5years", "estimate_total_female_5to9years",
+        "estimate_total_female_10to14years", "estimate_total_female_15to17years"
+    )),
+    age_18_34 = safe_sum(., c(
+        "estimate_total_male_18to34years", "estimate_total_female_18to34years"
+    )),
+    age_35_64 = safe_sum(., c(
+        "estimate_total_male_35to64years", "estimate_total_female_35to64years"
+    )),
+    age_65_plus = safe_sum(., c(
+        "estimate_total_male_65to74years", "estimate_total_male_75yearsandover",
+        "estimate_total_female_65to74years", "estimate_total_female_75yearsandover"
+    ))
 )
 
 ## --- Income ---
-income_vars <- list(
-    low = "^b19001[a-i]_(00[2-5])$",
-    mid = "^b19001[a-i]_(00[6-9]|010|011)$",
-    high = "^b19001[a-i]_(012|013|014|015|016|017)$"
-)
-
 acs <- acs %>% mutate(
-    hh_income_low = safe_agg(., income_vars$low),
-    hh_income_mid = safe_agg(., income_vars$mid),
-    hh_income_high = safe_agg(., income_vars$high)
+    median_income = safe_mean(., "estimate_medianhouseholdincomeinthepast12months(in2018inflation-adjusteddollars)"),
+    income_under_25k = safe_sum(., c(
+        "estimate_total_lessthan10_000", "estimate_total_10_000to14_999",
+        "estimate_total_15_000to19_999", "estimate_total_20_000to24_999"
+    )),
+    income_25k_75k = safe_sum(., c(
+        "estimate_total_25_000to29_999", "estimate_total_30_000to34_999",
+        "estimate_total_35_000to39_999", "estimate_total_40_000to44_999",
+        "estimate_total_45_000to49_999", "estimate_total_50_000to59_999",
+        "estimate_total_60_000to74_999"
+    )),
+    income_75k_plus = safe_sum(., c(
+        "estimate_total_75_000to99_999", "estimate_total_100_000to124_999",
+        "estimate_total_125_000to149_999", "estimate_total_150_000to199_999",
+        "estimate_total_200_000ormore"
+    ))
 )
 
-## --- Poverty (B17001) ---
-# Race-stratified aggregation
-poverty_below <- grep("^b17001[a-i]_(00[2-9]|01[0-5])$", names(acs), value = TRUE)
-poverty_total <- grep("^b17001[a-i]_001$", names(acs), value = TRUE)
-
-if (length(poverty_total) > 0 && length(poverty_below) > 0) {
-    acs <- acs %>% mutate(
-        pop_below_poverty = safe_sum(., poverty_below),
-        pop_above_poverty = safe_sum(., poverty_total) - pop_below_poverty,
-        pct_below_poverty = if_else(safe_sum(., poverty_total) > 0,
-                                    pop_below_poverty / safe_sum(., poverty_total) * 100, 
-                                    NA_real_)
-    )
-} else {
-    warning("Poverty columns (B17001) not found. Skipping poverty calculations.")
-    acs <- acs %>% mutate(
-        pop_below_poverty = NA_real_,
-        pop_above_poverty = NA_real_,
-        pct_below_poverty = NA_real_
-    )
-}
-
-## --- Employment (B23025) ---
-employed_cols <- grep("^b23025_004$", names(acs), value = TRUE)
-unemployed_cols <- grep("^b23025_005$", names(acs), value = TRUE)
-labor_force_cols <- grep("^b23025_003$", names(acs), value = TRUE)
-population_16plus_cols <- grep("^b23025_002$", names(acs), value = TRUE)
-
-if (length(employed_cols) > 0 && length(unemployed_cols) > 0 && 
-    length(labor_force_cols) > 0 && length(population_16plus_cols) > 0) {
-    acs <- acs %>% mutate(
-        employed = .[[employed_cols]],
-        unemployed = .[[unemployed_cols]],
-        not_in_labor_force = .[[population_16plus_cols]] - .[[labor_force_cols]],
-        labor_force_participation = if_else(.[[population_16plus_cols]] > 0,
-                                            .[[labor_force_cols]] / .[[population_16plus_cols]] * 100, 
-                                            NA_real_)
-    )
-} else {
-    warning("Employment columns (B23025) not found. Skipping employment calculations.")
-    acs <- acs %>% mutate(
-        employed = NA_real_,
-        unemployed = NA_real_,
-        not_in_labor_force = NA_real_,
-        labor_force_participation = NA_real_
-    )
-}
-
-## --- Commute Time ---
-commute_vars <- list(
-    short = "^b08303_00[2-3]$",
-    medium = "^b08303_00[4-6]$",
-    long = "^b08303_00[7-9]|010$"
-)
-
+## --- Poverty ---
 acs <- acs %>% mutate(
-    commute_short = safe_agg(., commute_vars$short),
-    commute_medium = safe_agg(., commute_vars$medium),
-    commute_long = safe_agg(., commute_vars$long)
+    below_poverty = safe_mean(., "estimate_total_incomeinthepast12monthsbelowpovertylevel"),
+    above_poverty = safe_mean(., "estimate_total_incomeinthepast12monthsatorabovepovertylevel"),
+    poverty_rate = ifelse((below_poverty + above_poverty) > 0,
+                          below_poverty / (below_poverty + above_poverty) * 100,
+                          NA_real_)
 )
 
-## --- Transportation Mode ---
-transport_vars <- list(
-    drive = "^b08134_00[2-3]$",
-    transit = "^b08301_0(10|11|12|13)$",
-    walk_bike = "^b08301_0(18|19)$"
-)
-
+## --- Housing ---
 acs <- acs %>% mutate(
-    pct_drive = safe_agg(., transport_vars$drive),
-    pct_transit = safe_agg(., transport_vars$transit),
-    pct_walk_bike = safe_agg(., transport_vars$walk_bike)
-)
-
-## --- Education ---
-edu_vars <- list(
-    no_hs = "^b15003_00[2-9]|010$",
-    hs = "^b15003_011$",
-    some_college = "^b15003_01[2-4]$",
-    bachelor_plus = "^b15003_01[5-9]|02[0-5]$"
-)
-
-acs <- acs %>% mutate(
-    edu_no_highschool = safe_agg(., edu_vars$no_hs),
-    edu_highschool = safe_agg(., edu_vars$hs),
-    edu_some_college = safe_agg(., edu_vars$some_college),
-    edu_bachelor_plus = safe_agg(., edu_vars$bachelor_plus)
+    median_gross_rent = safe_mean(., "estimate_mediangrossrent"),
+    owner_occupied = safe_mean(., "estimate_total_owneroccupied"),
+    renter_occupied = safe_mean(., "estimate_total_renteroccupied")
 )
 
 ## --- Vehicles ---
-vehicle_vars <- list(
-    none = "^b25044_00(3|10)$",
-    one = "^b25044_00(4|11)$",
-    two_plus = "^b25044_00(5|6|12|13)$"
-)
-
 acs <- acs %>% mutate(
-    hh_no_vehicle = safe_agg(., vehicle_vars$none),
-    hh_1_vehicle = safe_agg(., vehicle_vars$one),
-    hh_2plus_vehicle = safe_agg(., vehicle_vars$two_plus)
+    no_vehicle = safe_mean(., "estimate_total_novehicleavailable"),
+    one_vehicle = safe_mean(., "estimate_total_1vehicleavailable"),
+    two_plus_vehicles = safe_sum(., c(
+        "estimate_total_2vehiclesavailable", "estimate_total_3vehiclesavailable",
+        "estimate_total_4ormorevehiclesavailable"
+    ))
 )
 
-## --- Occupation (C24010) ---
-occ_vars <- list(
-    management = "^c24010[a-i]_00[2-5]$",
-    service = "^c24010[a-i]_00[6-7]$",
-    sales_office = "^c24010[a-i]_00[8-9]$",
-    natural_construction = "^c24010[a-i]_010$",
-    production_transport = "^c24010[a-i]_01[1-2]$"
-)
-
+## --- Education ---
 acs <- acs %>% mutate(
-    occ_management_professional = safe_agg(., occ_vars$management),
-    occ_service = safe_agg(., occ_vars$service),
-    occ_sales_office = safe_agg(., occ_vars$sales_office),
-    occ_natural_construction = safe_agg(., occ_vars$natural_construction),
-    occ_production_transport = safe_agg(., occ_vars$production_transport)
+    less_than_hs = safe_sum(., c(
+        "estimate_total_noschoolingcompleted", "estimate_total_nurseryschool",
+        "estimate_total_kindergarten", "estimate_total_1stgrade",
+        "estimate_total_2ndgrade", "estimate_total_3rdgrade",
+        "estimate_total_4thgrade", "estimate_total_5thgrade",
+        "estimate_total_6thgrade", "estimate_total_7thgrade",
+        "estimate_total_8thgrade", "estimate_total_9thgrade",
+        "estimate_total_10thgrade", "estimate_total_11thgrade",
+        "estimate_total_12thgrade_nodiploma"
+    )),
+    hs_diploma = safe_mean(., "estimate_total_regularhighschooldiploma"),
+    some_college = safe_sum(., c(
+        "estimate_total_somecollege_lessthan1year",
+        "estimate_total_somecollege_1ormoreyears_nodegree"
+    )),
+    associates_degree = safe_mean(., "estimate_total_associatesdegree"),
+    bachelors_degree = safe_mean(., "estimate_total_bachelorsdegree"),
+    graduate_degree = safe_sum(., c(
+        "estimate_total_mastersdegree", "estimate_total_professionalschooldegree",
+        "estimate_total_doctoratedegree"
+    ))
 )
 
-## --- Industry (C24030) ---
-ind_vars <- list(
-    agriculture_mining = "^c24030[a-i]_00[2-3]$",
-    construction_manufacturing = "^c24030[a-i]_00[4-5]$",
-    wholesale_retail = "^c24030[a-i]_00[6-7]$",
-    finance_professional = "^c24030[a-i]_00[8-9]|010|011$",
-    education_health = "^c24030[a-i]_01[2-3]$",
-    arts_recreation = "^c24030[a-i]_014$",
-    other = "^c24030[a-i]_01[5-8]$"
-)
-
+## --- Employment ---
 acs <- acs %>% mutate(
-    ind_agriculture_mining = safe_agg(., ind_vars$agriculture_mining),
-    ind_construction_manufacturing = safe_agg(., ind_vars$construction_manufacturing),
-    ind_wholesale_retail = safe_agg(., ind_vars$wholesale_retail),
-    ind_finance_professional = safe_agg(., ind_vars$finance_professional),
-    ind_education_health = safe_agg(., ind_vars$education_health),
-    ind_arts_recreation = safe_agg(., ind_vars$arts_recreation),
-    ind_other_industries = safe_agg(., ind_vars$other)
+    in_labor_force = safe_mean(., "estimate_total_inlaborforce"),
+    employed = safe_mean(., "estimate_total_inlaborforce_civilianlaborforce_employed"),
+    unemployed = safe_mean(., "estimate_total_inlaborforce_civilianlaborforce_unemployed"),
+    not_in_labor_force = safe_mean(., "estimate_total_notinlaborforce"),
+    unemployment_rate = ifelse(in_labor_force > 0,
+                               unemployed / in_labor_force * 100,
+                               NA_real_)
+)
+
+## --- Commute ---
+acs <- acs %>% mutate(
+    commute_short = safe_sum(., c(
+        "estimate_total_lessthan5minutes", "estimate_total_lessthan10minutes",
+        "estimate_total_5to9minutes", "estimate_total_10to14minutes"
+    )),
+    commute_medium = safe_sum(., c(
+        "estimate_total_15to19minutes", "estimate_total_20to24minutes",
+        "estimate_total_25to29minutes"
+    )),
+    commute_long = safe_sum(., c(
+        "estimate_total_30to34minutes", "estimate_total_35to39minutes",
+        "estimate_total_40to44minutes", "estimate_total_45to59minutes",
+        "estimate_total_60ormoreminutes"
+    ))
+)
+
+## --- Transportation Mode ---
+acs <- acs %>% mutate(
+    drive_alone = safe_mean(., "estimate_total_car_truck_orvan_drovealone"),
+    carpool = safe_mean(., "estimate_total_car_truck_orvan_carpooled"),
+    public_transit = safe_mean(., "estimate_total_publictransportation(excludingtaxicab)"),
+    walk = safe_mean(., "estimate_total_walked"),
+    bike = safe_mean(., "estimate_total_bicycle"),
+    work_from_home = safe_mean(., "estimate_total_workedathome")
 )
 
 # ---------------------------
 # 4. Drop Original Columns
 # ---------------------------
-# Create list of all original columns we tried to use
-all_original_cols <- c(
-    unlist(age_vars), unlist(income_vars), poverty_below, poverty_total,
-    employed_cols, unemployed_cols, labor_force_cols, population_16plus_cols,
-    unlist(commute_vars), unlist(transport_vars), unlist(edu_vars),
-    unlist(vehicle_vars), unlist(occ_vars), unlist(ind_vars)
+# Keep only the binned variables and identifiers
+acs <- acs %>% select(
+    geoid, year,
+    # Demographics
+    total_population, male_population, female_population,
+    white_population, black_population, asian_population, 
+    hispanic_population, foreign_born,
+    # Age
+    age_under_18, age_18_34, age_35_64, age_65_plus,
+    # Income
+    median_income, income_under_25k, income_25k_75k, income_75k_plus,
+    # Poverty
+    below_poverty, above_poverty, poverty_rate,
+    # Housing
+    median_gross_rent, owner_occupied, renter_occupied,
+    # Vehicles
+    no_vehicle, one_vehicle, two_plus_vehicles,
+    # Education
+    less_than_hs, hs_diploma, some_college, associates_degree,
+    bachelors_degree, graduate_degree,
+    # Employment
+    in_labor_force, employed, unemployed, not_in_labor_force, unemployment_rate,
+    # Commute
+    commute_short, commute_medium, commute_long,
+    # Transportation
+    drive_alone, carpool, public_transit, walk, bike, work_from_home
 )
-
-# Get actual column names that exist in the data
-existing_cols <- unique(grep(paste(all_original_cols, collapse = "|"), 
-                             names(acs), value = TRUE))
-
-# Remove original columns if they exist
-if (length(existing_cols) > 0) {
-    acs <- acs %>% select(-any_of(existing_cols))
-}
 
 # ---------------------------
 # 5. Save Output
