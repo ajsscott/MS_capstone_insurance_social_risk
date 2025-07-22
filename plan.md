@@ -19,31 +19,62 @@ This project builds an **end-to-end machine learning pipeline** to predict auto 
 - **Incremental Ingestion:** Design ETL to fetch new data incrementally and store in a version-controlled data lake (AWS S3 or local staging).
 - **Data Engineering Tools:** Automate ingestion with Python scripts and Prefect (or Airflow) for scheduling.
 
+---
+
 ### **Phase 2: Data Cleaning & Transformation**
 - **Big Data Wrangling:** Use **Dask** or **PySpark** to handle large-scale crash records efficiently.
 - **Geospatial Joins:** Map crashes to boroughs or census tracts for spatial aggregation.
 - **Feature Harmonization:** Align ACS socio-economic features with crash data by GEOID/borough mapping.
 
+---
+
 ### **Phase 3: Feature Engineering**
-- **Risk Metrics:**  
-  - Crash frequency per 1,000 residents.  
-  - Severity index (weighted injuries/fatalities).
-- **Derived Features:**  
-  - Interaction variables (e.g., car ownership × median income).
-  - ACS commute patterns (e.g., % of population using cars vs. public transit).
+
+* **Crash and Severity Proxies:**
+
+  * Calculate **crashes per 1,000 residents** (normalized by population) as a proxy for claim frequency.
+  * Compute **injury-to-fatality ratios** from crash records to approximate claim severity.
+* **Socio-Economic Features (ACS):**
+
+  * Extract **median income, age distribution, education levels, commute modes, vehicle ownership, household size, population density, and occupancy patterns** from ACS 5-year data (2018–2022).
+  * Apply **log-transformations** on density and other non-linear variables to capture scaling effects.
+* **Spatial Integration & Derived Metrics:**
+
+  * Spatially join crash records with ACS NTAs using NYC Open Data shapefiles.
+  * Derive **vehicle ownership ratios** and interaction terms (e.g., car ownership × income).
+* **Data Preprocessing:**
+
+  * Remove outliers (e.g., abnormal crash counts) using **interquartile range thresholds**.
+  * Impute missing values with **median imputation**.
+  * **One-hot encode** categorical variables (e.g., commute modes).
+  * **Standardize** continuous variables for model input.
+
+---
 
 ### **Phase 4: Modeling**
-- **Gradient Boosting Models:**  
-  - Train both **XGBoost** and **LightGBM** for risk prediction.  
-  - Optimize hyperparameters using **Optuna** (automated tuning).
-- **Model Validation:**  
-  - Evaluate classification performance (AUC, F1 score) for frequency predictions.  
-  - Evaluate regression performance (RMSE, MAE) for severity metrics.
+
+* **Gradient Boosting Models:**
+
+  * Train **XGBoost** and **LightGBM** models on integrated crash + socio-economic data.
+  * Focus on predicting **frequency and severity proxies** using mixed categorical and continuous features.
+* **Hyperparameter Optimization:**
+
+  * Use **Optuna** (Bayesian search + pruning) to tune model hyperparameters for optimal accuracy.
+* **Model Validation:**
+
+  * Evaluate predictive performance using **AUC and F1-score** for classification tasks (frequency risk tiers).
+  * Use **RMSE and MAE** for regression tasks (severity metrics).
+
+---
 
 ### **Phase 5: Explainability**
-- **SHAP Analysis:**  
-  - Compute SHAP values for feature importance.  
-  - Create **SHAP summary plots** and **dependence plots** to show the influence of income, commute patterns, and vehicle ownership on risk.
+
+* **SHAP Analysis:**
+
+  * Apply **SHAP (Shapley Additive Explanations)** to interpret both global and local model predictions.
+  * Generate **SHAP summary plots, dependence plots, and feature attribution reports** to show how socio-economic factors (e.g., income, commute patterns, vehicle ownership) drive risk predictions.
+
+---
 
 ### **Phase 6: Visualization & Insights**
 - **Interactive Maps:** Visualize crash risk and socio-economic features by borough/tract (e.g., Folium or Plotly).
