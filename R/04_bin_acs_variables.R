@@ -202,40 +202,68 @@ acs <- acs %>% mutate(
 )
 
 # ---------------------------
-# 4. Drop Original Columns
+# 4. Convert Counts to Percentages
 # ---------------------------
-# Keep only the binned variables and identifiers
+
+# List of count variables to convert to percentages
+count_vars <- c(
+    "male_population", "female_population",
+    "white_population", "black_population", "asian_population", 
+    "hispanic_population", "foreign_born",
+    "age_under_18", "age_18_34", "age_35_64", "age_65_plus",
+    "income_under_25k", "income_25k_75k", "income_75k_plus",
+    "below_poverty", "above_poverty",
+    "owner_occupied", "renter_occupied",
+    "no_vehicle", "one_vehicle", "two_plus_vehicles",
+    "less_than_hs", "hs_diploma", "some_college", 
+    "associates_degree", "bachelors_degree", "graduate_degree",
+    "in_labor_force", "employed", "unemployed", "not_in_labor_force",
+    "commute_short", "commute_medium", "commute_long",
+    "drive_alone", "carpool", "public_transit", "walk", "bike", "work_from_home"
+)
+
+# Convert all count variables to percentages
+acs <- acs %>% 
+    mutate(across(all_of(count_vars), 
+                  ~ ifelse(total_population > 0, (.x / total_population) * 100, NA_real_),
+                  .names = "pct_{.col}")) %>%
+    select(-all_of(count_vars))  # Remove the original count columns
+
+
+# ---------------------------
+# 5. Select Final Variables
+# ---------------------------
 acs <- acs %>% select(
-    geoid, year,
+    geoid, year, total_population,
     # Demographics
-    total_population, male_population, female_population,
-    white_population, black_population, asian_population, 
-    hispanic_population, foreign_born,
+    pct_male_population, pct_female_population,
+    pct_white_population, pct_black_population, pct_asian_population, 
+    pct_hispanic_population, pct_foreign_born,
     # Age
-    age_under_18, age_18_34, age_35_64, age_65_plus,
+    pct_age_under_18, pct_age_18_34, pct_age_35_64, pct_age_65_plus,
     # Income
-    median_income, income_under_25k, income_25k_75k, income_75k_plus,
+    median_income, pct_income_under_25k, pct_income_25k_75k, pct_income_75k_plus,
     # Poverty
-    below_poverty, above_poverty, poverty_rate,
+    pct_below_poverty, pct_above_poverty, poverty_rate,
     # Housing
-    median_gross_rent, owner_occupied, renter_occupied,
+    median_gross_rent, pct_owner_occupied, pct_renter_occupied,
     # Vehicles
-    no_vehicle, one_vehicle, two_plus_vehicles,
+    pct_no_vehicle, pct_one_vehicle, pct_two_plus_vehicles,
     # Education
-    less_than_hs, hs_diploma, some_college, associates_degree,
-    bachelors_degree, graduate_degree,
+    pct_less_than_hs, pct_hs_diploma, pct_some_college, pct_associates_degree,
+    pct_bachelors_degree, pct_graduate_degree,
     # Employment
-    in_labor_force, employed, unemployed, not_in_labor_force, unemployment_rate,
+    pct_in_labor_force, pct_employed, pct_unemployed, pct_not_in_labor_force, unemployment_rate,
     # Commute
-    commute_short, commute_medium, commute_long,
+    pct_commute_short, pct_commute_medium, pct_commute_long,
     # Transportation
-    drive_alone, carpool, public_transit, walk, bike, work_from_home
+    pct_drive_alone, pct_carpool, pct_public_transit, pct_walk, pct_bike, pct_work_from_home
 )
 
 # ---------------------------
-# 5. Save Output
+# 6. Save Output
 # ---------------------------
-output_path <- "data/processed/acs_2018_2023_binned.csv"
+output_path <- "data/processed/acs_2018_2023_pct.csv"
 write_csv(acs, output_path)
 
-message("Binned ACS dataset saved to: ", output_path)
+message("Binned ACS dataset with percentages saved to: ", output_path)
