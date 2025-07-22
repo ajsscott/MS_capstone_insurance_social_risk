@@ -1,0 +1,2007 @@
+variable,description
+b01001a_001,estimate_total
+b01001a_002,estimate_total_male
+b01001a_003,estimate_total_male_under 5 years
+b01001a_004,estimate_total_male_5 to 9 years
+b01001a_005,estimate_total_male_10 to 14 years
+b01001a_006,estimate_total_male_15 to 17 years
+b01001a_007,estimate_total_male_18 and 19 years
+b01001a_008,estimate_total_male_20 to 24 years
+b01001a_009,estimate_total_male_25 to 29 years
+b01001a_010,estimate_total_male_30 to 34 years
+b01001a_011,estimate_total_male_35 to 44 years
+b01001a_012,estimate_total_male_45 to 54 years
+b01001a_013,estimate_total_male_55 to 64 years
+b01001a_014,estimate_total_male_65 to 74 years
+b01001a_015,estimate_total_male_75 to 84 years
+b01001a_016,estimate_total_male_85 years and over
+b01001a_017,estimate_total_female
+b01001a_018,estimate_total_female_under 5 years
+b01001a_019,estimate_total_female_5 to 9 years
+b01001a_020,estimate_total_female_10 to 14 years
+b01001a_021,estimate_total_female_15 to 17 years
+b01001a_022,estimate_total_female_18 and 19 years
+b01001a_023,estimate_total_female_20 to 24 years
+b01001a_024,estimate_total_female_25 to 29 years
+b01001a_025,estimate_total_female_30 to 34 years
+b01001a_026,estimate_total_female_35 to 44 years
+b01001a_027,estimate_total_female_45 to 54 years
+b01001a_028,estimate_total_female_55 to 64 years
+b01001a_029,estimate_total_female_65 to 74 years
+b01001a_030,estimate_total_female_75 to 84 years
+b01001a_031,estimate_total_female_85 years and over
+b01001b_001,estimate_total
+b01001b_002,estimate_total_male
+b01001b_003,estimate_total_male_under 5 years
+b01001b_004,estimate_total_male_5 to 9 years
+b01001b_005,estimate_total_male_10 to 14 years
+b01001b_006,estimate_total_male_15 to 17 years
+b01001b_007,estimate_total_male_18 and 19 years
+b01001b_008,estimate_total_male_20 to 24 years
+b01001b_009,estimate_total_male_25 to 29 years
+b01001b_010,estimate_total_male_30 to 34 years
+b01001b_011,estimate_total_male_35 to 44 years
+b01001b_012,estimate_total_male_45 to 54 years
+b01001b_013,estimate_total_male_55 to 64 years
+b01001b_014,estimate_total_male_65 to 74 years
+b01001b_015,estimate_total_male_75 to 84 years
+b01001b_016,estimate_total_male_85 years and over
+b01001b_017,estimate_total_female
+b01001b_018,estimate_total_female_under 5 years
+b01001b_019,estimate_total_female_5 to 9 years
+b01001b_020,estimate_total_female_10 to 14 years
+b01001b_021,estimate_total_female_15 to 17 years
+b01001b_022,estimate_total_female_18 and 19 years
+b01001b_023,estimate_total_female_20 to 24 years
+b01001b_024,estimate_total_female_25 to 29 years
+b01001b_025,estimate_total_female_30 to 34 years
+b01001b_026,estimate_total_female_35 to 44 years
+b01001b_027,estimate_total_female_45 to 54 years
+b01001b_028,estimate_total_female_55 to 64 years
+b01001b_029,estimate_total_female_65 to 74 years
+b01001b_030,estimate_total_female_75 to 84 years
+b01001b_031,estimate_total_female_85 years and over
+b01001c_001,estimate_total
+b01001c_002,estimate_total_male
+b01001c_003,estimate_total_male_under 5 years
+b01001c_004,estimate_total_male_5 to 9 years
+b01001c_005,estimate_total_male_10 to 14 years
+b01001c_006,estimate_total_male_15 to 17 years
+b01001c_007,estimate_total_male_18 and 19 years
+b01001c_008,estimate_total_male_20 to 24 years
+b01001c_009,estimate_total_male_25 to 29 years
+b01001c_010,estimate_total_male_30 to 34 years
+b01001c_011,estimate_total_male_35 to 44 years
+b01001c_012,estimate_total_male_45 to 54 years
+b01001c_013,estimate_total_male_55 to 64 years
+b01001c_014,estimate_total_male_65 to 74 years
+b01001c_015,estimate_total_male_75 to 84 years
+b01001c_016,estimate_total_male_85 years and over
+b01001c_017,estimate_total_female
+b01001c_018,estimate_total_female_under 5 years
+b01001c_019,estimate_total_female_5 to 9 years
+b01001c_020,estimate_total_female_10 to 14 years
+b01001c_021,estimate_total_female_15 to 17 years
+b01001c_022,estimate_total_female_18 and 19 years
+b01001c_023,estimate_total_female_20 to 24 years
+b01001c_024,estimate_total_female_25 to 29 years
+b01001c_025,estimate_total_female_30 to 34 years
+b01001c_026,estimate_total_female_35 to 44 years
+b01001c_027,estimate_total_female_45 to 54 years
+b01001c_028,estimate_total_female_55 to 64 years
+b01001c_029,estimate_total_female_65 to 74 years
+b01001c_030,estimate_total_female_75 to 84 years
+b01001c_031,estimate_total_female_85 years and over
+b01001d_001,estimate_total
+b01001d_002,estimate_total_male
+b01001d_003,estimate_total_male_under 5 years
+b01001d_004,estimate_total_male_5 to 9 years
+b01001d_005,estimate_total_male_10 to 14 years
+b01001d_006,estimate_total_male_15 to 17 years
+b01001d_007,estimate_total_male_18 and 19 years
+b01001d_008,estimate_total_male_20 to 24 years
+b01001d_009,estimate_total_male_25 to 29 years
+b01001d_010,estimate_total_male_30 to 34 years
+b01001d_011,estimate_total_male_35 to 44 years
+b01001d_012,estimate_total_male_45 to 54 years
+b01001d_013,estimate_total_male_55 to 64 years
+b01001d_014,estimate_total_male_65 to 74 years
+b01001d_015,estimate_total_male_75 to 84 years
+b01001d_016,estimate_total_male_85 years and over
+b01001d_017,estimate_total_female
+b01001d_018,estimate_total_female_under 5 years
+b01001d_019,estimate_total_female_5 to 9 years
+b01001d_020,estimate_total_female_10 to 14 years
+b01001d_021,estimate_total_female_15 to 17 years
+b01001d_022,estimate_total_female_18 and 19 years
+b01001d_023,estimate_total_female_20 to 24 years
+b01001d_024,estimate_total_female_25 to 29 years
+b01001d_025,estimate_total_female_30 to 34 years
+b01001d_026,estimate_total_female_35 to 44 years
+b01001d_027,estimate_total_female_45 to 54 years
+b01001d_028,estimate_total_female_55 to 64 years
+b01001d_029,estimate_total_female_65 to 74 years
+b01001d_030,estimate_total_female_75 to 84 years
+b01001d_031,estimate_total_female_85 years and over
+b01001e_001,estimate_total
+b01001e_002,estimate_total_male
+b01001e_003,estimate_total_male_under 5 years
+b01001e_004,estimate_total_male_5 to 9 years
+b01001e_005,estimate_total_male_10 to 14 years
+b01001e_006,estimate_total_male_15 to 17 years
+b01001e_007,estimate_total_male_18 and 19 years
+b01001e_008,estimate_total_male_20 to 24 years
+b01001e_009,estimate_total_male_25 to 29 years
+b01001e_010,estimate_total_male_30 to 34 years
+b01001e_011,estimate_total_male_35 to 44 years
+b01001e_012,estimate_total_male_45 to 54 years
+b01001e_013,estimate_total_male_55 to 64 years
+b01001e_014,estimate_total_male_65 to 74 years
+b01001e_015,estimate_total_male_75 to 84 years
+b01001e_016,estimate_total_male_85 years and over
+b01001e_017,estimate_total_female
+b01001e_018,estimate_total_female_under 5 years
+b01001e_019,estimate_total_female_5 to 9 years
+b01001e_020,estimate_total_female_10 to 14 years
+b01001e_021,estimate_total_female_15 to 17 years
+b01001e_022,estimate_total_female_18 and 19 years
+b01001e_023,estimate_total_female_20 to 24 years
+b01001e_024,estimate_total_female_25 to 29 years
+b01001e_025,estimate_total_female_30 to 34 years
+b01001e_026,estimate_total_female_35 to 44 years
+b01001e_027,estimate_total_female_45 to 54 years
+b01001e_028,estimate_total_female_55 to 64 years
+b01001e_029,estimate_total_female_65 to 74 years
+b01001e_030,estimate_total_female_75 to 84 years
+b01001e_031,estimate_total_female_85 years and over
+b01001f_001,estimate_total
+b01001f_002,estimate_total_male
+b01001f_003,estimate_total_male_under 5 years
+b01001f_004,estimate_total_male_5 to 9 years
+b01001f_005,estimate_total_male_10 to 14 years
+b01001f_006,estimate_total_male_15 to 17 years
+b01001f_007,estimate_total_male_18 and 19 years
+b01001f_008,estimate_total_male_20 to 24 years
+b01001f_009,estimate_total_male_25 to 29 years
+b01001f_010,estimate_total_male_30 to 34 years
+b01001f_011,estimate_total_male_35 to 44 years
+b01001f_012,estimate_total_male_45 to 54 years
+b01001f_013,estimate_total_male_55 to 64 years
+b01001f_014,estimate_total_male_65 to 74 years
+b01001f_015,estimate_total_male_75 to 84 years
+b01001f_016,estimate_total_male_85 years and over
+b01001f_017,estimate_total_female
+b01001f_018,estimate_total_female_under 5 years
+b01001f_019,estimate_total_female_5 to 9 years
+b01001f_020,estimate_total_female_10 to 14 years
+b01001f_021,estimate_total_female_15 to 17 years
+b01001f_022,estimate_total_female_18 and 19 years
+b01001f_023,estimate_total_female_20 to 24 years
+b01001f_024,estimate_total_female_25 to 29 years
+b01001f_025,estimate_total_female_30 to 34 years
+b01001f_026,estimate_total_female_35 to 44 years
+b01001f_027,estimate_total_female_45 to 54 years
+b01001f_028,estimate_total_female_55 to 64 years
+b01001f_029,estimate_total_female_65 to 74 years
+b01001f_030,estimate_total_female_75 to 84 years
+b01001f_031,estimate_total_female_85 years and over
+b01001g_001,estimate_total
+b01001g_002,estimate_total_male
+b01001g_003,estimate_total_male_under 5 years
+b01001g_004,estimate_total_male_5 to 9 years
+b01001g_005,estimate_total_male_10 to 14 years
+b01001g_006,estimate_total_male_15 to 17 years
+b01001g_007,estimate_total_male_18 and 19 years
+b01001g_008,estimate_total_male_20 to 24 years
+b01001g_009,estimate_total_male_25 to 29 years
+b01001g_010,estimate_total_male_30 to 34 years
+b01001g_011,estimate_total_male_35 to 44 years
+b01001g_012,estimate_total_male_45 to 54 years
+b01001g_013,estimate_total_male_55 to 64 years
+b01001g_014,estimate_total_male_65 to 74 years
+b01001g_015,estimate_total_male_75 to 84 years
+b01001g_016,estimate_total_male_85 years and over
+b01001g_017,estimate_total_female
+b01001g_018,estimate_total_female_under 5 years
+b01001g_019,estimate_total_female_5 to 9 years
+b01001g_020,estimate_total_female_10 to 14 years
+b01001g_021,estimate_total_female_15 to 17 years
+b01001g_022,estimate_total_female_18 and 19 years
+b01001g_023,estimate_total_female_20 to 24 years
+b01001g_024,estimate_total_female_25 to 29 years
+b01001g_025,estimate_total_female_30 to 34 years
+b01001g_026,estimate_total_female_35 to 44 years
+b01001g_027,estimate_total_female_45 to 54 years
+b01001g_028,estimate_total_female_55 to 64 years
+b01001g_029,estimate_total_female_65 to 74 years
+b01001g_030,estimate_total_female_75 to 84 years
+b01001g_031,estimate_total_female_85 years and over
+b01001h_001,estimate_total
+b01001h_002,estimate_total_male
+b01001h_003,estimate_total_male_under 5 years
+b01001h_004,estimate_total_male_5 to 9 years
+b01001h_005,estimate_total_male_10 to 14 years
+b01001h_006,estimate_total_male_15 to 17 years
+b01001h_007,estimate_total_male_18 and 19 years
+b01001h_008,estimate_total_male_20 to 24 years
+b01001h_009,estimate_total_male_25 to 29 years
+b01001h_010,estimate_total_male_30 to 34 years
+b01001h_011,estimate_total_male_35 to 44 years
+b01001h_012,estimate_total_male_45 to 54 years
+b01001h_013,estimate_total_male_55 to 64 years
+b01001h_014,estimate_total_male_65 to 74 years
+b01001h_015,estimate_total_male_75 to 84 years
+b01001h_016,estimate_total_male_85 years and over
+b01001h_017,estimate_total_female
+b01001h_018,estimate_total_female_under 5 years
+b01001h_019,estimate_total_female_5 to 9 years
+b01001h_020,estimate_total_female_10 to 14 years
+b01001h_021,estimate_total_female_15 to 17 years
+b01001h_022,estimate_total_female_18 and 19 years
+b01001h_023,estimate_total_female_20 to 24 years
+b01001h_024,estimate_total_female_25 to 29 years
+b01001h_025,estimate_total_female_30 to 34 years
+b01001h_026,estimate_total_female_35 to 44 years
+b01001h_027,estimate_total_female_45 to 54 years
+b01001h_028,estimate_total_female_55 to 64 years
+b01001h_029,estimate_total_female_65 to 74 years
+b01001h_030,estimate_total_female_75 to 84 years
+b01001h_031,estimate_total_female_85 years and over
+b01001i_001,estimate_total
+b01001i_002,estimate_total_male
+b01001i_003,estimate_total_male_under 5 years
+b01001i_004,estimate_total_male_5 to 9 years
+b01001i_005,estimate_total_male_10 to 14 years
+b01001i_006,estimate_total_male_15 to 17 years
+b01001i_007,estimate_total_male_18 and 19 years
+b01001i_008,estimate_total_male_20 to 24 years
+b01001i_009,estimate_total_male_25 to 29 years
+b01001i_010,estimate_total_male_30 to 34 years
+b01001i_011,estimate_total_male_35 to 44 years
+b01001i_012,estimate_total_male_45 to 54 years
+b01001i_013,estimate_total_male_55 to 64 years
+b01001i_014,estimate_total_male_65 to 74 years
+b01001i_015,estimate_total_male_75 to 84 years
+b01001i_016,estimate_total_male_85 years and over
+b01001i_017,estimate_total_female
+b01001i_018,estimate_total_female_under 5 years
+b01001i_019,estimate_total_female_5 to 9 years
+b01001i_020,estimate_total_female_10 to 14 years
+b01001i_021,estimate_total_female_15 to 17 years
+b01001i_022,estimate_total_female_18 and 19 years
+b01001i_023,estimate_total_female_20 to 24 years
+b01001i_024,estimate_total_female_25 to 29 years
+b01001i_025,estimate_total_female_30 to 34 years
+b01001i_026,estimate_total_female_35 to 44 years
+b01001i_027,estimate_total_female_45 to 54 years
+b01001i_028,estimate_total_female_55 to 64 years
+b01001i_029,estimate_total_female_65 to 74 years
+b01001i_030,estimate_total_female_75 to 84 years
+b01001i_031,estimate_total_female_85 years and over
+b01001_001,estimate_total
+b01001_002,estimate_total_male
+b01001_003,estimate_total_male_under 5 years
+b01001_004,estimate_total_male_5 to 9 years
+b01001_005,estimate_total_male_10 to 14 years
+b01001_006,estimate_total_male_15 to 17 years
+b01001_007,estimate_total_male_18 and 19 years
+b01001_008,estimate_total_male_20 years
+b01001_009,estimate_total_male_21 years
+b01001_010,estimate_total_male_22 to 24 years
+b01001_011,estimate_total_male_25 to 29 years
+b01001_012,estimate_total_male_30 to 34 years
+b01001_013,estimate_total_male_35 to 39 years
+b01001_014,estimate_total_male_40 to 44 years
+b01001_015,estimate_total_male_45 to 49 years
+b01001_016,estimate_total_male_50 to 54 years
+b01001_017,estimate_total_male_55 to 59 years
+b01001_018,estimate_total_male_60 and 61 years
+b01001_019,estimate_total_male_62 to 64 years
+b01001_020,estimate_total_male_65 and 66 years
+b01001_021,estimate_total_male_67 to 69 years
+b01001_022,estimate_total_male_70 to 74 years
+b01001_023,estimate_total_male_75 to 79 years
+b01001_024,estimate_total_male_80 to 84 years
+b01001_025,estimate_total_male_85 years and over
+b01001_026,estimate_total_female
+b01001_027,estimate_total_female_under 5 years
+b01001_028,estimate_total_female_5 to 9 years
+b01001_029,estimate_total_female_10 to 14 years
+b01001_030,estimate_total_female_15 to 17 years
+b01001_031,estimate_total_female_18 and 19 years
+b01001_032,estimate_total_female_20 years
+b01001_033,estimate_total_female_21 years
+b01001_034,estimate_total_female_22 to 24 years
+b01001_035,estimate_total_female_25 to 29 years
+b01001_036,estimate_total_female_30 to 34 years
+b01001_037,estimate_total_female_35 to 39 years
+b01001_038,estimate_total_female_40 to 44 years
+b01001_039,estimate_total_female_45 to 49 years
+b01001_040,estimate_total_female_50 to 54 years
+b01001_041,estimate_total_female_55 to 59 years
+b01001_042,estimate_total_female_60 and 61 years
+b01001_043,estimate_total_female_62 to 64 years
+b01001_044,estimate_total_female_65 and 66 years
+b01001_045,estimate_total_female_67 to 69 years
+b01001_046,estimate_total_female_70 to 74 years
+b01001_047,estimate_total_female_75 to 79 years
+b01001_048,estimate_total_female_80 to 84 years
+b01001_049,estimate_total_female_85 years and over
+b01003_001,estimate_total
+b02001_001,estimate_total
+b02001_002,estimate_total_white alone
+b02001_003,estimate_total_black or african american alone
+b02001_004,estimate_total_american indian and alaska native alone
+b02001_005,estimate_total_asian alone
+b02001_006,estimate_total_native hawaiian and other pacific islander alone
+b02001_007,estimate_total_some other race alone
+b02001_008,estimate_total_two or more races
+b02001_009,estimate_total_two or more races_two races including some other race
+b02001_010,"estimate_total_two or more races_two races excluding some other race, and three or more races"
+b03002_001,estimate_total
+b03002_002,estimate_total_not hispanic or latino
+b03002_003,estimate_total_not hispanic or latino_white alone
+b03002_004,estimate_total_not hispanic or latino_black or african american alone
+b03002_005,estimate_total_not hispanic or latino_american indian and alaska native alone
+b03002_006,estimate_total_not hispanic or latino_asian alone
+b03002_007,estimate_total_not hispanic or latino_native hawaiian and other pacific islander alone
+b03002_008,estimate_total_not hispanic or latino_some other race alone
+b03002_009,estimate_total_not hispanic or latino_two or more races
+b03002_010,estimate_total_not hispanic or latino_two or more races_two races including some other race
+b03002_011,"estimate_total_not hispanic or latino_two or more races_two races excluding some other race, and three or more races"
+b03002_012,estimate_total_hispanic or latino
+b03002_013,estimate_total_hispanic or latino_white alone
+b03002_014,estimate_total_hispanic or latino_black or african american alone
+b03002_015,estimate_total_hispanic or latino_american indian and alaska native alone
+b03002_016,estimate_total_hispanic or latino_asian alone
+b03002_017,estimate_total_hispanic or latino_native hawaiian and other pacific islander alone
+b03002_018,estimate_total_hispanic or latino_some other race alone
+b03002_019,estimate_total_hispanic or latino_two or more races
+b03002_020,estimate_total_hispanic or latino_two or more races_two races including some other race
+b03002_021,"estimate_total_hispanic or latino_two or more races_two races excluding some other race, and three or more races"
+b08134_001,estimate_total
+b08134_002,estimate_total_less than 10 minutes
+b08134_003,estimate_total_10 to 14 minutes
+b08134_004,estimate_total_15 to 19 minutes
+b08134_005,estimate_total_20 to 24 minutes
+b08134_006,estimate_total_25 to 29 minutes
+b08134_007,estimate_total_30 to 34 minutes
+b08134_008,estimate_total_35 to 44 minutes
+b08134_009,estimate_total_45 to 59 minutes
+b08134_010,estimate_total_60 or more minutes
+b08134_011,"estimate_total_car, truck, or van"
+b08134_012,"estimate_total_car, truck, or van_less than 10 minutes"
+b08134_013,"estimate_total_car, truck, or van_10 to 14 minutes"
+b08134_014,"estimate_total_car, truck, or van_15 to 19 minutes"
+b08134_015,"estimate_total_car, truck, or van_20 to 24 minutes"
+b08134_016,"estimate_total_car, truck, or van_25 to 29 minutes"
+b08134_017,"estimate_total_car, truck, or van_30 to 34 minutes"
+b08134_018,"estimate_total_car, truck, or van_35 to 44 minutes"
+b08134_019,"estimate_total_car, truck, or van_45 to 59 minutes"
+b08134_020,"estimate_total_car, truck, or van_60 or more minutes"
+b08134_021,"estimate_total_car, truck, or van_drove alone"
+b08134_022,"estimate_total_car, truck, or van_drove alone_less than 10 minutes"
+b08134_023,"estimate_total_car, truck, or van_drove alone_10 to 14 minutes"
+b08134_024,"estimate_total_car, truck, or van_drove alone_15 to 19 minutes"
+b08134_025,"estimate_total_car, truck, or van_drove alone_20 to 24 minutes"
+b08134_026,"estimate_total_car, truck, or van_drove alone_25 to 29 minutes"
+b08134_027,"estimate_total_car, truck, or van_drove alone_30 to 34 minutes"
+b08134_028,"estimate_total_car, truck, or van_drove alone_35 to 44 minutes"
+b08134_029,"estimate_total_car, truck, or van_drove alone_45 to 59 minutes"
+b08134_030,"estimate_total_car, truck, or van_drove alone_60 or more minutes"
+b08134_031,"estimate_total_car, truck, or van_carpooled"
+b08134_032,"estimate_total_car, truck, or van_carpooled_less than 10 minutes"
+b08134_033,"estimate_total_car, truck, or van_carpooled_10 to 14 minutes"
+b08134_034,"estimate_total_car, truck, or van_carpooled_15 to 19 minutes"
+b08134_035,"estimate_total_car, truck, or van_carpooled_20 to 24 minutes"
+b08134_036,"estimate_total_car, truck, or van_carpooled_25 to 29 minutes"
+b08134_037,"estimate_total_car, truck, or van_carpooled_30 to 34 minutes"
+b08134_038,"estimate_total_car, truck, or van_carpooled_35 to 44 minutes"
+b08134_039,"estimate_total_car, truck, or van_carpooled_45 to 59 minutes"
+b08134_040,"estimate_total_car, truck, or van_carpooled_60 or more minutes"
+b08134_041,"estimate_total_car, truck, or van_carpooled_in 2-person carpool"
+b08134_042,"estimate_total_car, truck, or van_carpooled_in 2-person carpool_less than 10 minutes"
+b08134_043,"estimate_total_car, truck, or van_carpooled_in 2-person carpool_10 to 14 minutes"
+b08134_044,"estimate_total_car, truck, or van_carpooled_in 2-person carpool_15 to 19 minutes"
+b08134_045,"estimate_total_car, truck, or van_carpooled_in 2-person carpool_20 to 24 minutes"
+b08134_046,"estimate_total_car, truck, or van_carpooled_in 2-person carpool_25 to 29 minutes"
+b08134_047,"estimate_total_car, truck, or van_carpooled_in 2-person carpool_30 to 34 minutes"
+b08134_048,"estimate_total_car, truck, or van_carpooled_in 2-person carpool_35 to 44 minutes"
+b08134_049,"estimate_total_car, truck, or van_carpooled_in 2-person carpool_45 to 59 minutes"
+b08134_050,"estimate_total_car, truck, or van_carpooled_in 2-person carpool_60 or more minutes"
+b08134_051,"estimate_total_car, truck, or van_carpooled_in 3-or-more-person carpool"
+b08134_052,"estimate_total_car, truck, or van_carpooled_in 3-or-more-person carpool_less than 10 minutes"
+b08134_053,"estimate_total_car, truck, or van_carpooled_in 3-or-more-person carpool_10 to 14 minutes"
+b08134_054,"estimate_total_car, truck, or van_carpooled_in 3-or-more-person carpool_15 to 19 minutes"
+b08134_055,"estimate_total_car, truck, or van_carpooled_in 3-or-more-person carpool_20 to 24 minutes"
+b08134_056,"estimate_total_car, truck, or van_carpooled_in 3-or-more-person carpool_25 to 29 minutes"
+b08134_057,"estimate_total_car, truck, or van_carpooled_in 3-or-more-person carpool_30 to 34 minutes"
+b08134_058,"estimate_total_car, truck, or van_carpooled_in 3-or-more-person carpool_35 to 44 minutes"
+b08134_059,"estimate_total_car, truck, or van_carpooled_in 3-or-more-person carpool_45 to 59 minutes"
+b08134_060,"estimate_total_car, truck, or van_carpooled_in 3-or-more-person carpool_60 or more minutes"
+b08134_061,estimate_total_public transportation (excluding taxicab)
+b08134_062,estimate_total_public transportation (excluding taxicab)_less than 10 minutes
+b08134_063,estimate_total_public transportation (excluding taxicab)_10 to 14 minutes
+b08134_064,estimate_total_public transportation (excluding taxicab)_15 to 19 minutes
+b08134_065,estimate_total_public transportation (excluding taxicab)_20 to 24 minutes
+b08134_066,estimate_total_public transportation (excluding taxicab)_25 to 29 minutes
+b08134_067,estimate_total_public transportation (excluding taxicab)_30 to 34 minutes
+b08134_068,estimate_total_public transportation (excluding taxicab)_35 to 44 minutes
+b08134_069,estimate_total_public transportation (excluding taxicab)_45 to 59 minutes
+b08134_070,estimate_total_public transportation (excluding taxicab)_60 or more minutes
+b08134_071,estimate_total_public transportation (excluding taxicab)_bus or trolley bus
+b08134_072,estimate_total_public transportation (excluding taxicab)_bus or trolley bus_less than 10 minutes
+b08134_073,estimate_total_public transportation (excluding taxicab)_bus or trolley bus_10 to 14 minutes
+b08134_074,estimate_total_public transportation (excluding taxicab)_bus or trolley bus_15 to 19 minutes
+b08134_075,estimate_total_public transportation (excluding taxicab)_bus or trolley bus_20 to 24 minutes
+b08134_076,estimate_total_public transportation (excluding taxicab)_bus or trolley bus_25 to 29 minutes
+b08134_077,estimate_total_public transportation (excluding taxicab)_bus or trolley bus_30 to 34 minutes
+b08134_078,estimate_total_public transportation (excluding taxicab)_bus or trolley bus_35 to 44 minutes
+b08134_079,estimate_total_public transportation (excluding taxicab)_bus or trolley bus_45 to 59 minutes
+b08134_080,estimate_total_public transportation (excluding taxicab)_bus or trolley bus_60 or more minutes
+b08134_081,"estimate_total_public transportation (excluding taxicab)_streetcar or trolley car (carro publico in puerto rico), subway or elevated"
+b08134_082,"estimate_total_public transportation (excluding taxicab)_streetcar or trolley car (carro publico in puerto rico), subway or elevated_less than 10 minutes"
+b08134_083,"estimate_total_public transportation (excluding taxicab)_streetcar or trolley car (carro publico in puerto rico), subway or elevated_10 to 14 minutes"
+b08134_084,"estimate_total_public transportation (excluding taxicab)_streetcar or trolley car (carro publico in puerto rico), subway or elevated_15 to 19 minutes"
+b08134_085,"estimate_total_public transportation (excluding taxicab)_streetcar or trolley car (carro publico in puerto rico), subway or elevated_20 to 24 minutes"
+b08134_086,"estimate_total_public transportation (excluding taxicab)_streetcar or trolley car (carro publico in puerto rico), subway or elevated_25 to 29 minutes"
+b08134_087,"estimate_total_public transportation (excluding taxicab)_streetcar or trolley car (carro publico in puerto rico), subway or elevated_30 to 34 minutes"
+b08134_088,"estimate_total_public transportation (excluding taxicab)_streetcar or trolley car (carro publico in puerto rico), subway or elevated_35 to 44 minutes"
+b08134_089,"estimate_total_public transportation (excluding taxicab)_streetcar or trolley car (carro publico in puerto rico), subway or elevated_45 to 59 minutes"
+b08134_090,"estimate_total_public transportation (excluding taxicab)_streetcar or trolley car (carro publico in puerto rico), subway or elevated_60 or more minutes"
+b08134_091,estimate_total_public transportation (excluding taxicab)_railroad or ferryboat
+b08134_092,estimate_total_public transportation (excluding taxicab)_railroad or ferryboat_less than 10 minutes
+b08134_093,estimate_total_public transportation (excluding taxicab)_railroad or ferryboat_10 to 14 minutes
+b08134_094,estimate_total_public transportation (excluding taxicab)_railroad or ferryboat_15 to 19 minutes
+b08134_095,estimate_total_public transportation (excluding taxicab)_railroad or ferryboat_20 to 24 minutes
+b08134_096,estimate_total_public transportation (excluding taxicab)_railroad or ferryboat_25 to 29 minutes
+b08134_097,estimate_total_public transportation (excluding taxicab)_railroad or ferryboat_30 to 34 minutes
+b08134_098,estimate_total_public transportation (excluding taxicab)_railroad or ferryboat_35 to 44 minutes
+b08134_099,estimate_total_public transportation (excluding taxicab)_railroad or ferryboat_45 to 59 minutes
+b08134_100,estimate_total_public transportation (excluding taxicab)_railroad or ferryboat_60 or more minutes
+b08134_101,estimate_total_walked
+b08134_102,estimate_total_walked_less than 10 minutes
+b08134_103,estimate_total_walked_10 to 14 minutes
+b08134_104,estimate_total_walked_15 to 19 minutes
+b08134_105,estimate_total_walked_20 to 24 minutes
+b08134_106,estimate_total_walked_25 to 29 minutes
+b08134_107,estimate_total_walked_30 to 34 minutes
+b08134_108,estimate_total_walked_35 to 44 minutes
+b08134_109,estimate_total_walked_45 to 59 minutes
+b08134_110,estimate_total_walked_60 or more minutes
+b08134_111,"estimate_total_taxicab, motorcycle, bicycle, or other means"
+b08134_112,"estimate_total_taxicab, motorcycle, bicycle, or other means_less than 10 minutes"
+b08134_113,"estimate_total_taxicab, motorcycle, bicycle, or other means_10 to 14 minutes"
+b08134_114,"estimate_total_taxicab, motorcycle, bicycle, or other means_15 to 19 minutes"
+b08134_115,"estimate_total_taxicab, motorcycle, bicycle, or other means_20 to 24 minutes"
+b08134_116,"estimate_total_taxicab, motorcycle, bicycle, or other means_25 to 29 minutes"
+b08134_117,"estimate_total_taxicab, motorcycle, bicycle, or other means_30 to 34 minutes"
+b08134_118,"estimate_total_taxicab, motorcycle, bicycle, or other means_35 to 44 minutes"
+b08134_119,"estimate_total_taxicab, motorcycle, bicycle, or other means_45 to 59 minutes"
+b08134_120,"estimate_total_taxicab, motorcycle, bicycle, or other means_60 or more minutes"
+b08201_001,estimate_total
+b08201_002,estimate_total_no vehicle available
+b08201_003,estimate_total_1 vehicle available
+b08201_004,estimate_total_2 vehicles available
+b08201_005,estimate_total_3 vehicles available
+b08201_006,estimate_total_4 or more vehicles available
+b08201_007,estimate_total_1-person household
+b08201_008,estimate_total_1-person household_no vehicle available
+b08201_009,estimate_total_1-person household_1 vehicle available
+b08201_010,estimate_total_1-person household_2 vehicles available
+b08201_011,estimate_total_1-person household_3 vehicles available
+b08201_012,estimate_total_1-person household_4 or more vehicles available
+b08201_013,estimate_total_2-person household
+b08201_014,estimate_total_2-person household_no vehicle available
+b08201_015,estimate_total_2-person household_1 vehicle available
+b08201_016,estimate_total_2-person household_2 vehicles available
+b08201_017,estimate_total_2-person household_3 vehicles available
+b08201_018,estimate_total_2-person household_4 or more vehicles available
+b08201_019,estimate_total_3-person household
+b08201_020,estimate_total_3-person household_no vehicle available
+b08201_021,estimate_total_3-person household_1 vehicle available
+b08201_022,estimate_total_3-person household_2 vehicles available
+b08201_023,estimate_total_3-person household_3 vehicles available
+b08201_024,estimate_total_3-person household_4 or more vehicles available
+b08201_025,estimate_total_4-or-more-person household
+b08201_026,estimate_total_4-or-more-person household_no vehicle available
+b08201_027,estimate_total_4-or-more-person household_1 vehicle available
+b08201_028,estimate_total_4-or-more-person household_2 vehicles available
+b08201_029,estimate_total_4-or-more-person household_3 vehicles available
+b08201_030,estimate_total_4-or-more-person household_4 or more vehicles available
+b08301_001,estimate_total
+b08301_002,"estimate_total_car, truck, or van"
+b08301_003,"estimate_total_car, truck, or van_drove alone"
+b08301_004,"estimate_total_car, truck, or van_carpooled"
+b08301_005,"estimate_total_car, truck, or van_carpooled_in 2-person carpool"
+b08301_006,"estimate_total_car, truck, or van_carpooled_in 3-person carpool"
+b08301_007,"estimate_total_car, truck, or van_carpooled_in 4-person carpool"
+b08301_008,"estimate_total_car, truck, or van_carpooled_in 5- or 6-person carpool"
+b08301_009,"estimate_total_car, truck, or van_carpooled_in 7-or-more-person carpool"
+b08301_010,estimate_total_public transportation (excluding taxicab)
+b08301_011,estimate_total_public transportation (excluding taxicab)_bus or trolley bus
+b08301_012,estimate_total_public transportation (excluding taxicab)_streetcar or trolley car (carro publico in puerto rico)
+b08301_013,estimate_total_public transportation (excluding taxicab)_subway or elevated
+b08301_014,estimate_total_public transportation (excluding taxicab)_railroad
+b08301_015,estimate_total_public transportation (excluding taxicab)_ferryboat
+b08301_016,estimate_total_taxicab
+b08301_017,estimate_total_motorcycle
+b08301_018,estimate_total_bicycle
+b08301_019,estimate_total_walked
+b08301_020,estimate_total_other means
+b08301_021,estimate_total_worked at home
+b08303_001,estimate_total
+b08303_002,estimate_total_less than 5 minutes
+b08303_003,estimate_total_5 to 9 minutes
+b08303_004,estimate_total_10 to 14 minutes
+b08303_005,estimate_total_15 to 19 minutes
+b08303_006,estimate_total_20 to 24 minutes
+b08303_007,estimate_total_25 to 29 minutes
+b08303_008,estimate_total_30 to 34 minutes
+b08303_009,estimate_total_35 to 39 minutes
+b08303_010,estimate_total_40 to 44 minutes
+b08303_011,estimate_total_45 to 59 minutes
+b08303_012,estimate_total_60 to 89 minutes
+b08303_013,estimate_total_90 or more minutes
+b09005_001,estimate_total
+b09005_002,estimate_total_in family households
+b09005_003,estimate_total_in family households_in married-couple family
+b09005_004,"estimate_total_in family households_in male householder, no wife present, family"
+b09005_005,"estimate_total_in family households_in female householder, no husband present, family"
+b09005_006,estimate_total_in nonfamily households
+b11001a_001,estimate_total
+b11001a_002,estimate_total_family households
+b11001a_003,estimate_total_family households_married-couple family
+b11001a_004,estimate_total_family households_other family
+b11001a_005,"estimate_total_family households_other family_male householder, no wife present"
+b11001a_006,"estimate_total_family households_other family_female householder, no husband present"
+b11001a_007,estimate_total_nonfamily households
+b11001a_008,estimate_total_nonfamily households_householder living alone
+b11001a_009,estimate_total_nonfamily households_householder not living alone
+b11001b_001,estimate_total
+b11001b_002,estimate_total_family households
+b11001b_003,estimate_total_family households_married-couple family
+b11001b_004,estimate_total_family households_other family
+b11001b_005,"estimate_total_family households_other family_male householder, no wife present"
+b11001b_006,"estimate_total_family households_other family_female householder, no husband present"
+b11001b_007,estimate_total_nonfamily households
+b11001b_008,estimate_total_nonfamily households_householder living alone
+b11001b_009,estimate_total_nonfamily households_householder not living alone
+b11001c_001,estimate_total
+b11001c_002,estimate_total_family households
+b11001c_003,estimate_total_family households_married-couple family
+b11001c_004,estimate_total_family households_other family
+b11001c_005,"estimate_total_family households_other family_male householder, no wife present"
+b11001c_006,"estimate_total_family households_other family_female householder, no husband present"
+b11001c_007,estimate_total_nonfamily households
+b11001c_008,estimate_total_nonfamily households_householder living alone
+b11001c_009,estimate_total_nonfamily households_householder not living alone
+b11001d_001,estimate_total
+b11001d_002,estimate_total_family households
+b11001d_003,estimate_total_family households_married-couple family
+b11001d_004,estimate_total_family households_other family
+b11001d_005,"estimate_total_family households_other family_male householder, no wife present"
+b11001d_006,"estimate_total_family households_other family_female householder, no husband present"
+b11001d_007,estimate_total_nonfamily households
+b11001d_008,estimate_total_nonfamily households_householder living alone
+b11001d_009,estimate_total_nonfamily households_householder not living alone
+b11001e_001,estimate_total
+b11001e_002,estimate_total_family households
+b11001e_003,estimate_total_family households_married-couple family
+b11001e_004,estimate_total_family households_other family
+b11001e_005,"estimate_total_family households_other family_male householder, no wife present"
+b11001e_006,"estimate_total_family households_other family_female householder, no husband present"
+b11001e_007,estimate_total_nonfamily households
+b11001e_008,estimate_total_nonfamily households_householder living alone
+b11001e_009,estimate_total_nonfamily households_householder not living alone
+b11001f_001,estimate_total
+b11001f_002,estimate_total_family households
+b11001f_003,estimate_total_family households_married-couple family
+b11001f_004,estimate_total_family households_other family
+b11001f_005,"estimate_total_family households_other family_male householder, no wife present"
+b11001f_006,"estimate_total_family households_other family_female householder, no husband present"
+b11001f_007,estimate_total_nonfamily households
+b11001f_008,estimate_total_nonfamily households_householder living alone
+b11001f_009,estimate_total_nonfamily households_householder not living alone
+b11001g_001,estimate_total
+b11001g_002,estimate_total_family households
+b11001g_003,estimate_total_family households_married-couple family
+b11001g_004,estimate_total_family households_other family
+b11001g_005,"estimate_total_family households_other family_male householder, no wife present"
+b11001g_006,"estimate_total_family households_other family_female householder, no husband present"
+b11001g_007,estimate_total_nonfamily households
+b11001g_008,estimate_total_nonfamily households_householder living alone
+b11001g_009,estimate_total_nonfamily households_householder not living alone
+b11001h_001,estimate_total
+b11001h_002,estimate_total_family households
+b11001h_003,estimate_total_family households_married-couple family
+b11001h_004,estimate_total_family households_other family
+b11001h_005,"estimate_total_family households_other family_male householder, no wife present"
+b11001h_006,"estimate_total_family households_other family_female householder, no husband present"
+b11001h_007,estimate_total_nonfamily households
+b11001h_008,estimate_total_nonfamily households_householder living alone
+b11001h_009,estimate_total_nonfamily households_householder not living alone
+b11001i_001,estimate_total
+b11001i_002,estimate_total_family households
+b11001i_003,estimate_total_family households_married-couple family
+b11001i_004,estimate_total_family households_other family
+b11001i_005,"estimate_total_family households_other family_male householder, no wife present"
+b11001i_006,"estimate_total_family households_other family_female householder, no husband present"
+b11001i_007,estimate_total_nonfamily households
+b11001i_008,estimate_total_nonfamily households_householder living alone
+b11001i_009,estimate_total_nonfamily households_householder not living alone
+b11001_001,estimate_total
+b11001_002,estimate_total_family households
+b11001_003,estimate_total_family households_married-couple family
+b11001_004,estimate_total_family households_other family
+b11001_005,"estimate_total_family households_other family_male householder, no wife present"
+b11001_006,"estimate_total_family households_other family_female householder, no husband present"
+b11001_007,estimate_total_nonfamily households
+b11001_008,estimate_total_nonfamily households_householder living alone
+b11001_009,estimate_total_nonfamily households_householder not living alone
+b15003_001,estimate_total
+b15003_002,estimate_total_no schooling completed
+b15003_003,estimate_total_nursery school
+b15003_004,estimate_total_kindergarten
+b15003_005,estimate_total_1st grade
+b15003_006,estimate_total_2nd grade
+b15003_007,estimate_total_3rd grade
+b15003_008,estimate_total_4th grade
+b15003_009,estimate_total_5th grade
+b15003_010,estimate_total_6th grade
+b15003_011,estimate_total_7th grade
+b15003_012,estimate_total_8th grade
+b15003_013,estimate_total_9th grade
+b15003_014,estimate_total_10th grade
+b15003_015,estimate_total_11th grade
+b15003_016,"estimate_total_12th grade, no diploma"
+b15003_017,estimate_total_regular high school diploma
+b15003_018,estimate_total_ged or alternative credential
+b15003_019,"estimate_total_some college, less than 1 year"
+b15003_020,"estimate_total_some college, 1 or more years, no degree"
+b15003_021,estimate_total_associate's degree
+b15003_022,estimate_total_bachelor's degree
+b15003_023,estimate_total_master's degree
+b15003_024,estimate_total_professional school degree
+b15003_025,estimate_total_doctorate degree
+b16005a_001,estimate_total
+b16005a_002,estimate_total_native
+b16005a_003,estimate_total_native_speak only english
+b16005a_004,estimate_total_native_speak another language
+b16005a_005,"estimate_total_native_speak another language_speak english ""very well"""
+b16005a_006,"estimate_total_native_speak another language_speak english less than ""very well"""
+b16005a_007,estimate_total_foreign born
+b16005a_008,estimate_total_foreign born_speak only english
+b16005a_009,estimate_total_foreign born_speak another language
+b16005a_010,"estimate_total_foreign born_speak another language_speak english ""very well"""
+b16005a_011,"estimate_total_foreign born_speak another language_speak english less than ""very well"""
+b16005b_001,estimate_total
+b16005b_002,estimate_total_native
+b16005b_003,estimate_total_native_speak only english
+b16005b_004,estimate_total_native_speak another language
+b16005b_005,"estimate_total_native_speak another language_speak english ""very well"""
+b16005b_006,"estimate_total_native_speak another language_speak english less than ""very well"""
+b16005b_007,estimate_total_foreign born
+b16005b_008,estimate_total_foreign born_speak only english
+b16005b_009,estimate_total_foreign born_speak another language
+b16005b_010,"estimate_total_foreign born_speak another language_speak english ""very well"""
+b16005b_011,"estimate_total_foreign born_speak another language_speak english less than ""very well"""
+b16005c_001,estimate_total
+b16005c_002,estimate_total_native
+b16005c_003,estimate_total_native_speak only english
+b16005c_004,estimate_total_native_speak another language
+b16005c_005,"estimate_total_native_speak another language_speak english ""very well"""
+b16005c_006,"estimate_total_native_speak another language_speak english less than ""very well"""
+b16005c_007,estimate_total_foreign born
+b16005c_008,estimate_total_foreign born_speak only english
+b16005c_009,estimate_total_foreign born_speak another language
+b16005c_010,"estimate_total_foreign born_speak another language_speak english ""very well"""
+b16005c_011,"estimate_total_foreign born_speak another language_speak english less than ""very well"""
+b16005d_001,estimate_total
+b16005d_002,estimate_total_native
+b16005d_003,estimate_total_native_speak only english
+b16005d_004,estimate_total_native_speak another language
+b16005d_005,"estimate_total_native_speak another language_speak english ""very well"""
+b16005d_006,"estimate_total_native_speak another language_speak english less than ""very well"""
+b16005d_007,estimate_total_foreign born
+b16005d_008,estimate_total_foreign born_speak only english
+b16005d_009,estimate_total_foreign born_speak another language
+b16005d_010,"estimate_total_foreign born_speak another language_speak english ""very well"""
+b16005d_011,"estimate_total_foreign born_speak another language_speak english less than ""very well"""
+b16005e_001,estimate_total
+b16005e_002,estimate_total_native
+b16005e_003,estimate_total_native_speak only english
+b16005e_004,estimate_total_native_speak another language
+b16005e_005,"estimate_total_native_speak another language_speak english ""very well"""
+b16005e_006,"estimate_total_native_speak another language_speak english less than ""very well"""
+b16005e_007,estimate_total_foreign born
+b16005e_008,estimate_total_foreign born_speak only english
+b16005e_009,estimate_total_foreign born_speak another language
+b16005e_010,"estimate_total_foreign born_speak another language_speak english ""very well"""
+b16005e_011,"estimate_total_foreign born_speak another language_speak english less than ""very well"""
+b16005f_001,estimate_total
+b16005f_002,estimate_total_native
+b16005f_003,estimate_total_native_speak only english
+b16005f_004,estimate_total_native_speak another language
+b16005f_005,"estimate_total_native_speak another language_speak english ""very well"""
+b16005f_006,"estimate_total_native_speak another language_speak english less than ""very well"""
+b16005f_007,estimate_total_foreign born
+b16005f_008,estimate_total_foreign born_speak only english
+b16005f_009,estimate_total_foreign born_speak another language
+b16005f_010,"estimate_total_foreign born_speak another language_speak english ""very well"""
+b16005f_011,"estimate_total_foreign born_speak another language_speak english less than ""very well"""
+b16005g_001,estimate_total
+b16005g_002,estimate_total_native
+b16005g_003,estimate_total_native_speak only english
+b16005g_004,estimate_total_native_speak another language
+b16005g_005,"estimate_total_native_speak another language_speak english ""very well"""
+b16005g_006,"estimate_total_native_speak another language_speak english less than ""very well"""
+b16005g_007,estimate_total_foreign born
+b16005g_008,estimate_total_foreign born_speak only english
+b16005g_009,estimate_total_foreign born_speak another language
+b16005g_010,"estimate_total_foreign born_speak another language_speak english ""very well"""
+b16005g_011,"estimate_total_foreign born_speak another language_speak english less than ""very well"""
+b16005h_001,estimate_total
+b16005h_002,estimate_total_native
+b16005h_003,estimate_total_native_speak only english
+b16005h_004,estimate_total_native_speak another language
+b16005h_005,"estimate_total_native_speak another language_speak english ""very well"""
+b16005h_006,"estimate_total_native_speak another language_speak english less than ""very well"""
+b16005h_007,estimate_total_foreign born
+b16005h_008,estimate_total_foreign born_speak only english
+b16005h_009,estimate_total_foreign born_speak another language
+b16005h_010,"estimate_total_foreign born_speak another language_speak english ""very well"""
+b16005h_011,"estimate_total_foreign born_speak another language_speak english less than ""very well"""
+b16005i_001,estimate_total
+b16005i_002,estimate_total_native
+b16005i_003,estimate_total_native_speak only english
+b16005i_004,estimate_total_native_speak another language
+b16005i_005,"estimate_total_native_speak another language_speak english ""very well"""
+b16005i_006,"estimate_total_native_speak another language_speak english less than ""very well"""
+b16005i_007,estimate_total_foreign born
+b16005i_008,estimate_total_foreign born_speak only english
+b16005i_009,estimate_total_foreign born_speak another language
+b16005i_010,"estimate_total_foreign born_speak another language_speak english ""very well"""
+b16005i_011,"estimate_total_foreign born_speak another language_speak english less than ""very well"""
+b16005_001,estimate_total
+b16005_002,estimate_total_native
+b16005_003,estimate_total_native_speak only english
+b16005_004,estimate_total_native_speak spanish
+b16005_005,"estimate_total_native_speak spanish_speak english ""very well"""
+b16005_006,"estimate_total_native_speak spanish_speak english ""well"""
+b16005_007,"estimate_total_native_speak spanish_speak english ""not well"""
+b16005_008,"estimate_total_native_speak spanish_speak english ""not at all"""
+b16005_009,estimate_total_native_speak other indo-european languages
+b16005_010,"estimate_total_native_speak other indo-european languages_speak english ""very well"""
+b16005_011,"estimate_total_native_speak other indo-european languages_speak english ""well"""
+b16005_012,"estimate_total_native_speak other indo-european languages_speak english ""not well"""
+b16005_013,"estimate_total_native_speak other indo-european languages_speak english ""not at all"""
+b16005_014,estimate_total_native_speak asian and pacific island languages
+b16005_015,"estimate_total_native_speak asian and pacific island languages_speak english ""very well"""
+b16005_016,"estimate_total_native_speak asian and pacific island languages_speak english ""well"""
+b16005_017,"estimate_total_native_speak asian and pacific island languages_speak english ""not well"""
+b16005_018,"estimate_total_native_speak asian and pacific island languages_speak english ""not at all"""
+b16005_019,estimate_total_native_speak other languages
+b16005_020,"estimate_total_native_speak other languages_speak english ""very well"""
+b16005_021,"estimate_total_native_speak other languages_speak english ""well"""
+b16005_022,"estimate_total_native_speak other languages_speak english ""not well"""
+b16005_023,"estimate_total_native_speak other languages_speak english ""not at all"""
+b16005_024,estimate_total_foreign born
+b16005_025,estimate_total_foreign born_speak only english
+b16005_026,estimate_total_foreign born_speak spanish
+b16005_027,"estimate_total_foreign born_speak spanish_speak english ""very well"""
+b16005_028,"estimate_total_foreign born_speak spanish_speak english ""well"""
+b16005_029,"estimate_total_foreign born_speak spanish_speak english ""not well"""
+b16005_030,"estimate_total_foreign born_speak spanish_speak english ""not at all"""
+b16005_031,estimate_total_foreign born_speak other indo-european languages
+b16005_032,"estimate_total_foreign born_speak other indo-european languages_speak english ""very well"""
+b16005_033,"estimate_total_foreign born_speak other indo-european languages_speak english ""well"""
+b16005_034,"estimate_total_foreign born_speak other indo-european languages_speak english ""not well"""
+b16005_035,"estimate_total_foreign born_speak other indo-european languages_speak english ""not at all"""
+b16005_036,estimate_total_foreign born_speak asian and pacific island languages
+b16005_037,"estimate_total_foreign born_speak asian and pacific island languages_speak english ""very well"""
+b16005_038,"estimate_total_foreign born_speak asian and pacific island languages_speak english ""well"""
+b16005_039,"estimate_total_foreign born_speak asian and pacific island languages_speak english ""not well"""
+b16005_040,"estimate_total_foreign born_speak asian and pacific island languages_speak english ""not at all"""
+b16005_041,estimate_total_foreign born_speak other languages
+b16005_042,"estimate_total_foreign born_speak other languages_speak english ""very well"""
+b16005_043,"estimate_total_foreign born_speak other languages_speak english ""well"""
+b16005_044,"estimate_total_foreign born_speak other languages_speak english ""not well"""
+b16005_045,"estimate_total_foreign born_speak other languages_speak english ""not at all"""
+b17001a_001,estimate_total
+b17001a_002,estimate_total_income in the past 12 months below poverty level
+b17001a_003,estimate_total_income in the past 12 months below poverty level_male
+b17001a_004,estimate_total_income in the past 12 months below poverty level_male_under 5 years
+b17001a_005,estimate_total_income in the past 12 months below poverty level_male_5 years
+b17001a_006,estimate_total_income in the past 12 months below poverty level_male_6 to 11 years
+b17001a_007,estimate_total_income in the past 12 months below poverty level_male_12 to 14 years
+b17001a_008,estimate_total_income in the past 12 months below poverty level_male_15 years
+b17001a_009,estimate_total_income in the past 12 months below poverty level_male_16 and 17 years
+b17001a_010,estimate_total_income in the past 12 months below poverty level_male_18 to 24 years
+b17001a_011,estimate_total_income in the past 12 months below poverty level_male_25 to 34 years
+b17001a_012,estimate_total_income in the past 12 months below poverty level_male_35 to 44 years
+b17001a_013,estimate_total_income in the past 12 months below poverty level_male_45 to 54 years
+b17001a_014,estimate_total_income in the past 12 months below poverty level_male_55 to 64 years
+b17001a_015,estimate_total_income in the past 12 months below poverty level_male_65 to 74 years
+b17001a_016,estimate_total_income in the past 12 months below poverty level_male_75 years and over
+b17001a_017,estimate_total_income in the past 12 months below poverty level_female
+b17001a_018,estimate_total_income in the past 12 months below poverty level_female_under 5 years
+b17001a_019,estimate_total_income in the past 12 months below poverty level_female_5 years
+b17001a_020,estimate_total_income in the past 12 months below poverty level_female_6 to 11 years
+b17001a_021,estimate_total_income in the past 12 months below poverty level_female_12 to 14 years
+b17001a_022,estimate_total_income in the past 12 months below poverty level_female_15 years
+b17001a_023,estimate_total_income in the past 12 months below poverty level_female_16 and 17 years
+b17001a_024,estimate_total_income in the past 12 months below poverty level_female_18 to 24 years
+b17001a_025,estimate_total_income in the past 12 months below poverty level_female_25 to 34 years
+b17001a_026,estimate_total_income in the past 12 months below poverty level_female_35 to 44 years
+b17001a_027,estimate_total_income in the past 12 months below poverty level_female_45 to 54 years
+b17001a_028,estimate_total_income in the past 12 months below poverty level_female_55 to 64 years
+b17001a_029,estimate_total_income in the past 12 months below poverty level_female_65 to 74 years
+b17001a_030,estimate_total_income in the past 12 months below poverty level_female_75 years and over
+b17001a_031,estimate_total_income in the past 12 months at or above poverty level
+b17001a_032,estimate_total_income in the past 12 months at or above poverty level_male
+b17001a_033,estimate_total_income in the past 12 months at or above poverty level_male_under 5 years
+b17001a_034,estimate_total_income in the past 12 months at or above poverty level_male_5 years
+b17001a_035,estimate_total_income in the past 12 months at or above poverty level_male_6 to 11 years
+b17001a_036,estimate_total_income in the past 12 months at or above poverty level_male_12 to 14 years
+b17001a_037,estimate_total_income in the past 12 months at or above poverty level_male_15 years
+b17001a_038,estimate_total_income in the past 12 months at or above poverty level_male_16 and 17 years
+b17001a_039,estimate_total_income in the past 12 months at or above poverty level_male_18 to 24 years
+b17001a_040,estimate_total_income in the past 12 months at or above poverty level_male_25 to 34 years
+b17001a_041,estimate_total_income in the past 12 months at or above poverty level_male_35 to 44 years
+b17001a_042,estimate_total_income in the past 12 months at or above poverty level_male_45 to 54 years
+b17001a_043,estimate_total_income in the past 12 months at or above poverty level_male_55 to 64 years
+b17001a_044,estimate_total_income in the past 12 months at or above poverty level_male_65 to 74 years
+b17001a_045,estimate_total_income in the past 12 months at or above poverty level_male_75 years and over
+b17001a_046,estimate_total_income in the past 12 months at or above poverty level_female
+b17001a_047,estimate_total_income in the past 12 months at or above poverty level_female_under 5 years
+b17001a_048,estimate_total_income in the past 12 months at or above poverty level_female_5 years
+b17001a_049,estimate_total_income in the past 12 months at or above poverty level_female_6 to 11 years
+b17001a_050,estimate_total_income in the past 12 months at or above poverty level_female_12 to 14 years
+b17001a_051,estimate_total_income in the past 12 months at or above poverty level_female_15 years
+b17001a_052,estimate_total_income in the past 12 months at or above poverty level_female_16 and 17 years
+b17001a_053,estimate_total_income in the past 12 months at or above poverty level_female_18 to 24 years
+b17001a_054,estimate_total_income in the past 12 months at or above poverty level_female_25 to 34 years
+b17001a_055,estimate_total_income in the past 12 months at or above poverty level_female_35 to 44 years
+b17001a_056,estimate_total_income in the past 12 months at or above poverty level_female_45 to 54 years
+b17001a_057,estimate_total_income in the past 12 months at or above poverty level_female_55 to 64 years
+b17001a_058,estimate_total_income in the past 12 months at or above poverty level_female_65 to 74 years
+b17001a_059,estimate_total_income in the past 12 months at or above poverty level_female_75 years and over
+b17001b_001,estimate_total
+b17001b_002,estimate_total_income in the past 12 months below poverty level
+b17001b_003,estimate_total_income in the past 12 months below poverty level_male
+b17001b_004,estimate_total_income in the past 12 months below poverty level_male_under 5 years
+b17001b_005,estimate_total_income in the past 12 months below poverty level_male_5 years
+b17001b_006,estimate_total_income in the past 12 months below poverty level_male_6 to 11 years
+b17001b_007,estimate_total_income in the past 12 months below poverty level_male_12 to 14 years
+b17001b_008,estimate_total_income in the past 12 months below poverty level_male_15 years
+b17001b_009,estimate_total_income in the past 12 months below poverty level_male_16 and 17 years
+b17001b_010,estimate_total_income in the past 12 months below poverty level_male_18 to 24 years
+b17001b_011,estimate_total_income in the past 12 months below poverty level_male_25 to 34 years
+b17001b_012,estimate_total_income in the past 12 months below poverty level_male_35 to 44 years
+b17001b_013,estimate_total_income in the past 12 months below poverty level_male_45 to 54 years
+b17001b_014,estimate_total_income in the past 12 months below poverty level_male_55 to 64 years
+b17001b_015,estimate_total_income in the past 12 months below poverty level_male_65 to 74 years
+b17001b_016,estimate_total_income in the past 12 months below poverty level_male_75 years and over
+b17001b_017,estimate_total_income in the past 12 months below poverty level_female
+b17001b_018,estimate_total_income in the past 12 months below poverty level_female_under 5 years
+b17001b_019,estimate_total_income in the past 12 months below poverty level_female_5 years
+b17001b_020,estimate_total_income in the past 12 months below poverty level_female_6 to 11 years
+b17001b_021,estimate_total_income in the past 12 months below poverty level_female_12 to 14 years
+b17001b_022,estimate_total_income in the past 12 months below poverty level_female_15 years
+b17001b_023,estimate_total_income in the past 12 months below poverty level_female_16 and 17 years
+b17001b_024,estimate_total_income in the past 12 months below poverty level_female_18 to 24 years
+b17001b_025,estimate_total_income in the past 12 months below poverty level_female_25 to 34 years
+b17001b_026,estimate_total_income in the past 12 months below poverty level_female_35 to 44 years
+b17001b_027,estimate_total_income in the past 12 months below poverty level_female_45 to 54 years
+b17001b_028,estimate_total_income in the past 12 months below poverty level_female_55 to 64 years
+b17001b_029,estimate_total_income in the past 12 months below poverty level_female_65 to 74 years
+b17001b_030,estimate_total_income in the past 12 months below poverty level_female_75 years and over
+b17001b_031,estimate_total_income in the past 12 months at or above poverty level
+b17001b_032,estimate_total_income in the past 12 months at or above poverty level_male
+b17001b_033,estimate_total_income in the past 12 months at or above poverty level_male_under 5 years
+b17001b_034,estimate_total_income in the past 12 months at or above poverty level_male_5 years
+b17001b_035,estimate_total_income in the past 12 months at or above poverty level_male_6 to 11 years
+b17001b_036,estimate_total_income in the past 12 months at or above poverty level_male_12 to 14 years
+b17001b_037,estimate_total_income in the past 12 months at or above poverty level_male_15 years
+b17001b_038,estimate_total_income in the past 12 months at or above poverty level_male_16 and 17 years
+b17001b_039,estimate_total_income in the past 12 months at or above poverty level_male_18 to 24 years
+b17001b_040,estimate_total_income in the past 12 months at or above poverty level_male_25 to 34 years
+b17001b_041,estimate_total_income in the past 12 months at or above poverty level_male_35 to 44 years
+b17001b_042,estimate_total_income in the past 12 months at or above poverty level_male_45 to 54 years
+b17001b_043,estimate_total_income in the past 12 months at or above poverty level_male_55 to 64 years
+b17001b_044,estimate_total_income in the past 12 months at or above poverty level_male_65 to 74 years
+b17001b_045,estimate_total_income in the past 12 months at or above poverty level_male_75 years and over
+b17001b_046,estimate_total_income in the past 12 months at or above poverty level_female
+b17001b_047,estimate_total_income in the past 12 months at or above poverty level_female_under 5 years
+b17001b_048,estimate_total_income in the past 12 months at or above poverty level_female_5 years
+b17001b_049,estimate_total_income in the past 12 months at or above poverty level_female_6 to 11 years
+b17001b_050,estimate_total_income in the past 12 months at or above poverty level_female_12 to 14 years
+b17001b_051,estimate_total_income in the past 12 months at or above poverty level_female_15 years
+b17001b_052,estimate_total_income in the past 12 months at or above poverty level_female_16 and 17 years
+b17001b_053,estimate_total_income in the past 12 months at or above poverty level_female_18 to 24 years
+b17001b_054,estimate_total_income in the past 12 months at or above poverty level_female_25 to 34 years
+b17001b_055,estimate_total_income in the past 12 months at or above poverty level_female_35 to 44 years
+b17001b_056,estimate_total_income in the past 12 months at or above poverty level_female_45 to 54 years
+b17001b_057,estimate_total_income in the past 12 months at or above poverty level_female_55 to 64 years
+b17001b_058,estimate_total_income in the past 12 months at or above poverty level_female_65 to 74 years
+b17001b_059,estimate_total_income in the past 12 months at or above poverty level_female_75 years and over
+b17001c_001,estimate_total
+b17001c_002,estimate_total_income in the past 12 months below poverty level
+b17001c_003,estimate_total_income in the past 12 months below poverty level_male
+b17001c_004,estimate_total_income in the past 12 months below poverty level_male_under 5 years
+b17001c_005,estimate_total_income in the past 12 months below poverty level_male_5 years
+b17001c_006,estimate_total_income in the past 12 months below poverty level_male_6 to 11 years
+b17001c_007,estimate_total_income in the past 12 months below poverty level_male_12 to 14 years
+b17001c_008,estimate_total_income in the past 12 months below poverty level_male_15 years
+b17001c_009,estimate_total_income in the past 12 months below poverty level_male_16 and 17 years
+b17001c_010,estimate_total_income in the past 12 months below poverty level_male_18 to 24 years
+b17001c_011,estimate_total_income in the past 12 months below poverty level_male_25 to 34 years
+b17001c_012,estimate_total_income in the past 12 months below poverty level_male_35 to 44 years
+b17001c_013,estimate_total_income in the past 12 months below poverty level_male_45 to 54 years
+b17001c_014,estimate_total_income in the past 12 months below poverty level_male_55 to 64 years
+b17001c_015,estimate_total_income in the past 12 months below poverty level_male_65 to 74 years
+b17001c_016,estimate_total_income in the past 12 months below poverty level_male_75 years and over
+b17001c_017,estimate_total_income in the past 12 months below poverty level_female
+b17001c_018,estimate_total_income in the past 12 months below poverty level_female_under 5 years
+b17001c_019,estimate_total_income in the past 12 months below poverty level_female_5 years
+b17001c_020,estimate_total_income in the past 12 months below poverty level_female_6 to 11 years
+b17001c_021,estimate_total_income in the past 12 months below poverty level_female_12 to 14 years
+b17001c_022,estimate_total_income in the past 12 months below poverty level_female_15 years
+b17001c_023,estimate_total_income in the past 12 months below poverty level_female_16 and 17 years
+b17001c_024,estimate_total_income in the past 12 months below poverty level_female_18 to 24 years
+b17001c_025,estimate_total_income in the past 12 months below poverty level_female_25 to 34 years
+b17001c_026,estimate_total_income in the past 12 months below poverty level_female_35 to 44 years
+b17001c_027,estimate_total_income in the past 12 months below poverty level_female_45 to 54 years
+b17001c_028,estimate_total_income in the past 12 months below poverty level_female_55 to 64 years
+b17001c_029,estimate_total_income in the past 12 months below poverty level_female_65 to 74 years
+b17001c_030,estimate_total_income in the past 12 months below poverty level_female_75 years and over
+b17001c_031,estimate_total_income in the past 12 months at or above poverty level
+b17001c_032,estimate_total_income in the past 12 months at or above poverty level_male
+b17001c_033,estimate_total_income in the past 12 months at or above poverty level_male_under 5 years
+b17001c_034,estimate_total_income in the past 12 months at or above poverty level_male_5 years
+b17001c_035,estimate_total_income in the past 12 months at or above poverty level_male_6 to 11 years
+b17001c_036,estimate_total_income in the past 12 months at or above poverty level_male_12 to 14 years
+b17001c_037,estimate_total_income in the past 12 months at or above poverty level_male_15 years
+b17001c_038,estimate_total_income in the past 12 months at or above poverty level_male_16 and 17 years
+b17001c_039,estimate_total_income in the past 12 months at or above poverty level_male_18 to 24 years
+b17001c_040,estimate_total_income in the past 12 months at or above poverty level_male_25 to 34 years
+b17001c_041,estimate_total_income in the past 12 months at or above poverty level_male_35 to 44 years
+b17001c_042,estimate_total_income in the past 12 months at or above poverty level_male_45 to 54 years
+b17001c_043,estimate_total_income in the past 12 months at or above poverty level_male_55 to 64 years
+b17001c_044,estimate_total_income in the past 12 months at or above poverty level_male_65 to 74 years
+b17001c_045,estimate_total_income in the past 12 months at or above poverty level_male_75 years and over
+b17001c_046,estimate_total_income in the past 12 months at or above poverty level_female
+b17001c_047,estimate_total_income in the past 12 months at or above poverty level_female_under 5 years
+b17001c_048,estimate_total_income in the past 12 months at or above poverty level_female_5 years
+b17001c_049,estimate_total_income in the past 12 months at or above poverty level_female_6 to 11 years
+b17001c_050,estimate_total_income in the past 12 months at or above poverty level_female_12 to 14 years
+b17001c_051,estimate_total_income in the past 12 months at or above poverty level_female_15 years
+b17001c_052,estimate_total_income in the past 12 months at or above poverty level_female_16 and 17 years
+b17001c_053,estimate_total_income in the past 12 months at or above poverty level_female_18 to 24 years
+b17001c_054,estimate_total_income in the past 12 months at or above poverty level_female_25 to 34 years
+b17001c_055,estimate_total_income in the past 12 months at or above poverty level_female_35 to 44 years
+b17001c_056,estimate_total_income in the past 12 months at or above poverty level_female_45 to 54 years
+b17001c_057,estimate_total_income in the past 12 months at or above poverty level_female_55 to 64 years
+b17001c_058,estimate_total_income in the past 12 months at or above poverty level_female_65 to 74 years
+b17001c_059,estimate_total_income in the past 12 months at or above poverty level_female_75 years and over
+b17001d_001,estimate_total
+b17001d_002,estimate_total_income in the past 12 months below poverty level
+b17001d_003,estimate_total_income in the past 12 months below poverty level_male
+b17001d_004,estimate_total_income in the past 12 months below poverty level_male_under 5 years
+b17001d_005,estimate_total_income in the past 12 months below poverty level_male_5 years
+b17001d_006,estimate_total_income in the past 12 months below poverty level_male_6 to 11 years
+b17001d_007,estimate_total_income in the past 12 months below poverty level_male_12 to 14 years
+b17001d_008,estimate_total_income in the past 12 months below poverty level_male_15 years
+b17001d_009,estimate_total_income in the past 12 months below poverty level_male_16 and 17 years
+b17001d_010,estimate_total_income in the past 12 months below poverty level_male_18 to 24 years
+b17001d_011,estimate_total_income in the past 12 months below poverty level_male_25 to 34 years
+b17001d_012,estimate_total_income in the past 12 months below poverty level_male_35 to 44 years
+b17001d_013,estimate_total_income in the past 12 months below poverty level_male_45 to 54 years
+b17001d_014,estimate_total_income in the past 12 months below poverty level_male_55 to 64 years
+b17001d_015,estimate_total_income in the past 12 months below poverty level_male_65 to 74 years
+b17001d_016,estimate_total_income in the past 12 months below poverty level_male_75 years and over
+b17001d_017,estimate_total_income in the past 12 months below poverty level_female
+b17001d_018,estimate_total_income in the past 12 months below poverty level_female_under 5 years
+b17001d_019,estimate_total_income in the past 12 months below poverty level_female_5 years
+b17001d_020,estimate_total_income in the past 12 months below poverty level_female_6 to 11 years
+b17001d_021,estimate_total_income in the past 12 months below poverty level_female_12 to 14 years
+b17001d_022,estimate_total_income in the past 12 months below poverty level_female_15 years
+b17001d_023,estimate_total_income in the past 12 months below poverty level_female_16 and 17 years
+b17001d_024,estimate_total_income in the past 12 months below poverty level_female_18 to 24 years
+b17001d_025,estimate_total_income in the past 12 months below poverty level_female_25 to 34 years
+b17001d_026,estimate_total_income in the past 12 months below poverty level_female_35 to 44 years
+b17001d_027,estimate_total_income in the past 12 months below poverty level_female_45 to 54 years
+b17001d_028,estimate_total_income in the past 12 months below poverty level_female_55 to 64 years
+b17001d_029,estimate_total_income in the past 12 months below poverty level_female_65 to 74 years
+b17001d_030,estimate_total_income in the past 12 months below poverty level_female_75 years and over
+b17001d_031,estimate_total_income in the past 12 months at or above poverty level
+b17001d_032,estimate_total_income in the past 12 months at or above poverty level_male
+b17001d_033,estimate_total_income in the past 12 months at or above poverty level_male_under 5 years
+b17001d_034,estimate_total_income in the past 12 months at or above poverty level_male_5 years
+b17001d_035,estimate_total_income in the past 12 months at or above poverty level_male_6 to 11 years
+b17001d_036,estimate_total_income in the past 12 months at or above poverty level_male_12 to 14 years
+b17001d_037,estimate_total_income in the past 12 months at or above poverty level_male_15 years
+b17001d_038,estimate_total_income in the past 12 months at or above poverty level_male_16 and 17 years
+b17001d_039,estimate_total_income in the past 12 months at or above poverty level_male_18 to 24 years
+b17001d_040,estimate_total_income in the past 12 months at or above poverty level_male_25 to 34 years
+b17001d_041,estimate_total_income in the past 12 months at or above poverty level_male_35 to 44 years
+b17001d_042,estimate_total_income in the past 12 months at or above poverty level_male_45 to 54 years
+b17001d_043,estimate_total_income in the past 12 months at or above poverty level_male_55 to 64 years
+b17001d_044,estimate_total_income in the past 12 months at or above poverty level_male_65 to 74 years
+b17001d_045,estimate_total_income in the past 12 months at or above poverty level_male_75 years and over
+b17001d_046,estimate_total_income in the past 12 months at or above poverty level_female
+b17001d_047,estimate_total_income in the past 12 months at or above poverty level_female_under 5 years
+b17001d_048,estimate_total_income in the past 12 months at or above poverty level_female_5 years
+b17001d_049,estimate_total_income in the past 12 months at or above poverty level_female_6 to 11 years
+b17001d_050,estimate_total_income in the past 12 months at or above poverty level_female_12 to 14 years
+b17001d_051,estimate_total_income in the past 12 months at or above poverty level_female_15 years
+b17001d_052,estimate_total_income in the past 12 months at or above poverty level_female_16 and 17 years
+b17001d_053,estimate_total_income in the past 12 months at or above poverty level_female_18 to 24 years
+b17001d_054,estimate_total_income in the past 12 months at or above poverty level_female_25 to 34 years
+b17001d_055,estimate_total_income in the past 12 months at or above poverty level_female_35 to 44 years
+b17001d_056,estimate_total_income in the past 12 months at or above poverty level_female_45 to 54 years
+b17001d_057,estimate_total_income in the past 12 months at or above poverty level_female_55 to 64 years
+b17001d_058,estimate_total_income in the past 12 months at or above poverty level_female_65 to 74 years
+b17001d_059,estimate_total_income in the past 12 months at or above poverty level_female_75 years and over
+b17001e_001,estimate_total
+b17001e_002,estimate_total_income in the past 12 months below poverty level
+b17001e_003,estimate_total_income in the past 12 months below poverty level_male
+b17001e_004,estimate_total_income in the past 12 months below poverty level_male_under 5 years
+b17001e_005,estimate_total_income in the past 12 months below poverty level_male_5 years
+b17001e_006,estimate_total_income in the past 12 months below poverty level_male_6 to 11 years
+b17001e_007,estimate_total_income in the past 12 months below poverty level_male_12 to 14 years
+b17001e_008,estimate_total_income in the past 12 months below poverty level_male_15 years
+b17001e_009,estimate_total_income in the past 12 months below poverty level_male_16 and 17 years
+b17001e_010,estimate_total_income in the past 12 months below poverty level_male_18 to 24 years
+b17001e_011,estimate_total_income in the past 12 months below poverty level_male_25 to 34 years
+b17001e_012,estimate_total_income in the past 12 months below poverty level_male_35 to 44 years
+b17001e_013,estimate_total_income in the past 12 months below poverty level_male_45 to 54 years
+b17001e_014,estimate_total_income in the past 12 months below poverty level_male_55 to 64 years
+b17001e_015,estimate_total_income in the past 12 months below poverty level_male_65 to 74 years
+b17001e_016,estimate_total_income in the past 12 months below poverty level_male_75 years and over
+b17001e_017,estimate_total_income in the past 12 months below poverty level_female
+b17001e_018,estimate_total_income in the past 12 months below poverty level_female_under 5 years
+b17001e_019,estimate_total_income in the past 12 months below poverty level_female_5 years
+b17001e_020,estimate_total_income in the past 12 months below poverty level_female_6 to 11 years
+b17001e_021,estimate_total_income in the past 12 months below poverty level_female_12 to 14 years
+b17001e_022,estimate_total_income in the past 12 months below poverty level_female_15 years
+b17001e_023,estimate_total_income in the past 12 months below poverty level_female_16 and 17 years
+b17001e_024,estimate_total_income in the past 12 months below poverty level_female_18 to 24 years
+b17001e_025,estimate_total_income in the past 12 months below poverty level_female_25 to 34 years
+b17001e_026,estimate_total_income in the past 12 months below poverty level_female_35 to 44 years
+b17001e_027,estimate_total_income in the past 12 months below poverty level_female_45 to 54 years
+b17001e_028,estimate_total_income in the past 12 months below poverty level_female_55 to 64 years
+b17001e_029,estimate_total_income in the past 12 months below poverty level_female_65 to 74 years
+b17001e_030,estimate_total_income in the past 12 months below poverty level_female_75 years and over
+b17001e_031,estimate_total_income in the past 12 months at or above poverty level
+b17001e_032,estimate_total_income in the past 12 months at or above poverty level_male
+b17001e_033,estimate_total_income in the past 12 months at or above poverty level_male_under 5 years
+b17001e_034,estimate_total_income in the past 12 months at or above poverty level_male_5 years
+b17001e_035,estimate_total_income in the past 12 months at or above poverty level_male_6 to 11 years
+b17001e_036,estimate_total_income in the past 12 months at or above poverty level_male_12 to 14 years
+b17001e_037,estimate_total_income in the past 12 months at or above poverty level_male_15 years
+b17001e_038,estimate_total_income in the past 12 months at or above poverty level_male_16 and 17 years
+b17001e_039,estimate_total_income in the past 12 months at or above poverty level_male_18 to 24 years
+b17001e_040,estimate_total_income in the past 12 months at or above poverty level_male_25 to 34 years
+b17001e_041,estimate_total_income in the past 12 months at or above poverty level_male_35 to 44 years
+b17001e_042,estimate_total_income in the past 12 months at or above poverty level_male_45 to 54 years
+b17001e_043,estimate_total_income in the past 12 months at or above poverty level_male_55 to 64 years
+b17001e_044,estimate_total_income in the past 12 months at or above poverty level_male_65 to 74 years
+b17001e_045,estimate_total_income in the past 12 months at or above poverty level_male_75 years and over
+b17001e_046,estimate_total_income in the past 12 months at or above poverty level_female
+b17001e_047,estimate_total_income in the past 12 months at or above poverty level_female_under 5 years
+b17001e_048,estimate_total_income in the past 12 months at or above poverty level_female_5 years
+b17001e_049,estimate_total_income in the past 12 months at or above poverty level_female_6 to 11 years
+b17001e_050,estimate_total_income in the past 12 months at or above poverty level_female_12 to 14 years
+b17001e_051,estimate_total_income in the past 12 months at or above poverty level_female_15 years
+b17001e_052,estimate_total_income in the past 12 months at or above poverty level_female_16 and 17 years
+b17001e_053,estimate_total_income in the past 12 months at or above poverty level_female_18 to 24 years
+b17001e_054,estimate_total_income in the past 12 months at or above poverty level_female_25 to 34 years
+b17001e_055,estimate_total_income in the past 12 months at or above poverty level_female_35 to 44 years
+b17001e_056,estimate_total_income in the past 12 months at or above poverty level_female_45 to 54 years
+b17001e_057,estimate_total_income in the past 12 months at or above poverty level_female_55 to 64 years
+b17001e_058,estimate_total_income in the past 12 months at or above poverty level_female_65 to 74 years
+b17001e_059,estimate_total_income in the past 12 months at or above poverty level_female_75 years and over
+b17001f_001,estimate_total
+b17001f_002,estimate_total_income in the past 12 months below poverty level
+b17001f_003,estimate_total_income in the past 12 months below poverty level_male
+b17001f_004,estimate_total_income in the past 12 months below poverty level_male_under 5 years
+b17001f_005,estimate_total_income in the past 12 months below poverty level_male_5 years
+b17001f_006,estimate_total_income in the past 12 months below poverty level_male_6 to 11 years
+b17001f_007,estimate_total_income in the past 12 months below poverty level_male_12 to 14 years
+b17001f_008,estimate_total_income in the past 12 months below poverty level_male_15 years
+b17001f_009,estimate_total_income in the past 12 months below poverty level_male_16 and 17 years
+b17001f_010,estimate_total_income in the past 12 months below poverty level_male_18 to 24 years
+b17001f_011,estimate_total_income in the past 12 months below poverty level_male_25 to 34 years
+b17001f_012,estimate_total_income in the past 12 months below poverty level_male_35 to 44 years
+b17001f_013,estimate_total_income in the past 12 months below poverty level_male_45 to 54 years
+b17001f_014,estimate_total_income in the past 12 months below poverty level_male_55 to 64 years
+b17001f_015,estimate_total_income in the past 12 months below poverty level_male_65 to 74 years
+b17001f_016,estimate_total_income in the past 12 months below poverty level_male_75 years and over
+b17001f_017,estimate_total_income in the past 12 months below poverty level_female
+b17001f_018,estimate_total_income in the past 12 months below poverty level_female_under 5 years
+b17001f_019,estimate_total_income in the past 12 months below poverty level_female_5 years
+b17001f_020,estimate_total_income in the past 12 months below poverty level_female_6 to 11 years
+b17001f_021,estimate_total_income in the past 12 months below poverty level_female_12 to 14 years
+b17001f_022,estimate_total_income in the past 12 months below poverty level_female_15 years
+b17001f_023,estimate_total_income in the past 12 months below poverty level_female_16 and 17 years
+b17001f_024,estimate_total_income in the past 12 months below poverty level_female_18 to 24 years
+b17001f_025,estimate_total_income in the past 12 months below poverty level_female_25 to 34 years
+b17001f_026,estimate_total_income in the past 12 months below poverty level_female_35 to 44 years
+b17001f_027,estimate_total_income in the past 12 months below poverty level_female_45 to 54 years
+b17001f_028,estimate_total_income in the past 12 months below poverty level_female_55 to 64 years
+b17001f_029,estimate_total_income in the past 12 months below poverty level_female_65 to 74 years
+b17001f_030,estimate_total_income in the past 12 months below poverty level_female_75 years and over
+b17001f_031,estimate_total_income in the past 12 months at or above poverty level
+b17001f_032,estimate_total_income in the past 12 months at or above poverty level_male
+b17001f_033,estimate_total_income in the past 12 months at or above poverty level_male_under 5 years
+b17001f_034,estimate_total_income in the past 12 months at or above poverty level_male_5 years
+b17001f_035,estimate_total_income in the past 12 months at or above poverty level_male_6 to 11 years
+b17001f_036,estimate_total_income in the past 12 months at or above poverty level_male_12 to 14 years
+b17001f_037,estimate_total_income in the past 12 months at or above poverty level_male_15 years
+b17001f_038,estimate_total_income in the past 12 months at or above poverty level_male_16 and 17 years
+b17001f_039,estimate_total_income in the past 12 months at or above poverty level_male_18 to 24 years
+b17001f_040,estimate_total_income in the past 12 months at or above poverty level_male_25 to 34 years
+b17001f_041,estimate_total_income in the past 12 months at or above poverty level_male_35 to 44 years
+b17001f_042,estimate_total_income in the past 12 months at or above poverty level_male_45 to 54 years
+b17001f_043,estimate_total_income in the past 12 months at or above poverty level_male_55 to 64 years
+b17001f_044,estimate_total_income in the past 12 months at or above poverty level_male_65 to 74 years
+b17001f_045,estimate_total_income in the past 12 months at or above poverty level_male_75 years and over
+b17001f_046,estimate_total_income in the past 12 months at or above poverty level_female
+b17001f_047,estimate_total_income in the past 12 months at or above poverty level_female_under 5 years
+b17001f_048,estimate_total_income in the past 12 months at or above poverty level_female_5 years
+b17001f_049,estimate_total_income in the past 12 months at or above poverty level_female_6 to 11 years
+b17001f_050,estimate_total_income in the past 12 months at or above poverty level_female_12 to 14 years
+b17001f_051,estimate_total_income in the past 12 months at or above poverty level_female_15 years
+b17001f_052,estimate_total_income in the past 12 months at or above poverty level_female_16 and 17 years
+b17001f_053,estimate_total_income in the past 12 months at or above poverty level_female_18 to 24 years
+b17001f_054,estimate_total_income in the past 12 months at or above poverty level_female_25 to 34 years
+b17001f_055,estimate_total_income in the past 12 months at or above poverty level_female_35 to 44 years
+b17001f_056,estimate_total_income in the past 12 months at or above poverty level_female_45 to 54 years
+b17001f_057,estimate_total_income in the past 12 months at or above poverty level_female_55 to 64 years
+b17001f_058,estimate_total_income in the past 12 months at or above poverty level_female_65 to 74 years
+b17001f_059,estimate_total_income in the past 12 months at or above poverty level_female_75 years and over
+b17001g_001,estimate_total
+b17001g_002,estimate_total_income in the past 12 months below poverty level
+b17001g_003,estimate_total_income in the past 12 months below poverty level_male
+b17001g_004,estimate_total_income in the past 12 months below poverty level_male_under 5 years
+b17001g_005,estimate_total_income in the past 12 months below poverty level_male_5 years
+b17001g_006,estimate_total_income in the past 12 months below poverty level_male_6 to 11 years
+b17001g_007,estimate_total_income in the past 12 months below poverty level_male_12 to 14 years
+b17001g_008,estimate_total_income in the past 12 months below poverty level_male_15 years
+b17001g_009,estimate_total_income in the past 12 months below poverty level_male_16 and 17 years
+b17001g_010,estimate_total_income in the past 12 months below poverty level_male_18 to 24 years
+b17001g_011,estimate_total_income in the past 12 months below poverty level_male_25 to 34 years
+b17001g_012,estimate_total_income in the past 12 months below poverty level_male_35 to 44 years
+b17001g_013,estimate_total_income in the past 12 months below poverty level_male_45 to 54 years
+b17001g_014,estimate_total_income in the past 12 months below poverty level_male_55 to 64 years
+b17001g_015,estimate_total_income in the past 12 months below poverty level_male_65 to 74 years
+b17001g_016,estimate_total_income in the past 12 months below poverty level_male_75 years and over
+b17001g_017,estimate_total_income in the past 12 months below poverty level_female
+b17001g_018,estimate_total_income in the past 12 months below poverty level_female_under 5 years
+b17001g_019,estimate_total_income in the past 12 months below poverty level_female_5 years
+b17001g_020,estimate_total_income in the past 12 months below poverty level_female_6 to 11 years
+b17001g_021,estimate_total_income in the past 12 months below poverty level_female_12 to 14 years
+b17001g_022,estimate_total_income in the past 12 months below poverty level_female_15 years
+b17001g_023,estimate_total_income in the past 12 months below poverty level_female_16 and 17 years
+b17001g_024,estimate_total_income in the past 12 months below poverty level_female_18 to 24 years
+b17001g_025,estimate_total_income in the past 12 months below poverty level_female_25 to 34 years
+b17001g_026,estimate_total_income in the past 12 months below poverty level_female_35 to 44 years
+b17001g_027,estimate_total_income in the past 12 months below poverty level_female_45 to 54 years
+b17001g_028,estimate_total_income in the past 12 months below poverty level_female_55 to 64 years
+b17001g_029,estimate_total_income in the past 12 months below poverty level_female_65 to 74 years
+b17001g_030,estimate_total_income in the past 12 months below poverty level_female_75 years and over
+b17001g_031,estimate_total_income in the past 12 months at or above poverty level
+b17001g_032,estimate_total_income in the past 12 months at or above poverty level_male
+b17001g_033,estimate_total_income in the past 12 months at or above poverty level_male_under 5 years
+b17001g_034,estimate_total_income in the past 12 months at or above poverty level_male_5 years
+b17001g_035,estimate_total_income in the past 12 months at or above poverty level_male_6 to 11 years
+b17001g_036,estimate_total_income in the past 12 months at or above poverty level_male_12 to 14 years
+b17001g_037,estimate_total_income in the past 12 months at or above poverty level_male_15 years
+b17001g_038,estimate_total_income in the past 12 months at or above poverty level_male_16 and 17 years
+b17001g_039,estimate_total_income in the past 12 months at or above poverty level_male_18 to 24 years
+b17001g_040,estimate_total_income in the past 12 months at or above poverty level_male_25 to 34 years
+b17001g_041,estimate_total_income in the past 12 months at or above poverty level_male_35 to 44 years
+b17001g_042,estimate_total_income in the past 12 months at or above poverty level_male_45 to 54 years
+b17001g_043,estimate_total_income in the past 12 months at or above poverty level_male_55 to 64 years
+b17001g_044,estimate_total_income in the past 12 months at or above poverty level_male_65 to 74 years
+b17001g_045,estimate_total_income in the past 12 months at or above poverty level_male_75 years and over
+b17001g_046,estimate_total_income in the past 12 months at or above poverty level_female
+b17001g_047,estimate_total_income in the past 12 months at or above poverty level_female_under 5 years
+b17001g_048,estimate_total_income in the past 12 months at or above poverty level_female_5 years
+b17001g_049,estimate_total_income in the past 12 months at or above poverty level_female_6 to 11 years
+b17001g_050,estimate_total_income in the past 12 months at or above poverty level_female_12 to 14 years
+b17001g_051,estimate_total_income in the past 12 months at or above poverty level_female_15 years
+b17001g_052,estimate_total_income in the past 12 months at or above poverty level_female_16 and 17 years
+b17001g_053,estimate_total_income in the past 12 months at or above poverty level_female_18 to 24 years
+b17001g_054,estimate_total_income in the past 12 months at or above poverty level_female_25 to 34 years
+b17001g_055,estimate_total_income in the past 12 months at or above poverty level_female_35 to 44 years
+b17001g_056,estimate_total_income in the past 12 months at or above poverty level_female_45 to 54 years
+b17001g_057,estimate_total_income in the past 12 months at or above poverty level_female_55 to 64 years
+b17001g_058,estimate_total_income in the past 12 months at or above poverty level_female_65 to 74 years
+b17001g_059,estimate_total_income in the past 12 months at or above poverty level_female_75 years and over
+b17001h_001,estimate_total
+b17001h_002,estimate_total_income in the past 12 months below poverty level
+b17001h_003,estimate_total_income in the past 12 months below poverty level_male
+b17001h_004,estimate_total_income in the past 12 months below poverty level_male_under 5 years
+b17001h_005,estimate_total_income in the past 12 months below poverty level_male_5 years
+b17001h_006,estimate_total_income in the past 12 months below poverty level_male_6 to 11 years
+b17001h_007,estimate_total_income in the past 12 months below poverty level_male_12 to 14 years
+b17001h_008,estimate_total_income in the past 12 months below poverty level_male_15 years
+b17001h_009,estimate_total_income in the past 12 months below poverty level_male_16 and 17 years
+b17001h_010,estimate_total_income in the past 12 months below poverty level_male_18 to 24 years
+b17001h_011,estimate_total_income in the past 12 months below poverty level_male_25 to 34 years
+b17001h_012,estimate_total_income in the past 12 months below poverty level_male_35 to 44 years
+b17001h_013,estimate_total_income in the past 12 months below poverty level_male_45 to 54 years
+b17001h_014,estimate_total_income in the past 12 months below poverty level_male_55 to 64 years
+b17001h_015,estimate_total_income in the past 12 months below poverty level_male_65 to 74 years
+b17001h_016,estimate_total_income in the past 12 months below poverty level_male_75 years and over
+b17001h_017,estimate_total_income in the past 12 months below poverty level_female
+b17001h_018,estimate_total_income in the past 12 months below poverty level_female_under 5 years
+b17001h_019,estimate_total_income in the past 12 months below poverty level_female_5 years
+b17001h_020,estimate_total_income in the past 12 months below poverty level_female_6 to 11 years
+b17001h_021,estimate_total_income in the past 12 months below poverty level_female_12 to 14 years
+b17001h_022,estimate_total_income in the past 12 months below poverty level_female_15 years
+b17001h_023,estimate_total_income in the past 12 months below poverty level_female_16 and 17 years
+b17001h_024,estimate_total_income in the past 12 months below poverty level_female_18 to 24 years
+b17001h_025,estimate_total_income in the past 12 months below poverty level_female_25 to 34 years
+b17001h_026,estimate_total_income in the past 12 months below poverty level_female_35 to 44 years
+b17001h_027,estimate_total_income in the past 12 months below poverty level_female_45 to 54 years
+b17001h_028,estimate_total_income in the past 12 months below poverty level_female_55 to 64 years
+b17001h_029,estimate_total_income in the past 12 months below poverty level_female_65 to 74 years
+b17001h_030,estimate_total_income in the past 12 months below poverty level_female_75 years and over
+b17001h_031,estimate_total_income in the past 12 months at or above poverty level
+b17001h_032,estimate_total_income in the past 12 months at or above poverty level_male
+b17001h_033,estimate_total_income in the past 12 months at or above poverty level_male_under 5 years
+b17001h_034,estimate_total_income in the past 12 months at or above poverty level_male_5 years
+b17001h_035,estimate_total_income in the past 12 months at or above poverty level_male_6 to 11 years
+b17001h_036,estimate_total_income in the past 12 months at or above poverty level_male_12 to 14 years
+b17001h_037,estimate_total_income in the past 12 months at or above poverty level_male_15 years
+b17001h_038,estimate_total_income in the past 12 months at or above poverty level_male_16 and 17 years
+b17001h_039,estimate_total_income in the past 12 months at or above poverty level_male_18 to 24 years
+b17001h_040,estimate_total_income in the past 12 months at or above poverty level_male_25 to 34 years
+b17001h_041,estimate_total_income in the past 12 months at or above poverty level_male_35 to 44 years
+b17001h_042,estimate_total_income in the past 12 months at or above poverty level_male_45 to 54 years
+b17001h_043,estimate_total_income in the past 12 months at or above poverty level_male_55 to 64 years
+b17001h_044,estimate_total_income in the past 12 months at or above poverty level_male_65 to 74 years
+b17001h_045,estimate_total_income in the past 12 months at or above poverty level_male_75 years and over
+b17001h_046,estimate_total_income in the past 12 months at or above poverty level_female
+b17001h_047,estimate_total_income in the past 12 months at or above poverty level_female_under 5 years
+b17001h_048,estimate_total_income in the past 12 months at or above poverty level_female_5 years
+b17001h_049,estimate_total_income in the past 12 months at or above poverty level_female_6 to 11 years
+b17001h_050,estimate_total_income in the past 12 months at or above poverty level_female_12 to 14 years
+b17001h_051,estimate_total_income in the past 12 months at or above poverty level_female_15 years
+b17001h_052,estimate_total_income in the past 12 months at or above poverty level_female_16 and 17 years
+b17001h_053,estimate_total_income in the past 12 months at or above poverty level_female_18 to 24 years
+b17001h_054,estimate_total_income in the past 12 months at or above poverty level_female_25 to 34 years
+b17001h_055,estimate_total_income in the past 12 months at or above poverty level_female_35 to 44 years
+b17001h_056,estimate_total_income in the past 12 months at or above poverty level_female_45 to 54 years
+b17001h_057,estimate_total_income in the past 12 months at or above poverty level_female_55 to 64 years
+b17001h_058,estimate_total_income in the past 12 months at or above poverty level_female_65 to 74 years
+b17001h_059,estimate_total_income in the past 12 months at or above poverty level_female_75 years and over
+b17001i_001,estimate_total
+b17001i_002,estimate_total_income in the past 12 months below poverty level
+b17001i_003,estimate_total_income in the past 12 months below poverty level_male
+b17001i_004,estimate_total_income in the past 12 months below poverty level_male_under 5 years
+b17001i_005,estimate_total_income in the past 12 months below poverty level_male_5 years
+b17001i_006,estimate_total_income in the past 12 months below poverty level_male_6 to 11 years
+b17001i_007,estimate_total_income in the past 12 months below poverty level_male_12 to 14 years
+b17001i_008,estimate_total_income in the past 12 months below poverty level_male_15 years
+b17001i_009,estimate_total_income in the past 12 months below poverty level_male_16 and 17 years
+b17001i_010,estimate_total_income in the past 12 months below poverty level_male_18 to 24 years
+b17001i_011,estimate_total_income in the past 12 months below poverty level_male_25 to 34 years
+b17001i_012,estimate_total_income in the past 12 months below poverty level_male_35 to 44 years
+b17001i_013,estimate_total_income in the past 12 months below poverty level_male_45 to 54 years
+b17001i_014,estimate_total_income in the past 12 months below poverty level_male_55 to 64 years
+b17001i_015,estimate_total_income in the past 12 months below poverty level_male_65 to 74 years
+b17001i_016,estimate_total_income in the past 12 months below poverty level_male_75 years and over
+b17001i_017,estimate_total_income in the past 12 months below poverty level_female
+b17001i_018,estimate_total_income in the past 12 months below poverty level_female_under 5 years
+b17001i_019,estimate_total_income in the past 12 months below poverty level_female_5 years
+b17001i_020,estimate_total_income in the past 12 months below poverty level_female_6 to 11 years
+b17001i_021,estimate_total_income in the past 12 months below poverty level_female_12 to 14 years
+b17001i_022,estimate_total_income in the past 12 months below poverty level_female_15 years
+b17001i_023,estimate_total_income in the past 12 months below poverty level_female_16 and 17 years
+b17001i_024,estimate_total_income in the past 12 months below poverty level_female_18 to 24 years
+b17001i_025,estimate_total_income in the past 12 months below poverty level_female_25 to 34 years
+b17001i_026,estimate_total_income in the past 12 months below poverty level_female_35 to 44 years
+b17001i_027,estimate_total_income in the past 12 months below poverty level_female_45 to 54 years
+b17001i_028,estimate_total_income in the past 12 months below poverty level_female_55 to 64 years
+b17001i_029,estimate_total_income in the past 12 months below poverty level_female_65 to 74 years
+b17001i_030,estimate_total_income in the past 12 months below poverty level_female_75 years and over
+b17001i_031,estimate_total_income in the past 12 months at or above poverty level
+b17001i_032,estimate_total_income in the past 12 months at or above poverty level_male
+b17001i_033,estimate_total_income in the past 12 months at or above poverty level_male_under 5 years
+b17001i_034,estimate_total_income in the past 12 months at or above poverty level_male_5 years
+b17001i_035,estimate_total_income in the past 12 months at or above poverty level_male_6 to 11 years
+b17001i_036,estimate_total_income in the past 12 months at or above poverty level_male_12 to 14 years
+b17001i_037,estimate_total_income in the past 12 months at or above poverty level_male_15 years
+b17001i_038,estimate_total_income in the past 12 months at or above poverty level_male_16 and 17 years
+b17001i_039,estimate_total_income in the past 12 months at or above poverty level_male_18 to 24 years
+b17001i_040,estimate_total_income in the past 12 months at or above poverty level_male_25 to 34 years
+b17001i_041,estimate_total_income in the past 12 months at or above poverty level_male_35 to 44 years
+b17001i_042,estimate_total_income in the past 12 months at or above poverty level_male_45 to 54 years
+b17001i_043,estimate_total_income in the past 12 months at or above poverty level_male_55 to 64 years
+b17001i_044,estimate_total_income in the past 12 months at or above poverty level_male_65 to 74 years
+b17001i_045,estimate_total_income in the past 12 months at or above poverty level_male_75 years and over
+b17001i_046,estimate_total_income in the past 12 months at or above poverty level_female
+b17001i_047,estimate_total_income in the past 12 months at or above poverty level_female_under 5 years
+b17001i_048,estimate_total_income in the past 12 months at or above poverty level_female_5 years
+b17001i_049,estimate_total_income in the past 12 months at or above poverty level_female_6 to 11 years
+b17001i_050,estimate_total_income in the past 12 months at or above poverty level_female_12 to 14 years
+b17001i_051,estimate_total_income in the past 12 months at or above poverty level_female_15 years
+b17001i_052,estimate_total_income in the past 12 months at or above poverty level_female_16 and 17 years
+b17001i_053,estimate_total_income in the past 12 months at or above poverty level_female_18 to 24 years
+b17001i_054,estimate_total_income in the past 12 months at or above poverty level_female_25 to 34 years
+b17001i_055,estimate_total_income in the past 12 months at or above poverty level_female_35 to 44 years
+b17001i_056,estimate_total_income in the past 12 months at or above poverty level_female_45 to 54 years
+b17001i_057,estimate_total_income in the past 12 months at or above poverty level_female_55 to 64 years
+b17001i_058,estimate_total_income in the past 12 months at or above poverty level_female_65 to 74 years
+b17001i_059,estimate_total_income in the past 12 months at or above poverty level_female_75 years and over
+b17001_001,estimate_total
+b17001_002,estimate_total_income in the past 12 months below poverty level
+b17001_003,estimate_total_income in the past 12 months below poverty level_male
+b17001_004,estimate_total_income in the past 12 months below poverty level_male_under 5 years
+b17001_005,estimate_total_income in the past 12 months below poverty level_male_5 years
+b17001_006,estimate_total_income in the past 12 months below poverty level_male_6 to 11 years
+b17001_007,estimate_total_income in the past 12 months below poverty level_male_12 to 14 years
+b17001_008,estimate_total_income in the past 12 months below poverty level_male_15 years
+b17001_009,estimate_total_income in the past 12 months below poverty level_male_16 and 17 years
+b17001_010,estimate_total_income in the past 12 months below poverty level_male_18 to 24 years
+b17001_011,estimate_total_income in the past 12 months below poverty level_male_25 to 34 years
+b17001_012,estimate_total_income in the past 12 months below poverty level_male_35 to 44 years
+b17001_013,estimate_total_income in the past 12 months below poverty level_male_45 to 54 years
+b17001_014,estimate_total_income in the past 12 months below poverty level_male_55 to 64 years
+b17001_015,estimate_total_income in the past 12 months below poverty level_male_65 to 74 years
+b17001_016,estimate_total_income in the past 12 months below poverty level_male_75 years and over
+b17001_017,estimate_total_income in the past 12 months below poverty level_female
+b17001_018,estimate_total_income in the past 12 months below poverty level_female_under 5 years
+b17001_019,estimate_total_income in the past 12 months below poverty level_female_5 years
+b17001_020,estimate_total_income in the past 12 months below poverty level_female_6 to 11 years
+b17001_021,estimate_total_income in the past 12 months below poverty level_female_12 to 14 years
+b17001_022,estimate_total_income in the past 12 months below poverty level_female_15 years
+b17001_023,estimate_total_income in the past 12 months below poverty level_female_16 and 17 years
+b17001_024,estimate_total_income in the past 12 months below poverty level_female_18 to 24 years
+b17001_025,estimate_total_income in the past 12 months below poverty level_female_25 to 34 years
+b17001_026,estimate_total_income in the past 12 months below poverty level_female_35 to 44 years
+b17001_027,estimate_total_income in the past 12 months below poverty level_female_45 to 54 years
+b17001_028,estimate_total_income in the past 12 months below poverty level_female_55 to 64 years
+b17001_029,estimate_total_income in the past 12 months below poverty level_female_65 to 74 years
+b17001_030,estimate_total_income in the past 12 months below poverty level_female_75 years and over
+b17001_031,estimate_total_income in the past 12 months at or above poverty level
+b17001_032,estimate_total_income in the past 12 months at or above poverty level_male
+b17001_033,estimate_total_income in the past 12 months at or above poverty level_male_under 5 years
+b17001_034,estimate_total_income in the past 12 months at or above poverty level_male_5 years
+b17001_035,estimate_total_income in the past 12 months at or above poverty level_male_6 to 11 years
+b17001_036,estimate_total_income in the past 12 months at or above poverty level_male_12 to 14 years
+b17001_037,estimate_total_income in the past 12 months at or above poverty level_male_15 years
+b17001_038,estimate_total_income in the past 12 months at or above poverty level_male_16 and 17 years
+b17001_039,estimate_total_income in the past 12 months at or above poverty level_male_18 to 24 years
+b17001_040,estimate_total_income in the past 12 months at or above poverty level_male_25 to 34 years
+b17001_041,estimate_total_income in the past 12 months at or above poverty level_male_35 to 44 years
+b17001_042,estimate_total_income in the past 12 months at or above poverty level_male_45 to 54 years
+b17001_043,estimate_total_income in the past 12 months at or above poverty level_male_55 to 64 years
+b17001_044,estimate_total_income in the past 12 months at or above poverty level_male_65 to 74 years
+b17001_045,estimate_total_income in the past 12 months at or above poverty level_male_75 years and over
+b17001_046,estimate_total_income in the past 12 months at or above poverty level_female
+b17001_047,estimate_total_income in the past 12 months at or above poverty level_female_under 5 years
+b17001_048,estimate_total_income in the past 12 months at or above poverty level_female_5 years
+b17001_049,estimate_total_income in the past 12 months at or above poverty level_female_6 to 11 years
+b17001_050,estimate_total_income in the past 12 months at or above poverty level_female_12 to 14 years
+b17001_051,estimate_total_income in the past 12 months at or above poverty level_female_15 years
+b17001_052,estimate_total_income in the past 12 months at or above poverty level_female_16 and 17 years
+b17001_053,estimate_total_income in the past 12 months at or above poverty level_female_18 to 24 years
+b17001_054,estimate_total_income in the past 12 months at or above poverty level_female_25 to 34 years
+b17001_055,estimate_total_income in the past 12 months at or above poverty level_female_35 to 44 years
+b17001_056,estimate_total_income in the past 12 months at or above poverty level_female_45 to 54 years
+b17001_057,estimate_total_income in the past 12 months at or above poverty level_female_55 to 64 years
+b17001_058,estimate_total_income in the past 12 months at or above poverty level_female_65 to 74 years
+b17001_059,estimate_total_income in the past 12 months at or above poverty level_female_75 years and over
+b18101a_001,estimate_total
+b18101a_002,estimate_total_under 18 years
+b18101a_003,estimate_total_under 18 years_with a disability
+b18101a_004,estimate_total_under 18 years_no disability
+b18101a_005,estimate_total_18 to 64 years
+b18101a_006,estimate_total_18 to 64 years_with a disability
+b18101a_007,estimate_total_18 to 64 years_no disability
+b18101a_008,estimate_total_65 years and over
+b18101a_009,estimate_total_65 years and over_with a disability
+b18101a_010,estimate_total_65 years and over_no disability
+b18101b_001,estimate_total
+b18101b_002,estimate_total_under 18 years
+b18101b_003,estimate_total_under 18 years_with a disability
+b18101b_004,estimate_total_under 18 years_no disability
+b18101b_005,estimate_total_18 to 64 years
+b18101b_006,estimate_total_18 to 64 years_with a disability
+b18101b_007,estimate_total_18 to 64 years_no disability
+b18101b_008,estimate_total_65 years and over
+b18101b_009,estimate_total_65 years and over_with a disability
+b18101b_010,estimate_total_65 years and over_no disability
+b18101c_001,estimate_total
+b18101c_002,estimate_total_under 18 years
+b18101c_003,estimate_total_under 18 years_with a disability
+b18101c_004,estimate_total_under 18 years_no disability
+b18101c_005,estimate_total_18 to 64 years
+b18101c_006,estimate_total_18 to 64 years_with a disability
+b18101c_007,estimate_total_18 to 64 years_no disability
+b18101c_008,estimate_total_65 years and over
+b18101c_009,estimate_total_65 years and over_with a disability
+b18101c_010,estimate_total_65 years and over_no disability
+b18101d_001,estimate_total
+b18101d_002,estimate_total_under 18 years
+b18101d_003,estimate_total_under 18 years_with a disability
+b18101d_004,estimate_total_under 18 years_no disability
+b18101d_005,estimate_total_18 to 64 years
+b18101d_006,estimate_total_18 to 64 years_with a disability
+b18101d_007,estimate_total_18 to 64 years_no disability
+b18101d_008,estimate_total_65 years and over
+b18101d_009,estimate_total_65 years and over_with a disability
+b18101d_010,estimate_total_65 years and over_no disability
+b18101e_001,estimate_total
+b18101e_002,estimate_total_under 18 years
+b18101e_003,estimate_total_under 18 years_with a disability
+b18101e_004,estimate_total_under 18 years_no disability
+b18101e_005,estimate_total_18 to 64 years
+b18101e_006,estimate_total_18 to 64 years_with a disability
+b18101e_007,estimate_total_18 to 64 years_no disability
+b18101e_008,estimate_total_65 years and over
+b18101e_009,estimate_total_65 years and over_with a disability
+b18101e_010,estimate_total_65 years and over_no disability
+b18101f_001,estimate_total
+b18101f_002,estimate_total_under 18 years
+b18101f_003,estimate_total_under 18 years_with a disability
+b18101f_004,estimate_total_under 18 years_no disability
+b18101f_005,estimate_total_18 to 64 years
+b18101f_006,estimate_total_18 to 64 years_with a disability
+b18101f_007,estimate_total_18 to 64 years_no disability
+b18101f_008,estimate_total_65 years and over
+b18101f_009,estimate_total_65 years and over_with a disability
+b18101f_010,estimate_total_65 years and over_no disability
+b18101g_001,estimate_total
+b18101g_002,estimate_total_under 18 years
+b18101g_003,estimate_total_under 18 years_with a disability
+b18101g_004,estimate_total_under 18 years_no disability
+b18101g_005,estimate_total_18 to 64 years
+b18101g_006,estimate_total_18 to 64 years_with a disability
+b18101g_007,estimate_total_18 to 64 years_no disability
+b18101g_008,estimate_total_65 years and over
+b18101g_009,estimate_total_65 years and over_with a disability
+b18101g_010,estimate_total_65 years and over_no disability
+b18101h_001,estimate_total
+b18101h_002,estimate_total_under 18 years
+b18101h_003,estimate_total_under 18 years_with a disability
+b18101h_004,estimate_total_under 18 years_no disability
+b18101h_005,estimate_total_18 to 64 years
+b18101h_006,estimate_total_18 to 64 years_with a disability
+b18101h_007,estimate_total_18 to 64 years_no disability
+b18101h_008,estimate_total_65 years and over
+b18101h_009,estimate_total_65 years and over_with a disability
+b18101h_010,estimate_total_65 years and over_no disability
+b18101i_001,estimate_total
+b18101i_002,estimate_total_under 18 years
+b18101i_003,estimate_total_under 18 years_with a disability
+b18101i_004,estimate_total_under 18 years_no disability
+b18101i_005,estimate_total_18 to 64 years
+b18101i_006,estimate_total_18 to 64 years_with a disability
+b18101i_007,estimate_total_18 to 64 years_no disability
+b18101i_008,estimate_total_65 years and over
+b18101i_009,estimate_total_65 years and over_with a disability
+b18101i_010,estimate_total_65 years and over_no disability
+b18101_001,estimate_total
+b18101_002,estimate_total_male
+b18101_003,estimate_total_male_under 5 years
+b18101_004,estimate_total_male_under 5 years_with a disability
+b18101_005,estimate_total_male_under 5 years_no disability
+b18101_006,estimate_total_male_5 to 17 years
+b18101_007,estimate_total_male_5 to 17 years_with a disability
+b18101_008,estimate_total_male_5 to 17 years_no disability
+b18101_009,estimate_total_male_18 to 34 years
+b18101_010,estimate_total_male_18 to 34 years_with a disability
+b18101_011,estimate_total_male_18 to 34 years_no disability
+b18101_012,estimate_total_male_35 to 64 years
+b18101_013,estimate_total_male_35 to 64 years_with a disability
+b18101_014,estimate_total_male_35 to 64 years_no disability
+b18101_015,estimate_total_male_65 to 74 years
+b18101_016,estimate_total_male_65 to 74 years_with a disability
+b18101_017,estimate_total_male_65 to 74 years_no disability
+b18101_018,estimate_total_male_75 years and over
+b18101_019,estimate_total_male_75 years and over_with a disability
+b18101_020,estimate_total_male_75 years and over_no disability
+b18101_021,estimate_total_female
+b18101_022,estimate_total_female_under 5 years
+b18101_023,estimate_total_female_under 5 years_with a disability
+b18101_024,estimate_total_female_under 5 years_no disability
+b18101_025,estimate_total_female_5 to 17 years
+b18101_026,estimate_total_female_5 to 17 years_with a disability
+b18101_027,estimate_total_female_5 to 17 years_no disability
+b18101_028,estimate_total_female_18 to 34 years
+b18101_029,estimate_total_female_18 to 34 years_with a disability
+b18101_030,estimate_total_female_18 to 34 years_no disability
+b18101_031,estimate_total_female_35 to 64 years
+b18101_032,estimate_total_female_35 to 64 years_with a disability
+b18101_033,estimate_total_female_35 to 64 years_no disability
+b18101_034,estimate_total_female_65 to 74 years
+b18101_035,estimate_total_female_65 to 74 years_with a disability
+b18101_036,estimate_total_female_65 to 74 years_no disability
+b18101_037,estimate_total_female_75 years and over
+b18101_038,estimate_total_female_75 years and over_with a disability
+b18101_039,estimate_total_female_75 years and over_no disability
+b19001a_001,estimate_total
+b19001a_002,"estimate_total_less than $10,000"
+b19001a_003,"estimate_total_$10,000 to $14,999"
+b19001a_004,"estimate_total_$15,000 to $19,999"
+b19001a_005,"estimate_total_$20,000 to $24,999"
+b19001a_006,"estimate_total_$25,000 to $29,999"
+b19001a_007,"estimate_total_$30,000 to $34,999"
+b19001a_008,"estimate_total_$35,000 to $39,999"
+b19001a_009,"estimate_total_$40,000 to $44,999"
+b19001a_010,"estimate_total_$45,000 to $49,999"
+b19001a_011,"estimate_total_$50,000 to $59,999"
+b19001a_012,"estimate_total_$60,000 to $74,999"
+b19001a_013,"estimate_total_$75,000 to $99,999"
+b19001a_014,"estimate_total_$100,000 to $124,999"
+b19001a_015,"estimate_total_$125,000 to $149,999"
+b19001a_016,"estimate_total_$150,000 to $199,999"
+b19001a_017,"estimate_total_$200,000 or more"
+b19001b_001,estimate_total
+b19001b_002,"estimate_total_less than $10,000"
+b19001b_003,"estimate_total_$10,000 to $14,999"
+b19001b_004,"estimate_total_$15,000 to $19,999"
+b19001b_005,"estimate_total_$20,000 to $24,999"
+b19001b_006,"estimate_total_$25,000 to $29,999"
+b19001b_007,"estimate_total_$30,000 to $34,999"
+b19001b_008,"estimate_total_$35,000 to $39,999"
+b19001b_009,"estimate_total_$40,000 to $44,999"
+b19001b_010,"estimate_total_$45,000 to $49,999"
+b19001b_011,"estimate_total_$50,000 to $59,999"
+b19001b_012,"estimate_total_$60,000 to $74,999"
+b19001b_013,"estimate_total_$75,000 to $99,999"
+b19001b_014,"estimate_total_$100,000 to $124,999"
+b19001b_015,"estimate_total_$125,000 to $149,999"
+b19001b_016,"estimate_total_$150,000 to $199,999"
+b19001b_017,"estimate_total_$200,000 or more"
+b19001c_001,estimate_total
+b19001c_002,"estimate_total_less than $10,000"
+b19001c_003,"estimate_total_$10,000 to $14,999"
+b19001c_004,"estimate_total_$15,000 to $19,999"
+b19001c_005,"estimate_total_$20,000 to $24,999"
+b19001c_006,"estimate_total_$25,000 to $29,999"
+b19001c_007,"estimate_total_$30,000 to $34,999"
+b19001c_008,"estimate_total_$35,000 to $39,999"
+b19001c_009,"estimate_total_$40,000 to $44,999"
+b19001c_010,"estimate_total_$45,000 to $49,999"
+b19001c_011,"estimate_total_$50,000 to $59,999"
+b19001c_012,"estimate_total_$60,000 to $74,999"
+b19001c_013,"estimate_total_$75,000 to $99,999"
+b19001c_014,"estimate_total_$100,000 to $124,999"
+b19001c_015,"estimate_total_$125,000 to $149,999"
+b19001c_016,"estimate_total_$150,000 to $199,999"
+b19001c_017,"estimate_total_$200,000 or more"
+b19001d_001,estimate_total
+b19001d_002,"estimate_total_less than $10,000"
+b19001d_003,"estimate_total_$10,000 to $14,999"
+b19001d_004,"estimate_total_$15,000 to $19,999"
+b19001d_005,"estimate_total_$20,000 to $24,999"
+b19001d_006,"estimate_total_$25,000 to $29,999"
+b19001d_007,"estimate_total_$30,000 to $34,999"
+b19001d_008,"estimate_total_$35,000 to $39,999"
+b19001d_009,"estimate_total_$40,000 to $44,999"
+b19001d_010,"estimate_total_$45,000 to $49,999"
+b19001d_011,"estimate_total_$50,000 to $59,999"
+b19001d_012,"estimate_total_$60,000 to $74,999"
+b19001d_013,"estimate_total_$75,000 to $99,999"
+b19001d_014,"estimate_total_$100,000 to $124,999"
+b19001d_015,"estimate_total_$125,000 to $149,999"
+b19001d_016,"estimate_total_$150,000 to $199,999"
+b19001d_017,"estimate_total_$200,000 or more"
+b19001e_001,estimate_total
+b19001e_002,"estimate_total_less than $10,000"
+b19001e_003,"estimate_total_$10,000 to $14,999"
+b19001e_004,"estimate_total_$15,000 to $19,999"
+b19001e_005,"estimate_total_$20,000 to $24,999"
+b19001e_006,"estimate_total_$25,000 to $29,999"
+b19001e_007,"estimate_total_$30,000 to $34,999"
+b19001e_008,"estimate_total_$35,000 to $39,999"
+b19001e_009,"estimate_total_$40,000 to $44,999"
+b19001e_010,"estimate_total_$45,000 to $49,999"
+b19001e_011,"estimate_total_$50,000 to $59,999"
+b19001e_012,"estimate_total_$60,000 to $74,999"
+b19001e_013,"estimate_total_$75,000 to $99,999"
+b19001e_014,"estimate_total_$100,000 to $124,999"
+b19001e_015,"estimate_total_$125,000 to $149,999"
+b19001e_016,"estimate_total_$150,000 to $199,999"
+b19001e_017,"estimate_total_$200,000 or more"
+b19001f_001,estimate_total
+b19001f_002,"estimate_total_less than $10,000"
+b19001f_003,"estimate_total_$10,000 to $14,999"
+b19001f_004,"estimate_total_$15,000 to $19,999"
+b19001f_005,"estimate_total_$20,000 to $24,999"
+b19001f_006,"estimate_total_$25,000 to $29,999"
+b19001f_007,"estimate_total_$30,000 to $34,999"
+b19001f_008,"estimate_total_$35,000 to $39,999"
+b19001f_009,"estimate_total_$40,000 to $44,999"
+b19001f_010,"estimate_total_$45,000 to $49,999"
+b19001f_011,"estimate_total_$50,000 to $59,999"
+b19001f_012,"estimate_total_$60,000 to $74,999"
+b19001f_013,"estimate_total_$75,000 to $99,999"
+b19001f_014,"estimate_total_$100,000 to $124,999"
+b19001f_015,"estimate_total_$125,000 to $149,999"
+b19001f_016,"estimate_total_$150,000 to $199,999"
+b19001f_017,"estimate_total_$200,000 or more"
+b19001g_001,estimate_total
+b19001g_002,"estimate_total_less than $10,000"
+b19001g_003,"estimate_total_$10,000 to $14,999"
+b19001g_004,"estimate_total_$15,000 to $19,999"
+b19001g_005,"estimate_total_$20,000 to $24,999"
+b19001g_006,"estimate_total_$25,000 to $29,999"
+b19001g_007,"estimate_total_$30,000 to $34,999"
+b19001g_008,"estimate_total_$35,000 to $39,999"
+b19001g_009,"estimate_total_$40,000 to $44,999"
+b19001g_010,"estimate_total_$45,000 to $49,999"
+b19001g_011,"estimate_total_$50,000 to $59,999"
+b19001g_012,"estimate_total_$60,000 to $74,999"
+b19001g_013,"estimate_total_$75,000 to $99,999"
+b19001g_014,"estimate_total_$100,000 to $124,999"
+b19001g_015,"estimate_total_$125,000 to $149,999"
+b19001g_016,"estimate_total_$150,000 to $199,999"
+b19001g_017,"estimate_total_$200,000 or more"
+b19001h_001,estimate_total
+b19001h_002,"estimate_total_less than $10,000"
+b19001h_003,"estimate_total_$10,000 to $14,999"
+b19001h_004,"estimate_total_$15,000 to $19,999"
+b19001h_005,"estimate_total_$20,000 to $24,999"
+b19001h_006,"estimate_total_$25,000 to $29,999"
+b19001h_007,"estimate_total_$30,000 to $34,999"
+b19001h_008,"estimate_total_$35,000 to $39,999"
+b19001h_009,"estimate_total_$40,000 to $44,999"
+b19001h_010,"estimate_total_$45,000 to $49,999"
+b19001h_011,"estimate_total_$50,000 to $59,999"
+b19001h_012,"estimate_total_$60,000 to $74,999"
+b19001h_013,"estimate_total_$75,000 to $99,999"
+b19001h_014,"estimate_total_$100,000 to $124,999"
+b19001h_015,"estimate_total_$125,000 to $149,999"
+b19001h_016,"estimate_total_$150,000 to $199,999"
+b19001h_017,"estimate_total_$200,000 or more"
+b19001i_001,estimate_total
+b19001i_002,"estimate_total_less than $10,000"
+b19001i_003,"estimate_total_$10,000 to $14,999"
+b19001i_004,"estimate_total_$15,000 to $19,999"
+b19001i_005,"estimate_total_$20,000 to $24,999"
+b19001i_006,"estimate_total_$25,000 to $29,999"
+b19001i_007,"estimate_total_$30,000 to $34,999"
+b19001i_008,"estimate_total_$35,000 to $39,999"
+b19001i_009,"estimate_total_$40,000 to $44,999"
+b19001i_010,"estimate_total_$45,000 to $49,999"
+b19001i_011,"estimate_total_$50,000 to $59,999"
+b19001i_012,"estimate_total_$60,000 to $74,999"
+b19001i_013,"estimate_total_$75,000 to $99,999"
+b19001i_014,"estimate_total_$100,000 to $124,999"
+b19001i_015,"estimate_total_$125,000 to $149,999"
+b19001i_016,"estimate_total_$150,000 to $199,999"
+b19001i_017,"estimate_total_$200,000 or more"
+b19001_001,estimate_total
+b19001_002,"estimate_total_less than $10,000"
+b19001_003,"estimate_total_$10,000 to $14,999"
+b19001_004,"estimate_total_$15,000 to $19,999"
+b19001_005,"estimate_total_$20,000 to $24,999"
+b19001_006,"estimate_total_$25,000 to $29,999"
+b19001_007,"estimate_total_$30,000 to $34,999"
+b19001_008,"estimate_total_$35,000 to $39,999"
+b19001_009,"estimate_total_$40,000 to $44,999"
+b19001_010,"estimate_total_$45,000 to $49,999"
+b19001_011,"estimate_total_$50,000 to $59,999"
+b19001_012,"estimate_total_$60,000 to $74,999"
+b19001_013,"estimate_total_$75,000 to $99,999"
+b19001_014,"estimate_total_$100,000 to $124,999"
+b19001_015,"estimate_total_$125,000 to $149,999"
+b19001_016,"estimate_total_$150,000 to $199,999"
+b19001_017,"estimate_total_$200,000 or more"
+b19013a_001,estimate_median household income in the past 12 months (in 2018 inflation-adjusted dollars)
+b19013b_001,estimate_median household income in the past 12 months (in 2018 inflation-adjusted dollars)
+b19013c_001,estimate_median household income in the past 12 months (in 2018 inflation-adjusted dollars)
+b19013d_001,estimate_median household income in the past 12 months (in 2018 inflation-adjusted dollars)
+b19013e_001,estimate_median household income in the past 12 months (in 2018 inflation-adjusted dollars)
+b19013f_001,estimate_median household income in the past 12 months (in 2018 inflation-adjusted dollars)
+b19013g_001,estimate_median household income in the past 12 months (in 2018 inflation-adjusted dollars)
+b19013h_001,estimate_median household income in the past 12 months (in 2018 inflation-adjusted dollars)
+b19013i_001,estimate_median household income in the past 12 months (in 2018 inflation-adjusted dollars)
+b19013_001,estimate_median household income in the past 12 months (in 2018 inflation-adjusted dollars)
+b23025_001,estimate_total
+b23025_002,estimate_total_in labor force
+b23025_003,estimate_total_in labor force_civilian labor force
+b23025_004,estimate_total_in labor force_civilian labor force_employed
+b23025_005,estimate_total_in labor force_civilian labor force_unemployed
+b23025_006,estimate_total_in labor force_armed forces
+b23025_007,estimate_total_not in labor force
+b25010a_001,estimate_average household size --_total:
+b25010a_002,estimate_average household size --_total:_owner occupied
+b25010a_003,estimate_average household size --_total:_renter occupied
+b25010b_001,estimate_average household size --_total:
+b25010b_002,estimate_average household size --_total:_owner occupied
+b25010b_003,estimate_average household size --_total:_renter occupied
+b25010c_001,estimate_average household size --_total:
+b25010c_002,estimate_average household size --_total:_owner occupied
+b25010c_003,estimate_average household size --_total:_renter occupied
+b25010d_001,estimate_average household size --_total:
+b25010d_002,estimate_average household size --_total:_owner occupied
+b25010d_003,estimate_average household size --_total:_renter occupied
+b25010e_001,estimate_average household size --_total:
+b25010e_002,estimate_average household size --_total:_owner occupied
+b25010e_003,estimate_average household size --_total:_renter occupied
+b25010f_001,estimate_average household size --_total:
+b25010f_002,estimate_average household size --_total:_owner occupied
+b25010f_003,estimate_average household size --_total:_renter occupied
+b25010g_001,estimate_average household size --_total:
+b25010g_002,estimate_average household size --_total:_owner occupied
+b25010g_003,estimate_average household size --_total:_renter occupied
+b25010h_001,estimate_average household size --_total:
+b25010h_002,estimate_average household size --_total:_owner occupied
+b25010h_003,estimate_average household size --_total:_renter occupied
+b25010i_001,estimate_average household size --_total:
+b25010i_002,estimate_average household size --_total:_owner occupied
+b25010i_003,estimate_average household size --_total:_renter occupied
+b25010_001,estimate_total
+b25010_002,estimate_total_owner occupied
+b25010_003,estimate_total_renter occupied
+b25044_001,estimate_total
+b25044_002,estimate_total_owner occupied
+b25044_003,estimate_total_owner occupied_no vehicle available
+b25044_004,estimate_total_owner occupied_1 vehicle available
+b25044_005,estimate_total_owner occupied_2 vehicles available
+b25044_006,estimate_total_owner occupied_3 vehicles available
+b25044_007,estimate_total_owner occupied_4 vehicles available
+b25044_008,estimate_total_owner occupied_5 or more vehicles available
+b25044_009,estimate_total_renter occupied
+b25044_010,estimate_total_renter occupied_no vehicle available
+b25044_011,estimate_total_renter occupied_1 vehicle available
+b25044_012,estimate_total_renter occupied_2 vehicles available
+b25044_013,estimate_total_renter occupied_3 vehicles available
+b25044_014,estimate_total_renter occupied_4 vehicles available
+b25044_015,estimate_total_renter occupied_5 or more vehicles available
+b25064_001,estimate_median gross rent
+c24010a_001,estimate_total
+c24010a_002,estimate_total_male
+c24010a_003,"estimate_total_male_management, business, science, and arts occupations"
+c24010a_004,estimate_total_male_service occupations
+c24010a_005,estimate_total_male_sales and office occupations
+c24010a_006,"estimate_total_male_natural resources, construction, and maintenance occupations"
+c24010a_007,"estimate_total_male_production, transportation, and material moving occupations"
+c24010a_008,estimate_total_female
+c24010a_009,"estimate_total_female_management, business, science, and arts occupations"
+c24010a_010,estimate_total_female_service occupations
+c24010a_011,estimate_total_female_sales and office occupations
+c24010a_012,"estimate_total_female_natural resources, construction, and maintenance occupations"
+c24010a_013,"estimate_total_female_production, transportation, and material moving occupations"
+c24010b_001,estimate_total
+c24010b_002,estimate_total_male
+c24010b_003,"estimate_total_male_management, business, science, and arts occupations"
+c24010b_004,estimate_total_male_service occupations
+c24010b_005,estimate_total_male_sales and office occupations
+c24010b_006,"estimate_total_male_natural resources, construction, and maintenance occupations"
+c24010b_007,"estimate_total_male_production, transportation, and material moving occupations"
+c24010b_008,estimate_total_female
+c24010b_009,"estimate_total_female_management, business, science, and arts occupations"
+c24010b_010,estimate_total_female_service occupations
+c24010b_011,estimate_total_female_sales and office occupations
+c24010b_012,"estimate_total_female_natural resources, construction, and maintenance occupations"
+c24010b_013,"estimate_total_female_production, transportation, and material moving occupations"
+c24010c_001,estimate_total
+c24010c_002,estimate_total_male
+c24010c_003,"estimate_total_male_management, business, science, and arts occupations"
+c24010c_004,estimate_total_male_service occupations
+c24010c_005,estimate_total_male_sales and office occupations
+c24010c_006,"estimate_total_male_natural resources, construction, and maintenance occupations"
+c24010c_007,"estimate_total_male_production, transportation, and material moving occupations"
+c24010c_008,estimate_total_female
+c24010c_009,"estimate_total_female_management, business, science, and arts occupations"
+c24010c_010,estimate_total_female_service occupations
+c24010c_011,estimate_total_female_sales and office occupations
+c24010c_012,"estimate_total_female_natural resources, construction, and maintenance occupations"
+c24010c_013,"estimate_total_female_production, transportation, and material moving occupations"
+c24010d_001,estimate_total
+c24010d_002,estimate_total_male
+c24010d_003,"estimate_total_male_management, business, science, and arts occupations"
+c24010d_004,estimate_total_male_service occupations
+c24010d_005,estimate_total_male_sales and office occupations
+c24010d_006,"estimate_total_male_natural resources, construction, and maintenance occupations"
+c24010d_007,"estimate_total_male_production, transportation, and material moving occupations"
+c24010d_008,estimate_total_female
+c24010d_009,"estimate_total_female_management, business, science, and arts occupations"
+c24010d_010,estimate_total_female_service occupations
+c24010d_011,estimate_total_female_sales and office occupations
+c24010d_012,"estimate_total_female_natural resources, construction, and maintenance occupations"
+c24010d_013,"estimate_total_female_production, transportation, and material moving occupations"
+c24010e_001,estimate_total
+c24010e_002,estimate_total_male
+c24010e_003,"estimate_total_male_management, business, science, and arts occupations"
+c24010e_004,estimate_total_male_service occupations
+c24010e_005,estimate_total_male_sales and office occupations
+c24010e_006,"estimate_total_male_natural resources, construction, and maintenance occupations"
+c24010e_007,"estimate_total_male_production, transportation, and material moving occupations"
+c24010e_008,estimate_total_female
+c24010e_009,"estimate_total_female_management, business, science, and arts occupations"
+c24010e_010,estimate_total_female_service occupations
+c24010e_011,estimate_total_female_sales and office occupations
+c24010e_012,"estimate_total_female_natural resources, construction, and maintenance occupations"
+c24010e_013,"estimate_total_female_production, transportation, and material moving occupations"
+c24010f_001,estimate_total
+c24010f_002,estimate_total_male
+c24010f_003,"estimate_total_male_management, business, science, and arts occupations"
+c24010f_004,estimate_total_male_service occupations
+c24010f_005,estimate_total_male_sales and office occupations
+c24010f_006,"estimate_total_male_natural resources, construction, and maintenance occupations"
+c24010f_007,"estimate_total_male_production, transportation, and material moving occupations"
+c24010f_008,estimate_total_female
+c24010f_009,"estimate_total_female_management, business, science, and arts occupations"
+c24010f_010,estimate_total_female_service occupations
+c24010f_011,estimate_total_female_sales and office occupations
+c24010f_012,"estimate_total_female_natural resources, construction, and maintenance occupations"
+c24010f_013,"estimate_total_female_production, transportation, and material moving occupations"
+c24010g_001,estimate_total
+c24010g_002,estimate_total_male
+c24010g_003,"estimate_total_male_management, business, science, and arts occupations"
+c24010g_004,estimate_total_male_service occupations
+c24010g_005,estimate_total_male_sales and office occupations
+c24010g_006,"estimate_total_male_natural resources, construction, and maintenance occupations"
+c24010g_007,"estimate_total_male_production, transportation, and material moving occupations"
+c24010g_008,estimate_total_female
+c24010g_009,"estimate_total_female_management, business, science, and arts occupations"
+c24010g_010,estimate_total_female_service occupations
+c24010g_011,estimate_total_female_sales and office occupations
+c24010g_012,"estimate_total_female_natural resources, construction, and maintenance occupations"
+c24010g_013,"estimate_total_female_production, transportation, and material moving occupations"
+c24010h_001,estimate_total
+c24010h_002,estimate_total_male
+c24010h_003,"estimate_total_male_management, business, science, and arts occupations"
+c24010h_004,estimate_total_male_service occupations
+c24010h_005,estimate_total_male_sales and office occupations
+c24010h_006,"estimate_total_male_natural resources, construction, and maintenance occupations"
+c24010h_007,"estimate_total_male_production, transportation, and material moving occupations"
+c24010h_008,estimate_total_female
+c24010h_009,"estimate_total_female_management, business, science, and arts occupations"
+c24010h_010,estimate_total_female_service occupations
+c24010h_011,estimate_total_female_sales and office occupations
+c24010h_012,"estimate_total_female_natural resources, construction, and maintenance occupations"
+c24010h_013,"estimate_total_female_production, transportation, and material moving occupations"
+c24010i_001,estimate_total
+c24010i_002,estimate_total_male
+c24010i_003,"estimate_total_male_management, business, science, and arts occupations"
+c24010i_004,estimate_total_male_service occupations
+c24010i_005,estimate_total_male_sales and office occupations
+c24010i_006,"estimate_total_male_natural resources, construction, and maintenance occupations"
+c24010i_007,"estimate_total_male_production, transportation, and material moving occupations"
+c24010i_008,estimate_total_female
+c24010i_009,"estimate_total_female_management, business, science, and arts occupations"
+c24010i_010,estimate_total_female_service occupations
+c24010i_011,estimate_total_female_sales and office occupations
+c24010i_012,"estimate_total_female_natural resources, construction, and maintenance occupations"
+c24010i_013,"estimate_total_female_production, transportation, and material moving occupations"
+c24010_001,estimate_total
+c24010_002,estimate_total_male
+c24010_003,"estimate_total_male_management, business, science, and arts occupations"
+c24010_004,"estimate_total_male_management, business, science, and arts occupations_management, business, and financial occupations"
+c24010_005,"estimate_total_male_management, business, science, and arts occupations_management, business, and financial occupations_management occupations"
+c24010_006,"estimate_total_male_management, business, science, and arts occupations_management, business, and financial occupations_business and financial operations occupations"
+c24010_007,"estimate_total_male_management, business, science, and arts occupations_computer, engineering, and science occupations"
+c24010_008,"estimate_total_male_management, business, science, and arts occupations_computer, engineering, and science occupations_computer and mathematical occupations"
+c24010_009,"estimate_total_male_management, business, science, and arts occupations_computer, engineering, and science occupations_architecture and engineering occupations"
+c24010_010,"estimate_total_male_management, business, science, and arts occupations_computer, engineering, and science occupations_life, physical, and social science occupations"
+c24010_011,"estimate_total_male_management, business, science, and arts occupations_education, legal, community service, arts, and media occupations"
+c24010_012,"estimate_total_male_management, business, science, and arts occupations_education, legal, community service, arts, and media occupations_community and social service occupations"
+c24010_013,"estimate_total_male_management, business, science, and arts occupations_education, legal, community service, arts, and media occupations_legal occupations"
+c24010_014,"estimate_total_male_management, business, science, and arts occupations_education, legal, community service, arts, and media occupations_educational instruction, and library occupations"
+c24010_015,"estimate_total_male_management, business, science, and arts occupations_education, legal, community service, arts, and media occupations_arts, design, entertainment, sports, and media occupations"
+c24010_016,"estimate_total_male_management, business, science, and arts occupations_healthcare practitioners and technical occupations"
+c24010_017,"estimate_total_male_management, business, science, and arts occupations_healthcare practitioners and technical occupations_health diagnosing and treating practitioners and other technical occupations"
+c24010_018,"estimate_total_male_management, business, science, and arts occupations_healthcare practitioners and technical occupations_health technologists and technicians"
+c24010_019,estimate_total_male_service occupations
+c24010_020,estimate_total_male_service occupations_healthcare support occupations
+c24010_021,estimate_total_male_service occupations_protective service occupations
+c24010_022,"estimate_total_male_service occupations_protective service occupations_firefighting and prevention, and other protective service workers including supervisors"
+c24010_023,estimate_total_male_service occupations_protective service occupations_law enforcement workers including supervisors
+c24010_024,estimate_total_male_service occupations_food preparation and serving related occupations
+c24010_025,estimate_total_male_service occupations_building and grounds cleaning and maintenance occupations
+c24010_026,estimate_total_male_service occupations_personal care and service occupations
+c24010_027,estimate_total_male_sales and office occupations
+c24010_028,estimate_total_male_sales and office occupations_sales and related occupations
+c24010_029,estimate_total_male_sales and office occupations_office and administrative support occupations
+c24010_030,"estimate_total_male_natural resources, construction, and maintenance occupations"
+c24010_031,"estimate_total_male_natural resources, construction, and maintenance occupations_farming, fishing, and forestry occupations"
+c24010_032,"estimate_total_male_natural resources, construction, and maintenance occupations_construction and extraction occupations"
+c24010_033,"estimate_total_male_natural resources, construction, and maintenance occupations_installation, maintenance, and repair occupations"
+c24010_034,"estimate_total_male_production, transportation, and material moving occupations"
+c24010_035,"estimate_total_male_production, transportation, and material moving occupations_production occupations"
+c24010_036,"estimate_total_male_production, transportation, and material moving occupations_transportation occupations"
+c24010_037,"estimate_total_male_production, transportation, and material moving occupations_material moving occupations"
+c24010_038,estimate_total_female
+c24010_039,"estimate_total_female_management, business, science, and arts occupations"
+c24010_040,"estimate_total_female_management, business, science, and arts occupations_management, business, and financial occupations"
+c24010_041,"estimate_total_female_management, business, science, and arts occupations_management, business, and financial occupations_management occupations"
+c24010_042,"estimate_total_female_management, business, science, and arts occupations_management, business, and financial occupations_business and financial operations occupations"
+c24010_043,"estimate_total_female_management, business, science, and arts occupations_computer, engineering, and science occupations"
+c24010_044,"estimate_total_female_management, business, science, and arts occupations_computer, engineering, and science occupations_computer and mathematical occupations"
+c24010_045,"estimate_total_female_management, business, science, and arts occupations_computer, engineering, and science occupations_architecture and engineering occupations"
+c24010_046,"estimate_total_female_management, business, science, and arts occupations_computer, engineering, and science occupations_life, physical, and social science occupations"
+c24010_047,"estimate_total_female_management, business, science, and arts occupations_education, legal, community service, arts, and media occupations"
+c24010_048,"estimate_total_female_management, business, science, and arts occupations_education, legal, community service, arts, and media occupations_community and social service occupations"
+c24010_049,"estimate_total_female_management, business, science, and arts occupations_education, legal, community service, arts, and media occupations_legal occupations"
+c24010_050,"estimate_total_female_management, business, science, and arts occupations_education, legal, community service, arts, and media occupations_educational instruction, and library occupations"
+c24010_051,"estimate_total_female_management, business, science, and arts occupations_education, legal, community service, arts, and media occupations_arts, design, entertainment, sports, and media occupations"
+c24010_052,"estimate_total_female_management, business, science, and arts occupations_healthcare practitioners and technical occupations"
+c24010_053,"estimate_total_female_management, business, science, and arts occupations_healthcare practitioners and technical occupations_health diagnosing and treating practitioners and other technical occupations"
+c24010_054,"estimate_total_female_management, business, science, and arts occupations_healthcare practitioners and technical occupations_health technologists and technicians"
+c24010_055,estimate_total_female_service occupations
+c24010_056,estimate_total_female_service occupations_healthcare support occupations
+c24010_057,estimate_total_female_service occupations_protective service occupations
+c24010_058,"estimate_total_female_service occupations_protective service occupations_firefighting and prevention, and other protective service workers including supervisors"
+c24010_059,estimate_total_female_service occupations_protective service occupations_law enforcement workers including supervisors
+c24010_060,estimate_total_female_service occupations_food preparation and serving related occupations
+c24010_061,estimate_total_female_service occupations_building and grounds cleaning and maintenance occupations
+c24010_062,estimate_total_female_service occupations_personal care and service occupations
+c24010_063,estimate_total_female_sales and office occupations
+c24010_064,estimate_total_female_sales and office occupations_sales and related occupations
+c24010_065,estimate_total_female_sales and office occupations_office and administrative support occupations
+c24010_066,"estimate_total_female_natural resources, construction, and maintenance occupations"
+c24010_067,"estimate_total_female_natural resources, construction, and maintenance occupations_farming, fishing, and forestry occupations"
+c24010_068,"estimate_total_female_natural resources, construction, and maintenance occupations_construction and extraction occupations"
+c24010_069,"estimate_total_female_natural resources, construction, and maintenance occupations_installation, maintenance, and repair occupations"
+c24010_070,"estimate_total_female_production, transportation, and material moving occupations"
+c24010_071,"estimate_total_female_production, transportation, and material moving occupations_production occupations"
+c24010_072,"estimate_total_female_production, transportation, and material moving occupations_transportation occupations"
+c24010_073,"estimate_total_female_production, transportation, and material moving occupations_material moving occupations"
+c24030_001,estimate_total
+c24030_002,estimate_total_male
+c24030_003,"estimate_total_male_agriculture, forestry, fishing and hunting, and mining"
+c24030_004,"estimate_total_male_agriculture, forestry, fishing and hunting, and mining_agriculture, forestry, fishing and hunting"
+c24030_005,"estimate_total_male_agriculture, forestry, fishing and hunting, and mining_mining, quarrying, and oil and gas extraction"
+c24030_006,estimate_total_male_construction
+c24030_007,estimate_total_male_manufacturing
+c24030_008,estimate_total_male_wholesale trade
+c24030_009,estimate_total_male_retail trade
+c24030_010,"estimate_total_male_transportation and warehousing, and utilities"
+c24030_011,"estimate_total_male_transportation and warehousing, and utilities_transportation and warehousing"
+c24030_012,"estimate_total_male_transportation and warehousing, and utilities_utilities"
+c24030_013,estimate_total_male_information
+c24030_014,"estimate_total_male_finance and insurance, and real estate, and rental and leasing"
+c24030_015,"estimate_total_male_finance and insurance, and real estate, and rental and leasing_finance and insurance"
+c24030_016,"estimate_total_male_finance and insurance, and real estate, and rental and leasing_real estate and rental and leasing"
+c24030_017,"estimate_total_male_professional, scientific, and management, and administrative, and waste management services"
+c24030_018,"estimate_total_male_professional, scientific, and management, and administrative, and waste management services_professional, scientific, and technical services"
+c24030_019,"estimate_total_male_professional, scientific, and management, and administrative, and waste management services_management of companies and enterprises"
+c24030_020,"estimate_total_male_professional, scientific, and management, and administrative, and waste management services_administrative and support and waste management services"
+c24030_021,"estimate_total_male_educational services, and health care and social assistance"
+c24030_022,"estimate_total_male_educational services, and health care and social assistance_educational services"
+c24030_023,"estimate_total_male_educational services, and health care and social assistance_health care and social assistance"
+c24030_024,"estimate_total_male_arts, entertainment, and recreation, and accommodation and food services"
+c24030_025,"estimate_total_male_arts, entertainment, and recreation, and accommodation and food services_arts, entertainment, and recreation"
+c24030_026,"estimate_total_male_arts, entertainment, and recreation, and accommodation and food services_accommodation and food services"
+c24030_027,"estimate_total_male_other services, except public administration"
+c24030_028,estimate_total_male_public administration
+c24030_029,estimate_total_female
+c24030_030,"estimate_total_female_agriculture, forestry, fishing and hunting, and mining"
+c24030_031,"estimate_total_female_agriculture, forestry, fishing and hunting, and mining_agriculture, forestry, fishing and hunting"
+c24030_032,"estimate_total_female_agriculture, forestry, fishing and hunting, and mining_mining, quarrying, and oil and gas extraction"
+c24030_033,estimate_total_female_construction
+c24030_034,estimate_total_female_manufacturing
+c24030_035,estimate_total_female_wholesale trade
+c24030_036,estimate_total_female_retail trade
+c24030_037,"estimate_total_female_transportation and warehousing, and utilities"
+c24030_038,"estimate_total_female_transportation and warehousing, and utilities_transportation and warehousing"
+c24030_039,"estimate_total_female_transportation and warehousing, and utilities_utilities"
+c24030_040,estimate_total_female_information
+c24030_041,"estimate_total_female_finance and insurance, and real estate, and rental and leasing"
+c24030_042,"estimate_total_female_finance and insurance, and real estate, and rental and leasing_finance and insurance"
+c24030_043,"estimate_total_female_finance and insurance, and real estate, and rental and leasing_real estate and rental and leasing"
+c24030_044,"estimate_total_female_professional, scientific, and management, and administrative, and waste management services"
+c24030_045,"estimate_total_female_professional, scientific, and management, and administrative, and waste management services_professional, scientific, and technical services"
+c24030_046,"estimate_total_female_professional, scientific, and management, and administrative, and waste management services_management of companies and enterprises"
+c24030_047,"estimate_total_female_professional, scientific, and management, and administrative, and waste management services_administrative and support and waste management services"
+c24030_048,"estimate_total_female_educational services, and health care and social assistance"
+c24030_049,"estimate_total_female_educational services, and health care and social assistance_educational services"
+c24030_050,"estimate_total_female_educational services, and health care and social assistance_health care and social assistance"
+c24030_051,"estimate_total_female_arts, entertainment, and recreation, and accommodation and food services"
+c24030_052,"estimate_total_female_arts, entertainment, and recreation, and accommodation and food services_arts, entertainment, and recreation"
+c24030_053,"estimate_total_female_arts, entertainment, and recreation, and accommodation and food services_accommodation and food services"
+c24030_054,"estimate_total_female_other services, except public administration"
+c24030_055,estimate_total_female_public administration
