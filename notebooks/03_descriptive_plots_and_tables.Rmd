@@ -1,0 +1,118 @@
+
+title: "03-Tables and Plots R Notebook"
+author: "AJ Strauman-Scott"
+date: "`r Sys.Date()`"
+output: html_notebook
+---
+
+This notebook performs Exploratory Data Analysis on the motor vehicle crashes data aggregated with the ACS data
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+# Load libraries
+library(tidyverse)
+library(sf)
+library(tmap)
+library(corrplot)
+```
+
+## LOAD DATA
+
+```{r load-data}
+df <- read_csv("../data/model-ready/social-risk-crash-rate-data.csv")
+glimpse(df)
+```
+
+```{r tables}
+# --- 1. SUMMARY STATISTICS TABLES ---
+
+# Crash risk summary
+crash_summary <- df %>%
+  summarise(
+    total_crashes = sum(total_crashes, na.rm = TRUE),
+    total_injured = sum(persons_injured, na.rm = TRUE),
+    total_killed = sum(persons_killed, na.rm = TRUE),
+    avg_crash_rate = mean(crash_rate_per_1000, na.rm = TRUE),
+    median_crash_rate = median(crash_rate_per_1000, na.rm = TRUE),
+    max_crash_rate = max(crash_rate_per_1000, na.rm = TRUE),
+    avg_injury_fatality_ratio = mean(injury_fatality_ratio, na.rm = TRUE)
+  )
+
+print(crash_summary)
+
+# Socio-economic summary
+socio_summary <- df %>%
+  summarise(
+    median_income = median(median_income, na.rm = TRUE),
+    avg_vehicle_ownership = mean(pct_one_vehicle + 2 * pct_two_plus_vehicles, na.rm = TRUE),
+    avg_public_transit = mean(pct_public_transit, na.rm = TRUE),
+    avg_commute_drive = mean(pct_drive_alone, na.rm = TRUE),
+    avg_household_size = mean(household_size, na.rm = TRUE)
+  )
+
+print(socio_summary)
+
+# --- 3. SPATIAL VISUALIZATIONS ---
+
+# Load NTA shapefile (update the path to your actual file)
+nta_sf <- st_read("../data/shapefiles/nynta.shp")
+
+# Merge df with spatial data
+nta_data <- nta_sf %>%
+  left_join(df, by = c("ntacode" = "geoid"))
+
+# Crash rate map
+tm_shape(nta_data) +
+  tm_polygons("crash_rate_per_1000", palette = "Reds", style = "quantile") +
+  tm_layout(title = "Crash Rate per 1,000 Residents by NTA")
+
+# Median income map
+tm_shape(nta_data) +
+  tm_polygons("median_income", palette = "Blues", style = "quantile") +
+  tm_layout(title = "Median Income by NTA")
+
+# --- 4. CORRELATION AND RELATIONSHIPS ---
+
+# Select numeric columns for correlation analysis
+numeric_cols <- df %>%
+  select(median_income, crash_rate_per_1000, pct_public_transit, pct_drive_alone, poverty_rate) %>%
+  drop_na()
+
+# Correlation matrix
+cor_matrix <- cor(numeric_cols, use = "pairwise.complete.obs")
+corrplot(cor_matrix, method = "color", type = "upper", tl.col = "black", tl.srt = 45)
+
+# Scatter plot of crash rate vs median income
+ggplot(df, aes(x = median_income, y = crash_rate_per_1000, color = borough)) +
+  geom_point(alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "Crash Rate vs Median Income", x = "Median Income", y = "Crash Rate per 1,000")
+
+# --- 5. BOROUGH-LEVEL SUMMARIES ---
+
+borough_summary <- df %>%
+  group_by(borough) %>%
+  summarise(
+    mean_crash_rate = mean(crash_rate_per_1000, na.rm = TRUE),
+    median_income = median(median_income, na.rm = TRUE),
+    avg_public_transit = mean(pct_public_transit, na.rm = TRUE),
+    avg_drive_alone = mean(pct_drive_alone, na.rm = TRUE),
+    avg_household_size = mean(household_size, na.rm = TRUE)
+  )
+
+print(borough_summary)
+
+# Borough-level bar plot: Crash rate
+ggplot(borough_summary, aes(x = reorder(borough, -mean_crash_rate), y = mean_crash_rate, fill = borough)) +
+  geom_bar(stat = "identity") +
+  theme_minimal() +
+  labs(title = "Average Crash Rate by Borough", x = "Borough", y = "Crash Rate per 1,000") +
+  theme(legend.position = "none")
+
+# Borough-level bar plot: Median income
+ggplot(borough_summary, aes(x = reorder(borough, -median_income), y = median_income, fill = borough)) +
+  geom_bar(stat = "identity") +
+  theme_minimal() +
+  labs(title = "Median Income by Borough", x = "Borough", y = "Median Income ($)") +
+  theme(legend.position = "none")
+```
