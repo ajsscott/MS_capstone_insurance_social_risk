@@ -1,4 +1,4 @@
-
+---
 title: "03-Tables and Plots R Notebook"
 author: "AJ Strauman-Scott"
 date: "`r Sys.Date()`"
@@ -19,7 +19,7 @@ library(corrplot)
 ## LOAD DATA
 
 ```{r load-data}
-df <- read_csv("../data/model-ready/social-risk-crash-rate-data.csv")
+df <- read_csv("../data/models/social-risk-crash-rate-data.csv")
 glimpse(df)
 ```
 

@@ -137,5 +137,5 @@ for (var in numeric_vars) {
 ## Export clean data
 
 ```{r export}
-write_csv(df, "../data/model-ready/social-risk-crash-rate-data.csv")
+write_csv(df, "../data/models/social-risk-crash-rate-data.csv")
 ```
