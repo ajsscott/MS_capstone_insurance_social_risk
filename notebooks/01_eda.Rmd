@@ -79,8 +79,6 @@ Second quality check
 ```{r quality-check-again}
 # Visualize missingness
 vis_miss(df)
-
-
 ```
 NO NA values!
 
@@ -134,8 +132,57 @@ for (var in numeric_vars) {
 }
 ```
 
+## GROUP CORRELATED SOCIO-ECONOMIC VARIABLES
+
+```{r group-vars}
+numeric_vars <- sapply(df, is.numeric)
+cor_matrix <- cor(df[ , numeric_vars], 
+                  use = "pairwise.complete.obs")
+
+# Identify columns to drop (to reduce multicollinearity)
+high_corr <- caret::findCorrelation(cor_matrix, cutoff = 0.8)
+colnames(cor_matrix)[high_corr]
+
+# Open a PNG device
+png("../report/plots/pairwise_correlation_matrix.png", width = 1200, height = 1000, res = 300)
+
+# Draw the plot
+corrplot(cor_matrix, method = "color", type = "upper", tl.cex = 0.5)
+
+# Close the device
+dev.off()
+```
+## DROP REDUNDANT VARIABLES
+
+```{r drop-redundant}
+df <- df %>%
+    select(-c(poverty_rate,
+              pct_below_poverty,
+              pct_above_poverty,
+              pct_employed,
+              pct_unemployed,
+              pct_drive_alone))
+```
+
+## ADD BOROUGHS
+
+```{r add-boroughs}
+df <- df %>%
+  mutate(
+    borough = case_when(
+      substr(geoid, 1, 5) == "36005" ~ "Bronx",
+      substr(geoid, 1, 5) == "36047" ~ "Brooklyn",
+      substr(geoid, 1, 5) == "36061" ~ "Manhattan",
+      substr(geoid, 1, 5) == "36081" ~ "Queens",
+      substr(geoid, 1, 5) == "36085" ~ "Staten Island",
+      TRUE ~ "Unknown"
+    )
+  )
+
+```
+
 ## Export clean data
 
 ```{r export}
-write_csv(df, "../data/models/social-risk-crash-rate-data.csv")
+saveRDS(df, "../data/models/social-risk-crash-rate-data.rds")
 ```
