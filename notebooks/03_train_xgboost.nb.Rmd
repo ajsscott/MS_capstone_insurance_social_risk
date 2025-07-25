@@ -3,10 +3,10 @@ title: "XGBoost Modeling R Notebook"
 author: "AJ Strauman-Scott"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: default
-  html_notebook: default
   html_document:
     df_print: paged
+  html_notebook: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -24,7 +24,6 @@ library(doParallel)
 
 ```{r load-data}
 df <- readRDS("../data/models/social-risk-crash-rate-data.rds")
-glimpse(df)
 ```
 
 ## ADD PANDEMIC TEMPORAL FEATURE
@@ -78,6 +77,7 @@ df <- df %>% select(-all_of(cols_to_remove),)
 X <- df %>% select(-target_var, -borough, -total_population, -geoid)
 y <- df[[target_var]]
 
+glimpse(X)
 ```
 
 
@@ -204,10 +204,10 @@ if (!dir.exists("../data/models")) {
 }
 
 # Save the final XGBoost model
-saveRDS(final_model, file = "../data/models/spatial_cv_model.rds")
+saveRDS(final_model, file = "../data/models/xgb_model.rds")
 
 # Save the best parameters
-saveRDS(best_params, file = "../data/models/spatial_cv_best_params.rds")
+saveRDS(best_params, file = "../data/models/xgb_best_params.rds")
 
 cat("Model and parameters saved to ../data/models/")
 ```
@@ -278,6 +278,10 @@ p3 <- residual_df %>%
 print(p1)
 print(p2)
 print(p3)
+
+ggsave("../report/plots/predicted_vs_actual_values_plot.png", p1, width = 10, height = 6, dpi = 300)
+ggsave("../report/plots/resisuals_vs_predicted_values_plot.png", p2, width = 10, height = 6, dpi = 300)
+ggsave("../report/plots/residual_density_plot.png", p3, width = 10, height = 6, dpi = 300)
 ```
 
 ## SHAP EXPLAINABILITY
@@ -294,9 +298,8 @@ if (!dir.exists("../report/plots")) {
   dir.create("../report/plots")
 }
 
-png("../report/plots/spatial_cv_shap_summary_plot.png", width = 1200, height = 800)
-shap.plot.summary(shap_long)
-dev.off()
+shap <- shap.plot.summary(shap_long)
+ggsave("../report/plots/shap_summary_plot.png", shap, width = 10, height = 6, dpi = 300)
 ```
 
 ## INSPECT TREE ENSEMBLE
@@ -352,7 +355,9 @@ shap_interaction_values <- predict(
 )
 
 # shap_interaction_values will be a 3D array: [n_samples, n_features, n_features]
-dim(shap_interaction_values)
+interactions <- dim(shap_interaction_values)
+
+ggsave("../report/plots/shap_interaction_values.png", interactions, width = 10, height = 6, dpi = 300)
 ```
 ```{r}
 # ---------------------------
@@ -395,8 +400,20 @@ top_features <- shap_long %>%
   dplyr::slice(1:10) %>%
   pull(variable)
 
+# Ensure the output directory exists
+dir.create("../report/plots/pdp", recursive = TRUE, showWarnings = FALSE)
+
 for (f in top_features) {
   pd <- partial(final_model, pred.var = f, train = as.matrix(X_train), grid.resolution = 30)
-  plot(pd, main = paste("Partial Dependence of", f))
+  p <- plot(pd, main = paste("Partial Dependence of", f))
+  
+  # Save as PNG
+  ggsave(
+    filename = paste0("../report/plots/pdp/pdp_", f, ".png"),
+    plot = p,
+    width = 8,
+    height = 6,
+    dpi = 300
+  )
 }
 ```
