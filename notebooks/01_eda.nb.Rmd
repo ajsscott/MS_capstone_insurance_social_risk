@@ -1,0 +1,183 @@
+---
+title: "01-EDA R Notebook"
+author: "AJ Strauman-Scott"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+---
+
+This notebook performs Exploratory Data Analysis on the motor vehicle crashes data aggregated with the ACS data
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(sf)
+library(GGally)
+library(corrplot)
+library(viridis)
+library(naniar)
+library(tmap)
+library(gridExtra)
+library(DescTools)
+```
+
+## LOAD DATA
+
+```{r load-data}
+df <- read_csv("../data/processed/acs_mvc_combined_2018_2023.csv")
+glimpse(df)
+```
+
+## CONVERT DATA TYPES
+
+```{r convert-data-types}
+df <- df %>%
+  mutate(
+    geoid = as.character(geoid),
+    year = as.integer(year),
+    total_population = as.integer(total_population)
+  )
+glimpse(df)
+```
+
+## DATA QUALITY CHECKS
+
+```{r quality-checks}
+# Visualize missingness
+vis_miss(df)
+
+# Count NA values per column
+colSums(is.na(df))
+```
+Identify and remove 426 rows with extensive missingness
+
+```{r rows-with-NAs}
+df$na_rate <- rowMeans(is.na(df))
+
+# Filter out rows with high missingness
+df <- df %>%
+    filter(rowMeans(is.na(.)) <= 0.05)
+
+# Drop 29 rows with poverty_rate NA and/or 38 unemployment_rate NA values
+df <- df %>%
+    drop_na(c(unemployment_rate, poverty_rate))
+
+# Drop na_rate column
+df <- df %>% select(-na_rate)
+```
+ 
+Second quality check
+ 
+```{r quality-check-again}
+# Visualize missingness
+vis_miss(df)
+```
+NO NA values!
+
+
+## Winsorization of extreme values
+
+```{r winsorize-variables}
+replace_top_99_with_median <- function(x) {
+  # Ensure numeric
+  if (!is.numeric(x)) stop("Column must be numeric.")
+  
+  # Calculate the 99th percentile and median
+  upper_threshold <- quantile(x, 0.99, na.rm = TRUE)
+  median_val <- median(x, na.rm = TRUE)
+  
+  # Replace values above the 99th percentile with the median
+  x[x > upper_threshold] <- median_val
+  return(x)
+}
+
+per_1000_vars <- grep("per_1000", names(df), value = TRUE)
+df[per_1000_vars] <- lapply(df[per_1000_vars], replace_top_99_with_median)
+```
+
+## Univariate Analysis
+
+```{r univariate-analysis, echo=FALSE}
+# Identify numeric columns
+numeric_vars <- df %>% 
+  select(where(is.numeric)) %>% 
+    select(-year) %>%
+  names()
+
+# Create histograms and boxplots for each numeric variable
+for (var in numeric_vars) {
+  # Histogram
+  print(
+    ggplot(df, aes_string(x = var)) +
+      geom_histogram(bins = 30, fill = "steelblue", color = "white") +
+      labs(title = paste("Histogram of", var), x = var, y = "Count") +
+      theme_minimal()
+  )
+  
+  # Boxplot
+  print(
+    ggplot(df, aes_string(x = "''", y = var)) +
+      geom_boxplot(fill = "tomato", color = "black") +
+      labs(title = paste("Boxplot of", var), x = "", y = var) +
+      theme_minimal()
+  )
+}
+```
+
+## GROUP CORRELATED SOCIO-ECONOMIC VARIABLES
+
+```{r group-vars}
+numeric_vars <- sapply(df, is.numeric)
+cor_matrix <- cor(df[ , numeric_vars], 
+                  use = "pairwise.complete.obs")
+
+# Identify columns to drop (to reduce multicollinearity)
+high_corr <- caret::findCorrelation(cor_matrix, cutoff = 0.8)
+colnames(cor_matrix)[high_corr]
+
+# Open a PNG device
+png("../report/plots/pairwise_correlation_matrix.png", width = 1200, height = 1000, res = 300)
+
+# Draw the plot
+corrplot(cor_matrix, method = "color", type = "upper", tl.cex = 0.5)
+
+# Close the device
+dev.off()
+```
+## DROP REDUNDANT VARIABLES
+
+```{r drop-redundant}
+df <- df %>%
+    mutate(pct_vehicle = pct_one_vehicle + pct_two_plus_vehicles) %>%
+    select(-c(poverty_rate,
+              pct_above_poverty,
+              pct_employed,
+              pct_unemployed,
+              pct_drive_alone,
+              pct_one_vehicle,
+              pct_two_plus_vehicles)) 
+```
+
+## ADD BOROUGHS
+
+```{r add-boroughs}
+df <- df %>%
+  mutate(
+    borough = case_when(
+      substr(geoid, 1, 5) == "36005" ~ "Bronx",
+      substr(geoid, 1, 5) == "36047" ~ "Brooklyn",
+      substr(geoid, 1, 5) == "36061" ~ "Manhattan",
+      substr(geoid, 1, 5) == "36081" ~ "Queens",
+      substr(geoid, 1, 5) == "36085" ~ "Staten Island",
+      TRUE ~ "Unknown"
+    )
+  )
+
+```
+
+## Export clean data
+
+```{r export}
+saveRDS(df, "../data/models/social-risk-crash-rate-data.rds")
+```

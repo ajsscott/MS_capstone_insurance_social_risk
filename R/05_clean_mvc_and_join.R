@@ -7,7 +7,7 @@
 # ---------------------------
 # 0. Setup
 # ---------------------------
-required_packages <- c("data.table", "sf", "dplyr", "stringr", "lubridate", "readr")
+required_packages <- c("data.table", "sf", "dplyr", "stringr", "lubridate", "readr", "spdep")
 
 install_if_missing <- function(pkg) {
     if (!requireNamespace(pkg, quietly = TRUE)) {
@@ -23,6 +23,7 @@ suppressPackageStartupMessages({
     library(stringr)
     library(lubridate)
     library(readr)
+    library(spdep)
 })
 
 # ---------------------------
@@ -207,10 +208,6 @@ tryCatch({
             crash_rate_per_1000 = ifelse(total_population > 0, (total_crashes / total_population) * 1000, NA),
             injury_rate_per_1000 = ifelse(total_population > 0, (persons_injured / total_population) * 1000, NA),
             fatality_rate_per_1000 = ifelse(total_population > 0, (persons_killed / total_population) * 1000, NA),
-            pedestrian_rate_per_1000 = ifelse(total_population > 0, (pedestrians_injured / total_population) * 1000, NA),
-            cyclist_rate_per_1000 = ifelse(total_population > 0, (cyclists_injured / total_population) * 1000, NA),
-            motorist_rate_per_1000 = ifelse(total_population > 0, (motorists_injured / total_population) * 1000, NA),
-            injury_fatality_ratio = ifelse(persons_killed > 0, persons_injured / persons_killed, NA)
         )
     
     message("Merged dataset has ", nrow(mvc_final), " rows.")
@@ -297,19 +294,7 @@ tryCatch({
                                               NA_real_),
                 fatality_rate_per_1000 = ifelse(total_population > 0, 
                                                 (persons_killed / total_population) * 1000, 
-                                                NA_real_),
-                pedestrian_rate_per_1000 = ifelse(total_population > 0, 
-                                                  (pedestrians_injured / total_population) * 1000, 
-                                                  NA_real_),
-                cyclist_rate_per_1000 = ifelse(total_population > 0, 
-                                               (cyclists_injured / total_population) * 1000, 
-                                               NA_real_),
-                motorist_rate_per_1000 = ifelse(total_population > 0, 
-                                                (motorists_injured / total_population) * 1000, 
-                                                NA_real_),
-                injury_fatality_ratio = ifelse(persons_killed > 0, 
-                                               persons_injured / persons_killed, 
-                                               NA_real_)
+                                                NA_real_)
             )
     } else {
         warning("No population data available - skipping rate calculations")
@@ -318,13 +303,11 @@ tryCatch({
     # 8. Final cleanup
     final_dataset <- final_dataset %>%
         # Remove any duplicate columns from join
-        select(-ends_with(".x"), -ends_with(".y")) %>%
+        select(-ends_with(".x"), -ends_with(".y"), -crash_cols) %>%
         # Ensure consistent column order
         select(geoid, year, total_population, everything())
     
     message("Successfully created final dataset with ", nrow(final_dataset), " rows.")
-    message("Sample of crash counts:")
-    print(head(final_dataset$total_crashes))
     
 }, error = function(e) {
     message("\nFinal error diagnostics:")
