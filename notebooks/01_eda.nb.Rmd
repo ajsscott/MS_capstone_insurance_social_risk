@@ -67,14 +67,26 @@ df <- df %>%
 df <- df %>% select(-na_rate)
 ```
  
-Second quality check
- 
-```{r quality-check-again}
-# Visualize missingness
-vis_miss(df)
-```
 NO NA values!
+## ADD PANDEMIC TEMPORAL FEATURE
 
+```{r temporal-features}
+df <- df %>%
+        mutate(pct_vehicle = pct_one_vehicle + pct_two_plus_vehicles,
+               post_pandemic = ifelse(year < 2020, "pre", "post")  # pre vs. post
+               ) %>%
+    mutate(post_pandemic = as.integer(post_pandemic == "post"))
+```
+
+## ADD INTERACTION FEATURES
+
+```{r interactions}
+df <- df %>%
+  mutate(
+    poverty_vehicle_interaction = pct_below_poverty * pct_vehicle,
+    unemployment_vehicle_interaction = unemployment_rate * pct_vehicle
+  )
+```
 
 ## Winsorization of extreme values
 
@@ -92,7 +104,8 @@ replace_top_99_with_median <- function(x) {
   return(x)
 }
 
-per_1000_vars <- grep("per_1000", names(df), value = TRUE)
+per_1000_vars <- grep("per_1000|interaction", names(df), value = TRUE)
+print(per_1000_vars)
 df[per_1000_vars] <- lapply(df[per_1000_vars], replace_top_99_with_median)
 ```
 
@@ -149,14 +162,16 @@ dev.off()
 
 ```{r drop-redundant}
 df <- df %>%
-    mutate(pct_vehicle = pct_one_vehicle + pct_two_plus_vehicles) %>%
     select(-c(poverty_rate,
               pct_above_poverty,
               pct_employed,
               pct_unemployed,
               pct_drive_alone,
               pct_one_vehicle,
-              pct_two_plus_vehicles)) 
+              pct_two_plus_vehicles,
+              pct_female_population,
+              pct_no_vehicle,
+              pct_income_75k_plus)) 
 ```
 
 ## ADD BOROUGHS

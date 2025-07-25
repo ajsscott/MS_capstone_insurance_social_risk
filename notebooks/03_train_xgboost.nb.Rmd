@@ -26,28 +26,6 @@ library(doParallel)
 df <- readRDS("../data/models/social-risk-crash-rate-data.rds")
 ```
 
-## ADD PANDEMIC TEMPORAL FEATURE
-
-```{r temporal-features}
-df <- df %>%
-  mutate(
-    post_pandemic = ifelse(year < 2020, "pre", "post")  # pre vs. post 2020
-  ) %>%
-  mutate(post_pandemic = as.integer(post_pandemic == "post"))
-```
-
-## ADD INTERACTION FEATURES
-
-```{r interactions}
-df <- df %>%
-  mutate(
-    poverty_vehicle_interaction = pct_below_poverty * pct_vehicle,
-    unemployment_vehicle_interaction = unemployment_rate * pct_vehicle,
-    workers_long_commute_interaction = pct_commute_long * pct_in_labor_force,
-    homeowners_long_commute_interaction = pct_owner_occupied * pct_commute_long
-  )
-```
-
 ## HOT-ENCODE `YEAR`
 
 I will treat `year` as a factor and one-hot encode it.
@@ -213,7 +191,7 @@ saveRDS(best_params, file = "../data/models/xgb_best_params.rds")
 cat("Model and parameters saved to ../data/models/")
 ```
 
-```{r load-model, echo=FALSE}
+```{r load-model, eval=FALSE}
 # Load the final XGBoost model
 final_model <- readRDS("../data/models/xgb_model.rds")
 
@@ -294,7 +272,7 @@ ggsave("../report/plots/residual_density_plot.png", p3, width = 10, height = 6, 
 
 ## SHAP EXPLAINABILITY
 
-```{r shap, eval=FALSE}
+```{r shap}
 # Compute SHAP values
 shap_values <- shap.values(xgb_model = final_model, X_train = as.matrix(X_train))
 shap_long <- shap.prep(shap_contrib = shap_values$shap_score, X_train = as.matrix(X_train))
