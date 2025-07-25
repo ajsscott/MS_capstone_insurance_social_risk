@@ -41,8 +41,10 @@ df <- df %>%
 ```{r interactions}
 df <- df %>%
   mutate(
-    car_density_interaction = pct_vehicle * log1p(total_population),
-    income_vehicle_interaction = median_income * pct_vehicle
+    poverty_vehicle_interaction = pct_below_poverty * pct_vehicle,
+    unemployment_vehicle_interaction = unemployment_rate * pct_vehicle,
+    workers_long_commute_interaction = pct_commute_long * pct_in_labor_force,
+    homeowners_long_commute_interaction = pct_owner_occupied * pct_commute_long
   )
 ```
 
@@ -89,7 +91,7 @@ glimpse(X)
 - **Search space:** Instead of predefined grids, `trial$suggest_float()` and `trial$suggest_int()` explore a range of values.
 - **Best parameters:** `study$best_params` holds the optimal hyperparameters.
 
-```{r tune-params, eval=FALSE}
+```{r tune-params}
 ## CONVERT TO DMATRIX
 dtrain_all <- xgb.DMatrix(data = as.matrix(X), label = y)
 
@@ -148,32 +150,10 @@ study$optimize(objective, n_trials = 50)
 best_params <- study$best_params
 print(best_params)
 ```
-$eta
-[1] 0.03632745
 
-$max_depth
-[1] 4
-
-$min_child_weight
-[1] 2
-
-$subsample
-[1] 0.8879885
-
-$colsample_bytree
-[1] 0.7059848
-
-$gamma
-[1] 4.097305
-
-$lambda
-[1] 6.082163
-
-$alpha
-[1] 9.197171
 ## TRAIN/TEST SPLIT
 
-```{r train-test-split, eval=FALSE}
+```{r train-test-split}
 # Set seed
 set.seed(2025)
 
@@ -191,7 +171,7 @@ dtest <- xgb.DMatrix(data = as.matrix(X_test), label = y_test)
 
 ## TRAIN MODEL
 
-```{r train-model, eval=FALSE}
+```{r train-model}
 # Set seed
 set.seed(2025)
 
@@ -218,7 +198,7 @@ final_model <- xgb.train(
 
 ## SAVE MODEL
 
-```{r save-model, eval=FALSE}
+```{r save-model}
 # Create directory if it doesn't exist
 if (!dir.exists("../data/models")) {
   dir.create("../data/models", recursive = TRUE)
@@ -296,7 +276,7 @@ p2 <- residual_df %>%
 
 # --- Plot: Residual Density ---
 # Residual Histogram
-p3 <- ggplot(residual_df, aes(x = residual)) +
+p3 <- ggplot(residual_df, aes(x = residuals)) +
     geom_histogram(binwidth = 0.2, fill = "steelblue", color = "white") +
     geom_density(color = "red") +
     theme_minimal() +
