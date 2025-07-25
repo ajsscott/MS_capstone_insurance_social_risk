@@ -84,13 +84,12 @@ glimpse(X)
 ## HYPERPARAMETER TUNING
 
 **What This Does**
-- Uses **R’s `xgboost::xgb.cv()`** to evaluate each parameter set.
 - Optuna (Python) handles the search space and Bayesian optimization.
 - The final best parameters are applied to fit the `final_model`.
 - **Search space:** Instead of predefined grids, `trial$suggest_float()` and `trial$suggest_int()` explore a range of values.
 - **Best parameters:** `study$best_params` holds the optimal hyperparameters.
 
-```{r tune-params}
+```{r tune-params, eval=FALSE}
 ## CONVERT TO DMATRIX
 dtrain_all <- xgb.DMatrix(data = as.matrix(X), label = y)
 
@@ -149,10 +148,32 @@ study$optimize(objective, n_trials = 50)
 best_params <- study$best_params
 print(best_params)
 ```
+$eta
+[1] 0.03632745
 
+$max_depth
+[1] 4
+
+$min_child_weight
+[1] 2
+
+$subsample
+[1] 0.8879885
+
+$colsample_bytree
+[1] 0.7059848
+
+$gamma
+[1] 4.097305
+
+$lambda
+[1] 6.082163
+
+$alpha
+[1] 9.197171
 ## TRAIN/TEST SPLIT
 
-```{r train-test-split}
+```{r train-test-split, eval=FALSE}
 # Set seed
 set.seed(2025)
 
@@ -170,7 +191,7 @@ dtest <- xgb.DMatrix(data = as.matrix(X_test), label = y_test)
 
 ## TRAIN MODEL
 
-```{r train-model}
+```{r train-model, eval=FALSE}
 # Set seed
 set.seed(2025)
 
@@ -197,7 +218,7 @@ final_model <- xgb.train(
 
 ## SAVE MODEL
 
-```{r save-model}
+```{r save-model, eval=FALSE}
 # Create directory if it doesn't exist
 if (!dir.exists("../data/models")) {
   dir.create("../data/models", recursive = TRUE)
@@ -210,6 +231,15 @@ saveRDS(final_model, file = "../data/models/xgb_model.rds")
 saveRDS(best_params, file = "../data/models/xgb_best_params.rds")
 
 cat("Model and parameters saved to ../data/models/")
+```
+
+```{r load-model, echo=FALSE}
+# Load the final XGBoost model
+final_model <- readRDS("../data/models/xgb_model.rds")
+
+# Load the best parameters
+best_params <- readRDS("../data/models/xgb_best_params.rds")
+
 ```
 
 ## MODEL EVALUATION
@@ -265,14 +295,12 @@ p2 <- residual_df %>%
        y = "Residuals")
 
 # --- Plot: Residual Density ---
-p3 <- residual_df %>%
-  ggplot(aes(x = residuals)) +
-  geom_histogram(aes(y = ..density..), bins = 30, fill = "skyblue", alpha = 0.7) +
-  geom_density(color = "red") +
-  theme_minimal() +
-  labs(title = "Residual Distribution",
-       x = "Residuals",
-       y = "Density")
+# Residual Histogram
+p3 <- ggplot(residual_df, aes(x = residual)) +
+    geom_histogram(binwidth = 0.2, fill = "steelblue", color = "white") +
+    geom_density(color = "red") +
+    theme_minimal() +
+    labs(title = "Residual Distribution", x = "Residuals", y = "Count")
 
 # Print plots
 print(p1)
@@ -286,7 +314,7 @@ ggsave("../report/plots/residual_density_plot.png", p3, width = 10, height = 6, 
 
 ## SHAP EXPLAINABILITY
 
-```{r shap}
+```{r shap, eval=FALSE}
 # Compute SHAP values
 shap_values <- shap.values(xgb_model = final_model, X_train = as.matrix(X_train))
 shap_long <- shap.prep(shap_contrib = shap_values$shap_score, X_train = as.matrix(X_train))
@@ -357,37 +385,9 @@ shap_interaction_values <- predict(
 # shap_interaction_values will be a 3D array: [n_samples, n_features, n_features]
 interactions <- dim(shap_interaction_values)
 
-ggsave("../report/plots/shap_interaction_values.png", interactions, width = 10, height = 6, dpi = 300)
 ```
-```{r}
-# ---------------------------
-# 2. Residual Plots and Mapping
-# ---------------------------
-message("\nComputing residuals and creating residual plots...")
-
-preds <- predict(final_model, as.matrix(X_test))
-residuals <- y_test - preds
-
-residual_df <- data.frame(
-  observed = y_test,
-  predicted = preds,
-  residual = residuals
-)
-
-# Predicted vs Observed
-ggplot(residual_df, aes(x = predicted, y = observed)) +
-  geom_point(alpha = 0.6) +
-  geom_abline(slope = 1, intercept = 0, color = "red") +
-  theme_minimal() +
-  labs(title = "Predicted vs. Observed Crash Rates",
-       x = "Predicted Crash Rate per 1,000",
-       y = "Observed Crash Rate per 1,000")
-
-# Residual Histogram
-ggplot(residual_df, aes(x = residual)) +
-  geom_histogram(binwidth = 0.2, fill = "steelblue", color = "white") +
-  theme_minimal() +
-  labs(title = "Residual Distribution", x = "Residuals", y = "Count")
+```{r echo=FALSE}
+saveRDS(interactions, "../data/models/shap_interactions.rds")
 ```
 ```{r}
 # ---------------------------
