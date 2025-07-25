@@ -3,10 +3,10 @@ title: "XGBoost Modeling R Notebook"
 author: "AJ Strauman-Scott"
 date: "`r Sys.Date()`"
 output:
+  pdf_document: default
+  html_notebook: default
   html_document:
     df_print: paged
-  html_notebook: default
-  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -23,8 +23,7 @@ library(doParallel)
 ## LOAD DATA
 
 ```{r load-data}
-df <- readRDS("../data/models/social-risk-crash-rate-data.rds") %>%
-    select(-geoid)
+df <- readRDS("../data/models/social-risk-crash-rate-data.rds")
 glimpse(df)
 ```
 
@@ -36,8 +35,6 @@ df <- df %>%
     post_pandemic = ifelse(year < 2020, "pre", "post")  # pre vs. post 2020
   ) %>%
   mutate(post_pandemic = as.integer(post_pandemic == "post"))
-
-glimpse(df)
 ```
 
 ## ADD INTERACTION FEATURES
@@ -78,7 +75,7 @@ cols_to_remove <- setdiff(cols_to_remove, target_var) # keep this column
 df <- df %>% select(-all_of(cols_to_remove),)
 
 # Create feature matrix and target vector
-X <- df %>% select(-target_var, -borough, -total_population)
+X <- df %>% select(-target_var, -borough, -total_population, -geoid)
 y <- df[[target_var]]
 
 ```
@@ -217,24 +214,70 @@ cat("Model and parameters saved to ../data/models/")
 
 ## MODEL EVALUATION
 
-```{r eval-model}
-# Set seed
+```{r eval-model, message=FALSE, warning=FALSE}
+library(Metrics)
+library(ggplot2)
+library(dplyr)
+
 set.seed(2025)
 
 # Predict on test set
 preds <- predict(final_model, as.matrix(X_test))
 
-# Calculate RMSE
+# --- Metrics ---
 rmse <- sqrt(mean((y_test - preds)^2))
-cat("Test RMSE:", rmse)
+mae <- mean(abs(y_test - preds))
+mape <- mean(abs((y_test - preds) / y_test)) * 100
+r2 <- 1 - (sum((y_test - preds)^2) / sum((y_test - mean(y_test))^2))
 
-# Plot predicted vs. actual
-data.frame(actual = y_test, predicted = preds) %>%
+cat("Model Evaluation Metrics:\n")
+cat("  RMSE:", rmse, "\n")
+cat("  MAE :", mae, "\n")
+cat("  MAPE:", mape, "%\n")
+cat("  R²  :", r2, "\n\n")
+
+# --- Residuals ---
+residuals <- y_test - preds
+residual_df <- data.frame(
+  actual = y_test,
+  predicted = preds,
+  residuals = residuals
+)
+
+# --- Plot: Predicted vs Actual ---
+p1 <- residual_df %>%
   ggplot(aes(x = actual, y = predicted)) +
   geom_point(alpha = 0.5) +
   geom_abline(slope = 1, intercept = 0, color = "red") +
   theme_minimal() +
-  labs(title = "Predicted vs Actual Crash Rates")
+  labs(title = "Predicted vs Actual Crash Rates",
+       x = "Actual",
+       y = "Predicted")
+
+# --- Plot: Residuals vs Predicted ---
+p2 <- residual_df %>%
+  ggplot(aes(x = predicted, y = residuals)) +
+  geom_point(alpha = 0.5, color = "blue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  theme_minimal() +
+  labs(title = "Residuals vs Predicted",
+       x = "Predicted",
+       y = "Residuals")
+
+# --- Plot: Residual Density ---
+p3 <- residual_df %>%
+  ggplot(aes(x = residuals)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "skyblue", alpha = 0.7) +
+  geom_density(color = "red") +
+  theme_minimal() +
+  labs(title = "Residual Distribution",
+       x = "Residuals",
+       y = "Density")
+
+# Print plots
+print(p1)
+print(p2)
+print(p3)
 ```
 
 ## SHAP EXPLAINABILITY
@@ -260,9 +303,100 @@ dev.off()
 
 ```{r inspect-tree}
 xgb.plot.tree(model = final_model, trees = 0)
+```
+```{r}
 xgb.plot.tree(model = final_model, trees = 1)
+```
+```{r}
 xgb.plot.tree(model = final_model, trees = 2)
-xgb.dump(final_model, with_stats = TRUE)
-
+```
+```{r}
 xgb.plot.multi.trees(model = final_model)
+```
+
+```{r}
+# ============================================================
+# Additional Model Diagnostics and Deeper Analysis
+# ============================================================
+
+library(ggplot2)
+library(dplyr)
+library(pdp)        # For Partial Dependence Plots
+library(DALEX)      # For model explainability
+library(ggthemes)
+library(sf)
+
+# ---------------------------
+# 1. SHAP Dependence and Interaction Plots
+# ---------------------------
+message("\nGenerating SHAP dependence and interaction plots...")
+
+# Assuming shap_values and shap_long are already computed
+# (if not, recompute them using iml or SHAPforxgboost packages)
+
+# Top feature by SHAP importance
+top_feature <- shap_long %>%
+  as_tibble() %>%
+  count(variable, wt = abs(value), sort = TRUE) %>%
+  dplyr::slice(1) %>%
+  pull(variable)
+
+# Dependence plot for top feature
+shap.plot.dependence(data_long = shap_long, x = top_feature, color_feature = top_feature)
+
+# Interaction values
+shap_interaction_values <- predict(
+  final_model,
+  as.matrix(X_train),
+  predinteraction = TRUE
+)
+
+# shap_interaction_values will be a 3D array: [n_samples, n_features, n_features]
+dim(shap_interaction_values)
+```
+```{r}
+# ---------------------------
+# 2. Residual Plots and Mapping
+# ---------------------------
+message("\nComputing residuals and creating residual plots...")
+
+preds <- predict(final_model, as.matrix(X_test))
+residuals <- y_test - preds
+
+residual_df <- data.frame(
+  observed = y_test,
+  predicted = preds,
+  residual = residuals
+)
+
+# Predicted vs Observed
+ggplot(residual_df, aes(x = predicted, y = observed)) +
+  geom_point(alpha = 0.6) +
+  geom_abline(slope = 1, intercept = 0, color = "red") +
+  theme_minimal() +
+  labs(title = "Predicted vs. Observed Crash Rates",
+       x = "Predicted Crash Rate per 1,000",
+       y = "Observed Crash Rate per 1,000")
+
+# Residual Histogram
+ggplot(residual_df, aes(x = residual)) +
+  geom_histogram(binwidth = 0.2, fill = "steelblue", color = "white") +
+  theme_minimal() +
+  labs(title = "Residual Distribution", x = "Residuals", y = "Count")
+```
+```{r}
+# ---------------------------
+# 3. Partial Dependence Plots (PDP)
+# ---------------------------
+message("\nGenerating Partial Dependence Plots...")
+
+top_features <- shap_long %>%
+  count(variable, wt = abs(value), sort = TRUE) %>%
+  dplyr::slice(1:10) %>%
+  pull(variable)
+
+for (f in top_features) {
+  pd <- partial(final_model, pred.var = f, train = as.matrix(X_train), grid.resolution = 30)
+  plot(pd, main = paste("Partial Dependence of", f))
+}
 ```

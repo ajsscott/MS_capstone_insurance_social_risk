@@ -39,6 +39,38 @@
       "Maintainer": "Bernd Bischl <bernd_bischl@gmx.net>",
       "Repository": "https://packagemanager.posit.co/cran/latest"
     },
+    "DALEX": {
+      "Package": "DALEX",
+      "Version": "2.4.3",
+      "Source": "Repository",
+      "Title": "moDel Agnostic Language for Exploration and eXplanation",
+      "Authors@R": "c(person(\"Przemyslaw\", \"Biecek\", email = \"przemyslaw.biecek@gmail.com\", role = c(\"aut\", \"cre\"),  comment = c(ORCID = \"0000-0001-8423-1823\")), person(\"Szymon\", \"Maksymiuk\", role = \"aut\", comment = c(ORCID = \"0000-0002-3120-1601\")), person(\"Hubert\", \"Baniecki\", role = \"aut\", comment = c(ORCID = \"0000-0001-6661-5364\")))",
+      "Description": "Any unverified black box model is the path to failure. Opaqueness leads to distrust.  Distrust leads to ignoration. Ignoration leads to rejection.  DALEX package xrays any model and helps to explore and explain its behaviour. Machine Learning (ML) models are widely used and have various applications in classification  or regression. Models created with boosting, bagging, stacking or similar techniques are often used due to their high performance. But such black-box models usually lack direct interpretability. DALEX package contains various methods that help to understand the link between input variables  and model output. Implemented methods help to explore the model on the level of a single instance  as well as a level of the whole dataset. All model explainers are model agnostic and can be compared across different models. DALEX package is the cornerstone for 'DrWhy.AI' universe of packages for visual model exploration. Find more details in (Biecek 2018) <arXiv:1806.08915>.",
+      "License": "GPL",
+      "Encoding": "UTF-8",
+      "LazyData": "true",
+      "RoxygenNote": "7.2.3",
+      "Depends": [
+        "R (>= 3.5)"
+      ],
+      "Imports": [
+        "ggplot2",
+        "iBreakDown (>= 1.3.1)",
+        "ingredients (>= 2.0)"
+      ],
+      "Suggests": [
+        "gower",
+        "ranger",
+        "testthat",
+        "methods"
+      ],
+      "URL": "https://modeloriented.github.io/DALEX/, https://dalex.drwhy.ai",
+      "BugReports": "https://github.com/ModelOriented/DALEX/issues",
+      "NeedsCompilation": "no",
+      "Author": "Przemyslaw Biecek [aut, cre] (<https://orcid.org/0000-0001-8423-1823>), Szymon Maksymiuk [aut] (<https://orcid.org/0000-0002-3120-1601>), Hubert Baniecki [aut] (<https://orcid.org/0000-0001-6661-5364>)",
+      "Maintainer": "Przemyslaw Biecek <przemyslaw.biecek@gmail.com>",
+      "Repository": "CRAN"
+    },
     "DBI": {
       "Package": "DBI",
       "Version": "1.2.3",
@@ -3591,6 +3623,60 @@
       "Maintainer": "Joseph Larmarange <joseph@larmarange.net>",
       "Repository": "CRAN"
     },
+    "ggthemes": {
+      "Package": "ggthemes",
+      "Version": "5.1.0",
+      "Source": "Repository",
+      "Title": "Extra Themes, Scales and Geoms for 'ggplot2'",
+      "Authors@R": "c(person(\"Jeffrey B.\", \"Arnold\", role = c(\"aut\", \"cre\"), email = \"jeffrey.arnold@gmail.com\",  comment = \"<https://orcid.org/0000-0001-9953-3904>\"), person(\"Gergely\", \"Daroczi\", role = \"ctb\"), person(\"Bo\", \"Werth\", role = \"ctb\"), person(\"Brian\", \"Weitzner\", role = \"ctb\"), person(\"Joshua\", \"Kunst\", role = \"ctb\"), person(\"Baptise\", \"Auguie\", role = \"ctb\"), person(\"Bob\", \"Rudis\", role = \"ctb\"), person(\"Hadley\", \"Wickham\", role = c(\"ctb\"), comment = \"Code from the ggplot2 package.\"), person(\"Justin\",  \"Talbot\", role = \"ctb\", comment = \"Code from the labeling package\"), person(\"Joshua\", \"London\", role = \"ctb\"))",
+      "Depends": [
+        "R (>= 3.3.0)"
+      ],
+      "Imports": [
+        "ggplot2 (>= 3.0.0)",
+        "graphics",
+        "grid",
+        "lifecycle",
+        "methods",
+        "purrr",
+        "scales",
+        "stringr",
+        "tibble"
+      ],
+      "Suggests": [
+        "dplyr",
+        "covr",
+        "extrafont",
+        "glue",
+        "knitr",
+        "lattice",
+        "lintr",
+        "maps",
+        "mapproj",
+        "pander",
+        "quantreg",
+        "rlang",
+        "rmarkdown",
+        "spelling",
+        "testthat (>= 3.2.0)",
+        "tidyr",
+        "vdiffr",
+        "withr"
+      ],
+      "Description": "Some extra themes, geoms, and scales for 'ggplot2'. Provides 'ggplot2' themes and scales that replicate the look of plots by Edward Tufte, Stephen Few, 'Fivethirtyeight', 'The Economist', 'Stata', 'Excel', and 'The Wall Street Journal', among others. Provides 'geoms' for Tufte's box plot and range frame.",
+      "License": "GPL-2",
+      "URL": "https://jrnold.github.io/ggthemes/, https://github.com/jrnold/ggthemes",
+      "BugReports": "https://github.com/jrnold/ggthemes/issues",
+      "RoxygenNote": "7.3.1",
+      "LazyData": "true",
+      "Language": "en-US",
+      "Encoding": "UTF-8",
+      "Config/testthat/edition": "3",
+      "NeedsCompilation": "no",
+      "Author": "Jeffrey B. Arnold [aut, cre] (<https://orcid.org/0000-0001-9953-3904>), Gergely Daroczi [ctb], Bo Werth [ctb], Brian Weitzner [ctb], Joshua Kunst [ctb], Baptise Auguie [ctb], Bob Rudis [ctb], Hadley Wickham [ctb] (Code from the ggplot2 package.), Justin Talbot [ctb] (Code from the labeling package), Joshua London [ctb]",
+      "Maintainer": "Jeffrey B. Arnold <jeffrey.arnold@gmail.com>",
+      "Repository": "https://packagemanager.posit.co/cran/latest"
+    },
     "gld": {
       "Package": "gld",
       "Version": "2.6.7",
@@ -4226,6 +4312,43 @@
       "Maintainer": "Hadley Wickham <hadley@posit.co>",
       "Repository": "https://packagemanager.posit.co/cran/latest"
     },
+    "iBreakDown": {
+      "Package": "iBreakDown",
+      "Version": "2.1.2",
+      "Source": "Repository",
+      "Title": "Model Agnostic Instance Level Variable Attributions",
+      "Authors@R": "c(person(\"Przemyslaw\", \"Biecek\", email = \"przemyslaw.biecek@gmail.com\", role = c(\"aut\", \"cre\"),  comment = c(ORCID = \"0000-0001-8423-1823\")), person(\"Alicja\", \"Gosiewska\", role = \"aut\", comment = c(ORCID = \"0000-0001-6563-5742\")), person(\"Hubert\", \"Baniecki\", role = \"aut\", comment = c(ORCID = \"0000-0001-6661-5364\")), person(\"Adam\", \"Izdebski\", role = \"aut\"), person(\"Dariusz\", \"Komosinski\", role = \"ctb\"))",
+      "Description": "Model agnostic tool for decomposition of predictions from black boxes. Supports additive attributions and attributions with interactions. The Break Down Table shows contributions of every variable to a final prediction.  The Break Down Plot presents variable contributions in a concise graphical way.  This package works for classification and regression models.  It is an extension of the 'breakDown' package (Staniak and Biecek 2018) <doi:10.32614/RJ-2018-072>, with new and faster strategies for orderings.  It supports interactions in explanations and has interactive visuals (implemented with 'D3.js' library).  The methodology behind is described in the 'iBreakDown' article (Gosiewska and Biecek 2019) <arXiv:1903.11420> This package is a part of the 'DrWhy.AI' universe (Biecek 2018) <arXiv:1806.08915>.",
+      "Depends": [
+        "R (>= 3.5)"
+      ],
+      "License": "GPL-3",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.2.2",
+      "Imports": [
+        "ggplot2"
+      ],
+      "Suggests": [
+        "DALEX",
+        "knitr",
+        "rmarkdown",
+        "randomForest",
+        "e1071",
+        "ranger",
+        "nnet",
+        "testthat",
+        "r2d3",
+        "jsonlite",
+        "covr"
+      ],
+      "VignetteBuilder": "knitr",
+      "URL": "https://ModelOriented.github.io/iBreakDown/, https://github.com/ModelOriented/iBreakDown",
+      "BugReports": "https://github.com/ModelOriented/iBreakDown/issues",
+      "NeedsCompilation": "no",
+      "Author": "Przemyslaw Biecek [aut, cre] (<https://orcid.org/0000-0001-8423-1823>), Alicja Gosiewska [aut] (<https://orcid.org/0000-0001-6563-5742>), Hubert Baniecki [aut] (<https://orcid.org/0000-0001-6661-5364>), Adam Izdebski [aut], Dariusz Komosinski [ctb]",
+      "Maintainer": "Przemyslaw Biecek <przemyslaw.biecek@gmail.com>",
+      "Repository": "CRAN"
+    },
     "ids": {
       "Package": "ids",
       "Version": "1.0.1",
@@ -4253,6 +4376,44 @@
       "Maintainer": "Rich FitzJohn <rich.fitzjohn@gmail.com>",
       "Repository": "https://packagemanager.posit.co/cran/latest",
       "Encoding": "UTF-8"
+    },
+    "ingredients": {
+      "Package": "ingredients",
+      "Version": "2.3.0",
+      "Source": "Repository",
+      "Title": "Effects and Importances of Model Ingredients",
+      "Authors@R": "c(person(\"Przemyslaw\", \"Biecek\", email = \"przemyslaw.biecek@gmail.com\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0001-8423-1823\")), person(\"Hubert\", \"Baniecki\", role = \"aut\", comment = c(ORCID = \"0000-0001-6661-5364\")), person(\"Adam\", \"Izdebski\", role = \"ctb\"))",
+      "Description": "Collection of tools for assessment of feature importance and feature effects. Key functions are: feature_importance() for assessment of global level feature importance, ceteris_paribus() for calculation of the what-if plots, partial_dependence() for partial dependence plots, conditional_dependence() for conditional dependence plots, accumulated_dependence() for accumulated local effects plots, aggregate_profiles() and cluster_profiles() for aggregation of ceteris paribus profiles, generic print() and plot() for better usability of selected explainers, generic plotD3() for interactive, D3 based explanations, and generic describe() for explanations in natural language. The package 'ingredients' is a part of the 'DrWhy.AI' universe (Biecek 2018) <arXiv:1806.08915>.",
+      "Depends": [
+        "R (>= 3.5)"
+      ],
+      "License": "GPL-3",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.2.3",
+      "Imports": [
+        "ggplot2",
+        "scales",
+        "gridExtra",
+        "methods"
+      ],
+      "Suggests": [
+        "DALEX",
+        "gower",
+        "ranger",
+        "testthat",
+        "r2d3",
+        "jsonlite",
+        "knitr",
+        "rmarkdown",
+        "covr"
+      ],
+      "URL": "https://ModelOriented.github.io/ingredients/, https://github.com/ModelOriented/ingredients",
+      "BugReports": "https://github.com/ModelOriented/ingredients/issues",
+      "VignetteBuilder": "knitr",
+      "NeedsCompilation": "no",
+      "Author": "Przemyslaw Biecek [aut, cre] (<https://orcid.org/0000-0001-8423-1823>), Hubert Baniecki [aut] (<https://orcid.org/0000-0001-6661-5364>), Adam Izdebski [ctb]",
+      "Maintainer": "Przemyslaw Biecek <przemyslaw.biecek@gmail.com>",
+      "Repository": "CRAN"
     },
     "ipred": {
       "Package": "ipred",
@@ -5894,6 +6055,74 @@
       "LazyData": "true",
       "NeedsCompilation": "no",
       "Author": "Ulrich Halekoh [aut, cph], Søren Højsgaard [aut, cre, cph]",
+      "Repository": "CRAN"
+    },
+    "pdp": {
+      "Package": "pdp",
+      "Version": "0.8.2",
+      "Source": "Repository",
+      "Type": "Package",
+      "Title": "Partial Dependence Plots",
+      "Authors@R": "person(c(\"Brandon\", \"M.\"), family = \"Greenwell\",  email = \"greenwell.brandon@gmail.com\", role = c(\"aut\", \"cre\"),  comment = c(ORCID = \"0000-0002-8120-0084\"))",
+      "Description": "A general framework for constructing partial dependence (i.e., marginal effect) plots from various types machine learning models in R.",
+      "License": "GPL (>= 2)",
+      "URL": "https://github.com/bgreenwell/pdp, http://bgreenwell.github.io/pdp/",
+      "BugReports": "https://github.com/bgreenwell/pdp/issues",
+      "Depends": [
+        "R (>= 3.6.0)"
+      ],
+      "Suggests": [
+        "adabag",
+        "AmesHousing",
+        "C50",
+        "caret",
+        "covr",
+        "Cubist",
+        "doParallel",
+        "dplyr",
+        "e1071",
+        "earth",
+        "gbm",
+        "gridExtra",
+        "ICEbox",
+        "ipred",
+        "keras",
+        "kernlab",
+        "magrittr",
+        "MASS",
+        "Matrix",
+        "mda",
+        "mlbench",
+        "nnet",
+        "party",
+        "partykit",
+        "randomForest",
+        "ranger",
+        "reticulate",
+        "rpart",
+        "tinytest",
+        "xgboost (>= 0.6-0)",
+        "knitr",
+        "rmarkdown",
+        "vip"
+      ],
+      "Imports": [
+        "foreach",
+        "ggplot2 (>= 3.0.0)",
+        "grDevices",
+        "lattice",
+        "methods",
+        "rlang (>= 0.3.0)",
+        "stats",
+        "utils"
+      ],
+      "LazyData": "TRUE",
+      "RoxygenNote": "7.3.2",
+      "Encoding": "UTF-8",
+      "VignetteBuilder": "knitr",
+      "NeedsCompilation": "yes",
+      "Author": "Brandon M. Greenwell [aut, cre] (<https://orcid.org/0000-0002-8120-0084>)",
+      "Maintainer": "Brandon M. Greenwell <greenwell.brandon@gmail.com>",
       "Repository": "CRAN"
     },
     "pillar": {
