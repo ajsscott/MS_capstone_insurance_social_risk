@@ -9,110 +9,155 @@ This notebook performs Exploratory Data Analysis on the motor vehicle crashes da
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
-# Load libraries
+
+# Load Libraries
 library(tidyverse)
-library(sf)
-library(tmap)
+library(reshape2)
 library(corrplot)
+library(sf)
+library(patchwork)
 ```
 
 ## LOAD DATA
 
 ```{r load-data}
+# Load Data
 df <- readRDS("../data/models/social-risk-crash-rate-data.rds")
 glimpse(df)
 ```
-
-```{r tables}
-# --- 1. SUMMARY STATISTICS TABLES ---
-
-# Crash risk summary
-crash_summary <- df %>%
-  summarise(
-    total_crashes = sum(total_crashes, na.rm = TRUE),
-    total_injured = sum(persons_injured, na.rm = TRUE),
-    total_killed = sum(persons_killed, na.rm = TRUE),
-    avg_crash_rate = mean(crash_rate_per_1000, na.rm = TRUE),
-    median_crash_rate = median(crash_rate_per_1000, na.rm = TRUE),
-    max_crash_rate = max(crash_rate_per_1000, na.rm = TRUE),
-    avg_injury_fatality_ratio = mean(injury_fatality_ratio, na.rm = TRUE)
-  )
-
-print(crash_summary)
-
-# Socio-economic summary
-socio_summary <- df %>%
-  summarise(
-    median_income = median(median_income, na.rm = TRUE),
-    avg_vehicle_ownership = mean(pct_one_vehicle + 2 * pct_two_plus_vehicles, na.rm = TRUE),
-    avg_public_transit = mean(pct_public_transit, na.rm = TRUE),
-    avg_commute_drive = mean(pct_drive_alone, na.rm = TRUE),
-    avg_household_size = mean(household_size, na.rm = TRUE)
-  )
-
-print(socio_summary)
-
-# --- 3. SPATIAL VISUALIZATIONS ---
-
-# Load NTA shapefile (update the path to your actual file)
-nta_sf <- st_read("../data/shapefiles/nynta.shp")
-
-# Merge df with spatial data
-nta_data <- nta_sf %>%
-  left_join(df, by = c("ntacode" = "geoid"))
-
-# Crash rate map
-tm_shape(nta_data) +
-  tm_polygons("crash_rate_per_1000", palette = "Reds", style = "quantile") +
-  tm_layout(title = "Crash Rate per 1,000 Residents by NTA")
-
-# Median income map
-tm_shape(nta_data) +
-  tm_polygons("median_income", palette = "Blues", style = "quantile") +
-  tm_layout(title = "Median Income by NTA")
-
-# --- 4. CORRELATION AND RELATIONSHIPS ---
-
-# Select numeric columns for correlation analysis
-numeric_cols <- df %>%
-  select(median_income, crash_rate_per_1000, pct_public_transit, pct_drive_alone, poverty_rate) %>%
-  drop_na()
-
-# Correlation matrix
-cor_matrix <- cor(numeric_cols, use = "pairwise.complete.obs")
-corrplot(cor_matrix, method = "color", type = "upper", tl.col = "black", tl.srt = 45)
-
-# Scatter plot of crash rate vs median income
-ggplot(df, aes(x = median_income, y = crash_rate_per_1000, color = borough)) +
-  geom_point(alpha = 0.7) +
-  theme_minimal() +
-  labs(title = "Crash Rate vs Median Income", x = "Median Income", y = "Crash Rate per 1,000")
-
-# --- 5. BOROUGH-LEVEL SUMMARIES ---
-
-borough_summary <- df %>%
-  group_by(borough) %>%
-  summarise(
-    mean_crash_rate = mean(crash_rate_per_1000, na.rm = TRUE),
-    median_income = median(median_income, na.rm = TRUE),
-    avg_public_transit = mean(pct_public_transit, na.rm = TRUE),
-    avg_drive_alone = mean(pct_drive_alone, na.rm = TRUE),
-    avg_household_size = mean(household_size, na.rm = TRUE)
-  )
-
-print(borough_summary)
-
-# Borough-level bar plot: Crash rate
-ggplot(borough_summary, aes(x = reorder(borough, -mean_crash_rate), y = mean_crash_rate, fill = borough)) +
-  geom_bar(stat = "identity") +
-  theme_minimal() +
-  labs(title = "Average Crash Rate by Borough", x = "Borough", y = "Crash Rate per 1,000") +
-  theme(legend.position = "none")
-
-# Borough-level bar plot: Median income
-ggplot(borough_summary, aes(x = reorder(borough, -median_income), y = median_income, fill = borough)) +
-  geom_bar(stat = "identity") +
-  theme_minimal() +
-  labs(title = "Median Income by Borough", x = "Borough", y = "Median Income ($)") +
-  theme(legend.position = "none")
+```{r stats}
+summary(df)
 ```
+
+```{r summary_stats}
+summary_vars <- c(
+  "crash_rate_per_1000", "injury_rate_per_1000", "fatality_rate_per_1000",
+  "median_income", "pct_below_poverty", "median_gross_rent",
+  "pct_vehicle", "pct_public_transit", "pct_walk", "pct_bike",
+  "poverty_vehicle_interaction", "unemployment_vehicle_interaction"
+)
+
+summary_table <- df %>%
+  select(all_of(summary_vars)) %>%
+  summarise(across(everything(), list(
+    Mean = ~ mean(.x, na.rm = TRUE),
+    SD   = ~ sd(.x, na.rm = TRUE),
+    Max  = ~ max(.x, na.rm = TRUE)
+  ), .names = "{.col}_{.fn}")) %>%
+  pivot_longer(cols = everything(),
+               names_to = c("Variable", ".value"),
+               names_pattern = "(.*)_(Mean|SD|Max)") %>%
+  arrange(Variable)
+
+# Print a clean table
+knitr::kable(summary_table, digits = 2,
+             caption = "Summary Statistics of Key Variables (2018–2023)")
+
+```
+
+```{r time-series}
+# Time Series Trend Plot
+
+# Compute annual mean crash rate by borough
+annual_crash_trend <- df %>%
+      filter(borough != "Unknown") %>%  
+  group_by(year, borough) %>%
+  summarise(mean_crash_rate = mean(crash_rate_per_1000, na.rm = TRUE), .groups = "drop")
+
+# Plot
+timeseries <- ggplot(annual_crash_trend, aes(x = year, y = mean_crash_rate, color = borough, group = borough)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2) +
+  theme_minimal() +
+  labs(
+    title = "Annual Mean Crash Rate per 1K Residents by Borough",
+    x = "Year",
+    y = "Mean Crash Rate per 1,000 Residents",
+    color = "Borough"
+  )
+
+ggsave("../report/plots/crash_rate_by_borough_plot.png", timeseries, width = 10, height = 6, dpi = 300)
+```
+```{r corr-heatmap}
+# Correlation Heatmap
+
+corr_vars <- df %>%
+  select(crash_rate_per_1000, median_income, pct_below_poverty, 
+         median_gross_rent, pct_vehicle, pct_public_transit)
+
+# Compute correlation matrix
+corr_matrix <- cor(corr_vars, use = "pairwise.complete.obs")
+
+# Plot and save the correlation heatmap
+png("../report/plots/key_variables_corr_plot.png", width = 10, height = 6, units = "in", res = 300)
+
+corrplot(corr_matrix,
+         method = "color",
+         type = "upper",
+         tl.col = "black",
+         tl.srt = 45,
+         addCoef.col = "black",
+         number.cex = 0.7,
+         title = "Correlation Heatmap of Key Variables",
+         mar = c(0, 0, 1, 0))
+
+dev.off()
+```
+
+```{r geospatial}
+# Load and Prep Data
+tracts_sf <- st_read("../data/shapefiles/tl_2020_36_tract.shp") %>%
+  filter(COUNTYFP %in% c("005", "047", "061", "081", "085"))
+
+# Prepare data for 2018 and 2022
+df_2018 <- df %>%
+  filter(year == 2018, borough %in% c("Bronx", "Brooklyn", "Manhattan", "Queens", "Staten Island")) %>%
+  select(geoid, crash_rate_per_1000)
+
+df_2022 <- df %>%
+  filter(year == 2022, borough %in% c("Bronx", "Brooklyn", "Manhattan", "Queens", "Staten Island")) %>%
+  select(geoid, crash_rate_per_1000)
+
+
+# Merge crash data with spatial data
+map_2018 <- tracts_sf %>%
+  left_join(df_2018, by = c("GEOID" = "geoid"))
+
+map_2022 <- tracts_sf %>%
+  left_join(df_2022, by = c("GEOID" = "geoid"))
+
+# SEt global min and max for scale
+crash_min <- 0
+crash_max <- 10
+
+# Plot Heatmaps
+map2018 <- ggplot(map_2018) +
+  geom_sf(aes(fill = crash_rate_per_1000), color = NA) +
+  scale_fill_viridis_c(option = "plasma", na.value = "grey80", limits = c(crash_min, crash_max)) +
+  theme_minimal() +
+  labs(
+    title = "Crash Rate per 1,000 Residents (2018)",
+    fill = "Crashes / 1,000 Residents"
+  )
+
+map2022 <- ggplot(map_2022) +
+  geom_sf(aes(fill = crash_rate_per_1000), color = NA) +
+  scale_fill_viridis_c(option = "plasma", na.value = "grey80", limits = c(crash_min, crash_max)) +
+  theme_minimal() +
+  labs(
+    title = "Crash Rate per 1,000 Residents (2022)",
+    fill = "Crashes / 1,000 Residents"
+  )
+print(map2018)
+print(map2022)
+
+ggsave("../report/plots/2018_map_plot.png", map2018, width = 10, height = 6, dpi = 300)
+ggsave("../report/plots/2022_map_plot.png", map2022, width = 10, height = 6, dpi = 300)
+
+combined_maps <- map2018 + map2022 + plot_layout(guides = "collect") & theme(legend.position = "bottom")
+
+# Save combined map
+ggsave("../report/plots/2018_2022_comparison.png", combined_maps, width = 12, height = 6, dpi = 300)
+
+```
+

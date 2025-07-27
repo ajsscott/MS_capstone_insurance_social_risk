@@ -16,7 +16,7 @@ author:
         postal-code: 11212
 
 abstract: |
-  PUT AN ABSTRACT HERE!!
+  This study explores the use of gradient boosting models, specifically XGBoost, to predict auto insurance risk by integrating socio-economic data from the American Community Survey (ACS) with publicly available crash data from New York City’s Motor Vehicle Collisions (MVC) dataset. By treating crash frequency and severity as proxies for insurance claims, the model aims to identify key neighborhood-level factors influencing risk. The dataset, encompassing 13,518 tract-year observations from 2018 to 2023, captures demographic, economic, housing, and commuting indicators alongside engineered interaction variables. Hyperparameter tuning and SHAP-based explainability reveal that post-pandemic traffic dynamics, median gross rent, labor force participation, and the interaction of poverty with vehicle ownership are significant predictors of crash risk. While the model achieves moderate predictive accuracy (R² = 0.26), its interpretability highlights socio-economic disparities that influence urban traffic safety. The findings underscore the potential of open data-driven models for portfolio-level risk assessment and urban safety planning, while cautioning against direct use for individual underwriting due to fairness and legal concerns. Future work should incorporate telematics data and fairness-aware algorithms to improve granularity and reduce bias.
 
 keywords: 
     - Gradient Boosting
@@ -27,6 +27,8 @@ keywords:
     - American Community Survey (ACS)
     - NYC Open Data
     - predictive modeling
+    - socio-economic predictors
+    - crash modeling
 
 date: last-modified
 bibliography: bibliography.bib
@@ -201,6 +203,43 @@ Each configuration was evaluated using spatial cross-validation at the borough l
 Given the regulatory and operational need for transparent, explainable models in insurance \citep{henckaerts, lundberg}, we employ SHAP (SHapley Additive exPlanations) for both global and local feature analysis. SHAP values are aggregated across the dataset to quantify overall feature importance, revealing which socio-economic and crash-related variables most influence predicted claim frequency and severity.
 
 ## Results
+
+### **Descriptive Statistics**
+
+The dataset comprises 13,518 census tract–year observations from 2018 to 2023. Population counts vary widely across tracts, with a median of approximately 42,979 residents and extremes ranging from fewer than 100 to over 220,000. Demographically, the average tract population is predominantly White (mean 3.17%), Hispanic (mean 2.21%), and Black (mean 2.02%), though these percentages vary considerably across the five boroughs.
+
+
+| Variable | Mean | SD | Max | 
+|---------|-----------|-----------|
+| crash_rate_per_1000 | 1.43 | 1.83 | 23.29 |
+| fatality_rate_per_1000 | 0.00 | 0.01 | 0.05 |
+| injury_rate_per_1000 | 0.53 | 0.65 | 8.69 |
+| median_gross_rent | 1613.24 | 623.12 | 3501.00 |
+| median_income | 74681.04 | 40140.23 | 250001.00 | 
+| pct_below_poverty | 1.36 | 1.05 | 11.11 |
+| pct_bike | 0.05 | 0.08 | 1.17 |
+| pct_public_transit | 3.72 | 1.41 | 12.31 |
+| pct_vehicle | 1.48 | 0.66 | 7.69 |
+| pct_walk | 0.66 | 0.75 | 7.98 |
+| poverty_vehicle_interaction | 1.62 | 0.95 | 4.73 |
+| unemployment_vehicle_interaction | 9.44 | 6.16 | 31.99 |
+
+: Summary Statistics of Key Variables (2018–2023)
+
+Economic indicators reveal stark disparities. The median household income across all tracts is \$74,681, but with a standard deviation of \$40,140 and a maximum of \$250,001, indicating substantial variation in neighborhood wealth. The poverty rate averages 1.36%, and when combined with vehicle ownership (mean 1.48 vehicles per household), the poverty–vehicle interaction variable highlights clusters of higher transportation-related vulnerability. Housing costs are also highly variable, with a median gross rent of \$1,589 and a maximum of \$3,501.
+
+Crash-related statistics show an average of 1.43 crashes per 1,000 residents, with the highest-risk tracts exceeding 23 crashes per 1,000 residents—nearly 20 times the citywide mean. Injury rates average 0.53 per 1,000 residents, while fatality rates remain very low (mean 0.002 per 1,000 residents). Commuting behaviors show a multi-modal distribution, with public transit usage averaging 3.7% and walking and biking comprising smaller shares (0.66% and 0.05%, respectively), but certain tracts—particularly in Manhattan—exhibit much higher pedestrian and transit activity.
+
+Crash Rate by Borough, 2018–2023) shows a clear downward trend in crash rates across all boroughs over time, with a sharp reduction during the COVID-19 pandemic period (2020) and gradual stabilization afterward. Bronx and Queens consistently show higher crash rates per 1,000 residents compared to Staten Island and Manhattan.
+
+![Crash Rate by Borough, by Year](plots/crash_rate_by_borough_plot.png)
+The geospatial heatmaps illustrate how crash rates are spatially clustered within the city. In 2018, high crash rates were concentrated in central Brooklyn, the South Bronx, and sections of northern Manhattan, while in 2022, these hotspots persisted but appeared less intense overall, consistent with the downward temporal trend. By applying the same color scale across both maps, it is evident that most census tracts saw a reduction in crash intensity, although isolated high-risk corridors remain.
+
+![Crash Rate in 2018 vs 2022](plots/2018_2022_comparison.png)
+
+The correlation heatmap indicates that socio-economic variables are moderately correlated with crash risk. Median income exhibits a slight negative correlation with crash rates (−0.09), while the poverty rate shows a positive association. Median gross rent and vehicle ownership are weakly correlated with crash rates but strongly correlated with each other, reflecting underlying urban density patterns. Public transit and vehicle ownership are inversely correlated (−0.45), as expected given modal trade-offs.
+
+![Pair-wise correlation between key variables](plots/key_variables_corr_plot.png)
 
 ### **Hyperperameter Tuning**
 
