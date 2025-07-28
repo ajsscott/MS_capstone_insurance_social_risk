@@ -161,10 +161,11 @@ objective <- function(trial) {
   cv_results <- xgb.cv(
     params = params,
     data = dtrain_all,
-    nrounds = 500,
+    nrounds = 150,
     folds = folds,
     early_stopping_rounds = 20,
-    verbose = 0
+    verbose = 0,
+    nthread = detectCores() - 1
   )
   
   return(cv_results$evaluation_log$test_rmse_mean[cv_results$best_iteration])

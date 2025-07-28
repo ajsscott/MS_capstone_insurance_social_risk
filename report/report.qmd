@@ -165,7 +165,7 @@ Crash records from the NYC Open Data MVC dataset are cleaned (removing rows with
 
 After examination, a subset of highly correlated variables were removed. Measures of poverty level and population above the poverty line, as well as employment and unemployment percentages, were closely tied to broader income and labor force indicators already included in the model, creating redundancy without improving predictive power. Similarly, metrics describing commuting alone by car and the distribution of vehicle ownership (households with no vehicles, one vehicle, or multiple vehicles) were binned to prevent issues from  being strongly interrelated. The precentage of female share of the population was excluded because of its near-perfect correlation with the male share of the population. The same was true for the share of high-income households (earning above $75,000), which closely overlapped with median income levels. 
 
-No categorical encoding besides `year` or standardization was performed at this stage since all ACS features are already expressed as continuous percentages or numeric values, and gradient boosting models (XGBoost) handle raw scales effectively \citep{henckaerts}. 
+No categorical encoding besides year or feature standardization was performed, as all ACS predictors are expressed as continuous percentages or numeric values, and gradient boosting models (XGBoost) handle raw scales effectively \citep{henckaerts}. However, the response variable - number of crashes per 1,000 people - was log-transformed to stabilize variance and reduce the impact of extreme values.
 
 ### **Modeling Approach**
 
