@@ -2,6 +2,7 @@
 /data/raw/
 /research/
 /notebooks/*.html
+pipeline_plan.md
 
 # History files
 .Rhistory
