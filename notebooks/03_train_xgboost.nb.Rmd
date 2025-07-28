@@ -18,6 +18,11 @@ library(SHAPforxgboost)
 library(Matrix)
 library(reticulate)
 library(doParallel)
+library(Metrics)
+library(pdp)
+library(DALEX)
+library(gridExtra)
+library(patchwork)
 ```
 
 ## LOAD DATA
@@ -28,8 +33,6 @@ df <- readRDS("../data/models/social-risk-crash-rate-data.rds")
 
 ## HOT-ENCODE `YEAR`
 
-I will treat `year` as a factor and one-hot encode it.
-
 ```{r hot-encode-year}
 df$year <- as.factor(df$year)
 year_dummies <- model.matrix(~ year - 1, data = df)
@@ -37,41 +40,101 @@ year_dummies <- model.matrix(~ year - 1, data = df)
 df <- cbind(df[ , !(names(df) %in% c("year"))], year_dummies)
 ```
 
-## PREPARE TARGET
+## SELECT TRANSFORMATION FOR TARGET
 
-We will remove all possible target variables and keep only one per model training.
+```{r}
+compare_transformations <- function(df, target_var, features) {
+  
+  # Load required packages
+  if (!require("MASS")) install.packages("MASS")
+  if (!require("bestNormalize")) install.packages("bestNormalize")
+  library(MASS)
+  library(bestNormalize)
+  
+  y_raw <- df[[target_var]]
+  X <- df[, features, drop = FALSE]
+  X[] <- lapply(X, function(col) as.numeric(as.character(col)))
+  
+  # Log Transformation 
+  y_log <- log1p(y_raw)
+  lm_log <- lm(y_log ~ ., data = data.frame(y_log, X))
+  pred_log <- predict(lm_log, newdata = data.frame(X))
+  rmse_log <- sqrt(mean((y_log - pred_log)^2))
+  
+  # Box-Cox Transformation 
+  y_bc_input <- ifelse(y_raw <= 0, 0.000001, y_raw)
+  
+  bc <- MASS::boxcox(y_bc_input ~ ., data = data.frame(y_bc_input, X), lambda = seq(-2, 2, 0.1))
+  best_lambda <- bc$x[which.max(bc$y)]
+  y_bc <- if(best_lambda == 0) {
+    log(y_bc_input)
+  } else {
+    (y_bc_input^best_lambda - 1)/best_lambda
+  }
+  
+  lm_bc <- lm(y_bc ~ ., data = data.frame(y_bc, X))
+  pred_bc <- predict(lm_bc, newdata = data.frame(X))
+  rmse_bc <- sqrt(mean((y_bc - pred_bc)^2))
+  
+  # Yeo-Johnson Transformation
+  yj_obj <- yeojohnson(y_raw)
+  y_yj <- predict(yj_obj)
+  
+  lm_yj <- lm(y_yj ~ ., data = data.frame(y_yj, X))
+  pred_yj <- predict(lm_yj, newdata = data.frame(X))
+  rmse_yj <- sqrt(mean((y_yj - pred_yj)^2))
+  
+  results <- data.frame(
+    Transformation = c("Log (log1p)", "Box-Cox", "Yeo-Johnson"),
+    RMSE = c(rmse_log, rmse_bc, rmse_yj),
+    Best_Lambda_BoxCox = c(NA, best_lambda, NA)
+  )
+  
+  print(results)
+  
+  return(list(
+    log_model = lm_log,
+    boxcox_model = lm_bc,
+    yj_model = lm_yj,
+    boxcox_lambda = best_lambda,
+    transformation_results = results
+  ))
+}
+```
 
-```{r single-target-df}
-# Choose your target variable (e.g., crash rate per 1,000 residents)
+```{r}
+# Select target variable
 target_var <- "crash_rate_per_1000"
 
-# Remove all target variables except selected
-cols_to_remove <- grep("per_1000", 
-                       names(df), 
-                       value = TRUE)
-cols_to_remove <- setdiff(cols_to_remove, target_var) # keep this column
+df <- df %>% dplyr::select(-injury_rate_per_1000, -fatality_rate_per_1000,  -total_population, -geoid)
 
-df <- df %>% select(-all_of(cols_to_remove),)
+features <- setdiff(names(df), c("crash_rate_per_1000", "borough"))
+comparison <- compare_transformations(df, "crash_rate_per_1000", features)
 
-# Create feature matrix and target vector
-X <- df %>% select(-target_var, -borough, -total_population, -geoid)
-y <- df[[target_var]]
+```
 
-glimpse(X)
+## LOG TRANSFORM TARGET
+
+```{r single-target-df}
+X <- df %>% dplyr::select(-target_var, -borough)
+
+# Log-transform the target variable
+y <- log1p(df[[target_var]])  
+
+hist(y, breaks = 50, main = "Log-Transformed Crash Rate", xlab = "log1p(crash_rate_per_1000)")
 ```
 
 
-## HYPERPARAMETER TUNING
+## HYPERPARAMETER TUNING with Optuna
 
-**What This Does**
-- Optuna (Python) handles the search space and Bayesian optimization.
-- The final best parameters are applied to fit the `final_model`.
-- **Search space:** Instead of predefined grids, `trial$suggest_float()` and `trial$suggest_int()` explore a range of values.
-- **Best parameters:** `study$best_params` holds the optimal hyperparameters.
-
-```{r tune-params, eval=FALSE}
+```{r tune-params}
 ## CONVERT TO DMATRIX
 dtrain_all <- xgb.DMatrix(data = as.matrix(X), label = y)
+
+# Define Spatial Folds 
+boroughs <- unique(df$borough)
+folds <- lapply(boroughs, function(b) which(df$borough != b))
+names(folds) <- boroughs
 
 ## Start Python venv
 reticulate::use_virtualenv("r-reticulate", required = TRUE)
@@ -79,13 +142,12 @@ reticulate::use_virtualenv("r-reticulate", required = TRUE)
 ## OPTUNA-BASED SPATIAL CV
 optuna <- import("optuna")
 
-boroughs <- unique(df$borough)
-folds <- lapply(boroughs, function(b) which(df$borough != b))
-
-# Optuna objective
+# Objective Function 
 objective <- function(trial) {
   params <- list(
     booster = "gbtree",
+    objective = "reg:squarederror",
+    eval_metric = "rmse",
     eta = trial$suggest_float("eta", 0.01, 0.3, log = TRUE),
     max_depth = trial$suggest_int("max_depth", 3, 12),
     min_child_weight = trial$suggest_int("min_child_weight", 1, 10),
@@ -96,61 +158,29 @@ objective <- function(trial) {
     alpha = trial$suggest_float("alpha", 0, 10)
   )
   
-  rmse_scores <- numeric(length(folds))
-  for (i in seq_along(folds)) {
-    train_idx <- folds[[i]]
-    valid_idx <- setdiff(seq_len(nrow(dtrain_all)), train_idx)
-
-    dtrain <- xgb.DMatrix(data = as.matrix(X[train_idx, ]), label = y[train_idx])
-    dvalid <- xgb.DMatrix(data = as.matrix(X[valid_idx, ]), label = y[valid_idx])
-
-    model <- xgb.train(
-      params = params,
-      data = dtrain,
-      nrounds = 500,
-      watchlist = list(val = dvalid),
-      early_stopping_rounds = 20,
-      verbose = 0
-    )
-
-    rmse_scores[i] <- min(model$evaluation_log$val_rmse)
-  }
+  cv_results <- xgb.cv(
+    params = params,
+    data = dtrain_all,
+    nrounds = 500,
+    folds = folds,
+    early_stopping_rounds = 20,
+    verbose = 0
+  )
   
-  preds <- predict(model, as.matrix(X[valid_idx, ]))
-  return(Metrics::rmse(y[valid_idx], preds))
+  return(cv_results$evaluation_log$test_rmse_mean[cv_results$best_iteration])
 }
 
-# Run Optuna study
+
 set.seed(2025)
 study <- optuna$create_study(direction = "minimize")
 study$optimize(objective, n_trials = 50)
 
+# 5. Train Final Model ----------------------------------------------------
 best_params <- study$best_params
+best_params$objective <- "reg:squarederror"
 print(best_params)
 ```
-$eta
-[1] 0.2309768
 
-$max_depth
-[1] 4
-
-$min_child_weight
-[1] 3
-
-$subsample
-[1] 0.5583975
-
-$colsample_bytree
-[1] 0.8797697
-
-$gamma
-[1] 3.35839
-
-$lambda
-[1] 6.131609
-
-$alpha
-[1] 2.805485
 
 ## TRAIN/TEST SPLIT
 
@@ -172,7 +202,7 @@ dtest <- xgb.DMatrix(data = as.matrix(X_test), label = y_test)
 
 ## TRAIN MODEL
 
-```{r train-model, eval=FALSE}
+```{r train-model}
 # Set seed
 set.seed(2025)
 
@@ -196,21 +226,10 @@ final_model <- xgb.train(
   nthread = detectCores() - 1
 )
 ```
-[78]	train-rmse:1.220267	test-rmse:1.555561 
-[79]	train-rmse:1.211549	test-rmse:1.556347 
-[80]	train-rmse:1.207152	test-rmse:1.553078 
-[81]	train-rmse:1.205943	test-rmse:1.553145 
-[82]	train-rmse:1.205311	test-rmse:1.552420 
-[83]	train-rmse:1.201741	test-rmse:1.555835 
-[84]	train-rmse:1.197931	test-rmse:1.553410 
-[85]	train-rmse:1.191889	test-rmse:1.551760 
-[86]	train-rmse:1.189975	test-rmse:1.551783 
-[87]	train-rmse:1.188499	test-rmse:1.550743 
-Stopping. Best iteration:
-[67]	train-rmse:1.258358	test-rmse:1.549545
+
 ## SAVE MODEL
 
-```{r save-model, eval=FALSE}
+```{r save-model}
 # Create directory if it doesn't exist
 if (!dir.exists("../data/models")) {
   dir.create("../data/models", recursive = TRUE)
@@ -237,28 +256,22 @@ best_params <- readRDS("../data/models/xgb_best_params.rds")
 ## MODEL EVALUATION
 
 ```{r eval-model, message=FALSE, warning=FALSE}
-library(Metrics)
-library(ggplot2)
-library(dplyr)
-
 set.seed(2025)
 
 # Predict on test set
 preds <- predict(final_model, as.matrix(X_test))
 
-# --- Metrics ---
+# Metrics 
 rmse <- sqrt(mean((y_test - preds)^2))
 mae <- mean(abs(y_test - preds))
-mape <- mean(abs((y_test - preds) / y_test)) * 100
 r2 <- 1 - (sum((y_test - preds)^2) / sum((y_test - mean(y_test))^2))
 
 cat("Model Evaluation Metrics:\n")
 cat("  RMSE:", rmse, "\n")
 cat("  MAE :", mae, "\n")
-cat("  MAPE:", mape, "%\n")
 cat("  R²  :", r2, "\n\n")
 
-# --- Residuals ---
+# Residuals 
 residuals <- y_test - preds
 residual_df <- data.frame(
   actual = y_test,
@@ -266,7 +279,7 @@ residual_df <- data.frame(
   residuals = residuals
 )
 
-# --- Plot: Predicted vs Actual ---
+# Predicted vs Actual
 p1 <- residual_df %>%
   ggplot(aes(x = actual, y = predicted)) +
   geom_point(alpha = 0.5) +
@@ -276,7 +289,7 @@ p1 <- residual_df %>%
        x = "Actual",
        y = "Predicted")
 
-# --- Plot: Residuals vs Predicted ---
+# Residuals vs Predicted 
 p2 <- residual_df %>%
   ggplot(aes(x = predicted, y = residuals)) +
   geom_point(alpha = 0.5, color = "blue") +
@@ -286,21 +299,42 @@ p2 <- residual_df %>%
        x = "Predicted",
        y = "Residuals")
 
-# --- Plot: Residual Density ---
-# Residual Histogram
+# Residual Density 
 p3 <- ggplot(residual_df, aes(x = residuals)) +
-    geom_histogram(binwidth = 0.2, fill = "steelblue", color = "white") +
+    geom_histogram(
+        aes(y = ..density..),  
+        binwidth = 0.05, 
+        fill = "steelblue", 
+        color = "white",
+        alpha = 0.7
+    ) +
+    geom_density(
+        color = "red", 
+        linewidth = 1, 
+        adjust = 1.5  
+    ) +
     theme_minimal() +
-    labs(title = "Residual Distribution", x = "Residuals", y = "Count")
+    labs(
+        title = "Residual Distribution", 
+        x = "Residuals", 
+        y = "Density"   
+    )
 
-# Print plots
-print(p1)
-print(p2)
-print(p3)
 
 ggsave("../report/plots/predicted_vs_actual_values_plot.png", p1, width = 10, height = 6, dpi = 300)
 ggsave("../report/plots/resisuals_vs_predicted_values_plot.png", p2, width = 10, height = 6, dpi = 300)
 ggsave("../report/plots/residual_density_plot.png", p3, width = 10, height = 6, dpi = 300)
+
+# Grid Plots
+grid_plot <- p1 + p2 + p3 + plot_layout(ncol = 3)
+
+ggsave(
+  "../report/plots/residuals_diagnostic_grid.png",
+  grid_plot,
+  width = 18, 
+  height = 6,
+  dpi = 300
+)
 ```
 Model Evaluation Metrics:
   RMSE: 1.549545 
@@ -317,8 +351,8 @@ shap_long <- shap.prep(shap_contrib = shap_values$shap_score, X_train = as.matri
 # SHAP summary plot
 print(shap.plot.summary(shap_long))
 
-if (!dir.exists("../report/plots")) {
-  dir.create("../report/plots")
+if (!dir.exists("../plots")) {
+  dir.create("../plots")
 }
 
 shap <- shap.plot.summary(shap_long)
@@ -329,43 +363,26 @@ ggsave("../report/plots/shap_summary_plot.png", shap, width = 10, height = 6, dp
 
 ```{r inspect-tree}
 xgb.plot.tree(model = final_model, trees = 0)
-```
-```{r}
 xgb.plot.tree(model = final_model, trees = 1)
-```
-```{r}
 xgb.plot.tree(model = final_model, trees = 2)
-```
-```{r}
 xgb.plot.multi.trees(model = final_model)
 ```
 
 ```{r}
-# ============================================================
-# Additional Model Diagnostics and Deeper Analysis
-# ============================================================
+# SHAP Dependence and Interaction Plots
 
-library(ggplot2)
-library(dplyr)
-library(pdp)        # For Partial Dependence Plots
-library(DALEX)      # For model explainability
-library(ggthemes)
-library(sf)
-
-# ---------------------------
-# 1. SHAP Dependence and Interaction Plots
-# ---------------------------
 message("\nGenerating SHAP dependence and interaction plots...")
 
-# Assuming shap_values and shap_long are already computed
-# (if not, recompute them using iml or SHAPforxgboost packages)
-
-# Top feature by SHAP importance
-top_feature <- shap_long %>%
+# Get top features by SHAP importance
+top_features <- shap_long %>%
   as_tibble() %>%
-  count(variable, wt = abs(value), sort = TRUE) %>%
-  dplyr::slice(1) %>%
+  group_by(variable) %>%
+  summarise(mean_abs_shap = mean(abs(value))) %>%
+  arrange(desc(mean_abs_shap)) %>%
   pull(variable)
+
+
+top_feature <- head(top_features, 1)
 
 # Dependence plot for top feature
 shap.plot.dependence(data_long = shap_long, x = top_feature, color_feature = top_feature)
@@ -377,74 +394,73 @@ shap_interaction_values <- predict(
   predinteraction = TRUE
 )
 
-# shap_interaction_values will be a 3D array: [n_samples, n_features, n_features]
-interactions <- dim(shap_interaction_values)
-saveRDS(interactions, "../data/models/shap_interactions.rds")
-```
+top_features <- head(top_features, 6)
 
-```{r}
-# ---------------------------
-# 3. Partial Dependence Plots (PDP)
-# ---------------------------
+# Create pretty names for features
+feature_names <- purrr::map_chr(top_features, function(f) {
+  case_when(
+    f == "post_pandemic" ~ "Pre vs Post Pandemic",
+    f == "pct_age_65_plus" ~ "% over 65 years old",
+    f == "pct_hs_diploma" ~ "% with a High School Diploma Only",
+    f == "median_gross_rent" ~ "Median Gross Rent",
+    f == "pct_in_labor_force" ~ "% in the Labor Force",
+    f == "poverty_vehicle_interaction" ~ "Poverty x Vehicle Ownership",
+    TRUE ~ str_to_title(gsub("_", " ", f)) # Default formatting
+  )
+})
+
+
+# Calculate SHAP interaction values (if needed)
+if (!exists("shap_interaction_values")) {
+  shap_interaction_values <- predict(
+    final_model,
+    as.matrix(X_train),
+    predinteraction = TRUE
+  )
+  saveRDS(shap_interaction_values, "../data/models/shap_interactions.rds")
+}
+
+# Partial Dependence Plots (PDP)
 message("\nGenerating Partial Dependence Plots...")
 
-# Top variables (manually set order as per user request)
-top_features <- c(
-  "post_pandemic",
-  "pct_age_65_plus",
-  "pct_hs_diploma",
-  "median_gross_rent",
-  "pct_in_labor_force",
-  "poverty_vehicle_interaction"
-)
-
-# Custom display names
-feature_names <- c(
-  "Pre vs Post Pandemic",
-  "% over 65 years old",
-  "% with a High School Diploma Only",
-  "Median Gross Rent",
-  "% in the Labor Force",
-  "Poverty x Vehicle Ownership"
-)
-
-# Ensure the output directory exists
+# Ensure output directory exists
 dir.create("../report/plots/pdp", recursive = TRUE, showWarnings = FALSE)
 
-# Generate individual PDP plots
-library(pdp)
-library(ggplot2)
-library(gridExtra)
-
-pdp_plots <- list()
-for (i in seq_along(top_features)) {
-  f <- top_features[i]
-  pd <- partial(final_model, pred.var = f, train = as.matrix(X_train), grid.resolution = 30)
+# Generate PDP plots
+pdp_plots <- map2(top_features, feature_names, function(f, name) {
+  pd <- partial(
+    final_model, 
+    pred.var = f, 
+    train = as.matrix(X_train), 
+    grid.resolution = 30
+  )
   
-  p <- autoplot(pd) +
-    ggtitle(feature_names[i]) +
+  autoplot(pd) +
+    ggtitle(name) +
     theme_minimal() +
     theme(
       axis.title = element_blank(),
-      axis.text = element_blank(),
-      axis.ticks = element_blank(),
+      axis.text = element_text(size = 8),
       plot.title = element_text(size = 12, hjust = 0.5)
     )
-  
-  pdp_plots[[i]] <- p
-  
-  # Save individual plot
+})
+
+# Save individual plots
+walk2(pdp_plots, top_features, ~{
   ggsave(
-    filename = paste0("../report/plots/pdp/pdp_", f, ".png"),
-    plot = p,
+    filename = paste0("../report/plots/pdp/pdp_", .y, ".png"),
+    plot = .x,
     width = 5,
     height = 4,
     dpi = 300
   )
-}
+})
 
-# Arrange all PDP plots into a grid and save
-grid_plot <- gridExtra::grid.arrange(grobs = pdp_plots, ncol = 2)
+# Save grid plot
+grid_plot <- gridExtra::grid.arrange(
+  grobs = pdp_plots, 
+  ncol = 2
+)
 
 ggsave(
   filename = "../report/plots/pdp/pdp_grid.png",
@@ -457,3 +473,5 @@ ggsave(
 message("PDP grid saved to ../report/plots/pdp/pdp_grid.png")
 
 ```
+
+

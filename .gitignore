@@ -1,5 +1,7 @@
 # Raw data files
 /data/raw/
+/research/
+/notebooks/*.html
 
 # History files
 .Rhistory
