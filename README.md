@@ -49,7 +49,7 @@ ajstraumanscott@pm.me
 
   * Trained XGBoost model with spatial cross-validation by borough.
   * Hyperparameters tuned using Optuna.
-  * Evaluated performance (R²=0.26, RMSE=1.55).
+  * Evaluated performance (R²=0.43, RMSE=0.34).
 * **Explainability:**
 
   * Generated SHAP summary plots, partial dependence plots, and multi-tree visualizations to highlight variable importance.
