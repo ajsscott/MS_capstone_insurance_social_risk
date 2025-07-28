@@ -78,7 +78,7 @@ fetch_table_year <- function(tbl, year) {
         county = nyc_counties,
         survey = "acs5",
         year = year,
-        geometry = FALSE,  # Keep CSV light
+        geometry = TRUE,  
         cache_table = TRUE
     ) %>%
         clean_names() %>%

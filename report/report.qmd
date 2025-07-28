@@ -15,7 +15,7 @@ author:
         country: United States of America
 
 abstract: |
-  This study explores the use of the gradient boosting model XGBoost to predict auto insurance risk by integrating socio-economic variables from publicly available data. By treating crash frequency as proxy for insurance claims, the project aims to identify key neighborhood-level factors influencing risk. The dataset, encompassing 13,518 census tract-by-year observations from 2018 to 2023, captures demographic, economic, housing, and commuting indicators alongside engineered interaction variables. Optuna hyperparameter tuning and SHAP-based explainability reveal that post-pandemic traffic dynamics, median gross rent, percent  of  a population in the labor-force, and the interaction of poverty with vehicle ownership are significant predictors of crash risk. While the model achieves moderate predictive accuracy ($R^2$ = 0.26), its interpretability highlights socio-economic disparities that influence urban traffic safety. The findings underscore the potential of open data-driven models for portfolio-level risk assessment and urban safety planning, while cautioning against direct use for individual underwriting due to fairness and legal concerns. 
+  This study explores the use of the gradient boosting model XGBoost to predict auto insurance risk by integrating socio-economic variables from publicly available data. By treating crash frequency as proxy for insurance claims, the project aims to identify key neighborhood-level factors influencing risk. The dataset, encompassing 13,518 census tract-by-year observations from 2018 to 2023, captures demographic, economic, housing, and commuting indicators alongside engineered interaction variables. Optuna hyperparameter tuning and SHAP-based explainability reveal that post-pandemic traffic dynamics, median gross rent, percent  of  a population in the labor-force, and the interaction of poverty with vehicle ownership are significant predictors of crash risk. While the model achieves moderate predictive accuracy ($R^2$ = 0.425), its interpretability highlights socio-economic disparities that influence urban traffic safety. The findings underscore the potential of open data-driven models for portfolio-level risk assessment and urban safety planning, while cautioning against direct use for individual underwriting due to fairness and legal concerns. 
 
 keywords: 
     - Gradient Boosting
@@ -40,7 +40,7 @@ format:
 
 ## Introduction {#sec-intro}
 
-Accurate insurance risk modeling is critical for setting fair premiums, mitigating losses, and ensuring financial stability within the insurance industry \citep{henckaerts, clemente}. Predicting claim frequency not only supports pricing but also enables insurers to manage portfolio-level risk and optimize resource allocation \citep{mohamed}.
+Accurate insurance risk modeling is critical for setting fair premiums, mitigating losses, and ensuring financial stability within the insurance industry \citep{henckaerts, clemente}. Predicting claim frequency supports pricing and enables insurers to manage portfolio-level risk and optimize resource allocation \citep{mohamed}.
 
 New York City (NYC) presents a complex urban environment where traffic risks are shaped by socio-economic factors, dense infrastructure, and scaling dynamics typical of large metropolitan areas \citep{cabrera, bettencourt}. The availability of open datasets—such as NYC’s Motor Vehicle Collision (MVC) data and socio-economic indicators from the American Community Survey (ACS)—offers a unique opportunity to develop proxy models for insurance claim risk. These data sources provide detailed insights into crash frequency, commuting behaviors, and neighborhood-level demographics \citep{adeniyi, brubacher}.
 
@@ -52,7 +52,7 @@ To address the interpretability challenge of “black box” ML models, SHAP (SH
 
 Despite the growing body of work applying GBMs to insurance modeling, few studies integrate publicly available crash data with socio-economic indicators to model claim-related risks specifically for the automotive insurance sector. Most research remains limited to proprietary policyholder data \citep{henckaerts, mohamed}, while systematic reviews highlight that few studies combine open crash data with socio-economic indicators in insurance modeling \citep{ali, behboudi}.
 
-This study aims to integrate ACS socio-economic features with NYC MVC crash data to develop an explainable gradient boosting framework for measureing social risk for automotive insurance and urban policy. The ultimate goal is to identify key socio-economic and transportation predictors that drive claim frequency.
+This study aims to integrate ACS socio-economic features with NYC MVC crash data to develop an explainable gradient boosting framework for measuring social risk for automotive insurance and urban policy. The ultimate goal is to identify key socio-economic, transportation, and demographic predictors that drive claim frequency, and to determine how much crash risk can be predicted solely by these factors using an XGBoost model, without incorporating weather, road pattern or individual-level driver data.
 
 The remainder of this paper is organized as follows: Section 2 reviews prior work on ML in insurance risk modeling, model explainability, and literature gaps; Section 3 details the data sources, key metrics, modeling approach, and SHAP-based explainability; Section 4 reports the results including hyperparameter tuning results, model performance, and feature importance; Section 5 discusses the findings in relation to existing research and industry applications; and Section 6 concludes with key contributions, limitations, and directions for future research.
 
@@ -66,15 +66,15 @@ Recent studies have validated the predictive superiority of ML methods—such as
 
 ### **Use of Crash and Socio-Economic Data**
 
-Crash data has been widely recognized as a reliable proxy for insurance claim frequency, given the direct link between the occurrence of traffic accidents and subsequent claims filed by policyholders. Studies utilizing police crash reports, telematics, and open transportation datasets consistently demonstrate strong correlations between crash frequency and insurance risk metrics \citep{takale}. The integration of socio-economic features—including income levels, commuting patterns, vehicle ownership rates, and population density—has been shown to enhance the explanatory power of crash and claim prediction models.
+Crash data has been widely recognized as a reliable proxy for insurance claim frequency, given the direct link between the occurrence of traffic accidents and subsequent claims filed by policyholders. Studies utilizing police crash reports, telematics, and open transportation datasets consistently demonstrate strong correlations between crash frequency and insurance risk metrics \citep{takale}. 
 
-For example, \citet{adeniyi} utilized a decade of NYC crash data (2013–2023) to identify key predictors of accident severity—such as unsafe speed, alcohol involvement, and adverse weather—which align closely with the variables insurers use to model claim likelihood. Similarly, \citet{dong} applied boosting-based ensemble models to traffic injury severity prediction, finding that vehicle type, collision mode, and environmental conditions strongly influenced both injury outcomes and, by extension, potential claim costs. \citet{brubacher} conducted a geospatial analysis of 10 years of crashes in British Columbia and found that regions with lower income and higher socio-economic deprivation exhibited higher rates of pedestrian crashes, severe injuries, and fatalities, reflecting disparities in road safety linked to infrastructure quality and enforcement intensity. \citet{cabrera} expanded on this by identifying superlinear scaling of road accidents in urban areas, where higher population densities led to disproportionate increases in crash frequency, especially for minor collisions. These findings are directly relevant for insurers, as they imply that socio-economic and urban structural factors—such as commuting patterns or access to public transit—can serve as proxies for underlying risk exposure.
+The integration of socio-economic features—including income levels, commuting patterns, vehicle ownership rates, and population density—has been shown to enhance the explanatory power of crash and claim prediction models. For example, \citet{adeniyi} utilized a decade of NYC crash data (2013–2023) to identify key predictors of accident severity—such as unsafe speed, alcohol involvement, and adverse weather—which align closely with the variables insurers use to model claim likelihood. Similarly, \citet{dong} applied boosting-based ensemble models to traffic injury severity prediction, finding that vehicle type, collision mode, and environmental conditions strongly influenced both injury outcomes and, by extension, potential claim costs. \citet{brubacher} conducted a geospatial analysis of 10 years of crashes in British Columbia and found that regions with lower income and higher socio-economic deprivation exhibited higher rates of pedestrian crashes, severe injuries, and fatalities, reflecting disparities in road safety linked to infrastructure quality and enforcement intensity. \citet{cabrera} expanded on this by identifying superlinear scaling of road accidents in urban areas, where higher population densities led to disproportionate increases in crash frequency, especially for minor collisions. These findings are directly relevant for insurers, as they imply that socio-economic and urban structural factors—such as commuting patterns or access to public transit—can serve as proxies for underlying risk exposure.
 
 Urban-focused studies have further illuminated the unique risk dynamics in metropolitan environments like New York City, Chicago, and London, where complex traffic patterns, dense road networks, and high pedestrian activity elevate accident risk. \citet{adeniyi} analyzed NYC crash data to show how the COVID-19 pandemic altered accident patterns, with fewer total crashes but an increase in injury severity due to higher vehicle speeds on less congested roads. \citet{feng}, studying UK traffic data, emphasized the value of big data platforms and spatial clustering techniques (e.g., accident hotspot detection) to identify urban risk zones, a concept that parallels insurer efforts to assess region-based risk for underwriting.
 
 ### **Explainability in GBM Models**
 
-In high-stakes fields such as insurance pricing, underwriting, and claims management, the interpretability of ML models is not only a technical preference but also a regulatory and business requirement. Insurers must be able to justify rating factors and risk scores to regulators, policyholders, and internal stakeholders. Traditional actuarial models like GLMs are naturally interpretable due to their linear structure and explicit coefficient estimates. However, modern ML models—such as gradient boosting or neural networks—are often criticized as “black boxes,” complicating the explanation of predictions that influence financial decisions or customer premiums. Regulatory frameworks, including the EU’s General Data Protection Regulation (GDPR) and U.S. state-level insurance guidelines, increasingly require transparency in algorithmic decision-making, further amplifying the need for explainable AI (shortened to XAI). \citet{henckaerts} further underscore this, showing that variable importance plots and PDPs can yield actionable insights into driver and policyholder risk factors, blending predictive power with interpretability.
+In high-stakes fields such as insurance pricing, underwriting, and claims management, the interpretability of ML models is not only a technical preference but also a regulatory and business requirement. Insurers must be able to justify rating factors and risk scores to regulators, policyholders, and internal stakeholders. Traditional actuarial models like GLMs are naturally interpretable due to their linear structure and explicit coefficient estimates. However, modern ML models—such as gradient boosting or neural networks—are often criticized as “black boxes,” complicating the explanation of predictions that influence financial decisions or customer premiums. Regulatory frameworks, including the EU’s General Data Protection Regulation (GDPR) and U.S. state-level insurance guidelines, increasingly require transparency in algorithmic decision-making, further amplifying the need for explainable AI (shortened to XAI). \citet{henckaerts} further underscore this, showing that variable importance plots and partial dependence plots (PDPs) can yield actionable insights into driver and policyholder risk factors, blending predictive power with interpretability.
 
 Among XAI methods, SHAP (SHapley Additive exPlanations) has become the state-of-the-art framework for interpreting complex ML models. Developed by \citet{lundberg}, SHAP is grounded in cooperative game theory, assigning each feature a Shapley value that quantifies its contribution to individual predictions. Unlike traditional feature importance metrics—such as Gini importance in random forests or split gain in XGBoost—SHAP accounts for both main effects and feature interactions, offering a consistent and additive explanation of how variables drive model outputs.
 
@@ -92,80 +92,29 @@ The data sources and preprocessing steps are designed to replicate key factors u
 
 #### **Crash Data (Claim Proxies)**
 
-Crash data is obtained from the NYC Motor Vehicle Collisions (MVC) Open Data Portal, covering the years 2018–2023. Each record includes details such as crash location, number of injuries and fatalities, vehicle type, and contributing factors. These variables are well-documented predictors of both accident severity and insurance claims \citep{adeniyi, dong}.
+Crash data is obtained from the NYC Motor Vehicle Collisions (MVC) Open Data Portal, covering the years 2018–2023. These variables are well-documented predictors of both accident severity and insurance claims \citep{adeniyi, dong}.
 
 Crash frequency was aggregated at the 2020 census tract level and normalized by tract-level population to compute crashes per 1,000 resident. This metric will replace claim frequency \citep{brubacher}.
 
 #### **Socio-Economic Data (ACS Features)**
 
-Socio-economic variables are drawn from the ACS 5-year estimates (2018–2023) at the 2020 census tract level. The variables include demographic composition (e.g., % male, % white, % Hispanic, % foreign-born), age distribution, and income indicators. Additional features include median gross rent, housing tenure, educational attainment, employment metrics, and transportation factors. 
+Socio-economic variables are drawn from the ACS 5-year estimates (2018–2023) at the 2020 census tract level. The variables include demographic composition , age distribution, and income indicators. Additional features include median gross rent, housing tenure, educational attainment, employment metrics, and transportation factors. The full table of ACS derived variables in available in @sec-appA.
 
-```{r table1}
-#| echo: false
-#| warning: false
-#| message: false
-library(knitr)
-
-acs_table_summary <- data.frame(
-  `ACS` = c(
-    "B01001", "B08301", "B08303",
-    "B19001", "B25010", "B25044", "C24010",
-    "C24030", "B15003", "B17001", "B02001", "B03002",
-    "B18101", "B16005", "B23025", "B25064"
-  ),
-  Description = c(
-    "Age and Sex",
-    "Transportation to Work",
-    "Travel Time to Work",
-    "Household Income",
-    "Average Household Size",
-    "Vehicles Available",
-    "Occupation",
-    "Industry",
-    "Education",
-    "Poverty Status",
-    "Race",
-    "Hispanic or Latino ",
-    "Disability Status",
-    "Language Spoken at Home",
-    "Employment Status",
-    "Median Gross Rent"
-  ),
-  `Derived Variables` = c(
-    "total_population, male_population, female_population, age_under_18, age_18_34, age_35_64, age_65_plus",
-    "drive_alone, carpool, public_transit, walk, bike, work_from_home",
-    "commute_short, commute_medium, commute_long",
-    "income_under_25k, income_25k_75k, income_75k_plus, median_income",
-    "average_household_size",
-    "no_vehicle, one_vehicle, two_plus_vehicles",
-    "occupation variables (aggregated)",
-    "industry variables (aggregated)",
-    "less_than_hs, hs_diploma, some_college, associates_degree, bachelors_degree, graduate_degree",
-    "below_poverty, above_poverty, poverty_rate",
-    "white_population, black_population, asian_population",
-    "hispanic_population",
-    "disability variables (aggregated)",
-    "foreign_born",
-    "in_labor_force, employed, unemployed, not_in_labor_force, unemployment_rate",
-    "median_gross_rent"
-  )
-)
-
-kable(acs_table_summary, caption = "ACS tables and derived variables.")
-```
 ### **Key Metrics**
 
 The primary risk metric, `crash_rate_per_1000`, measures the number of crashes per 1,000 residents in each census tract by year. This population-adjusted rate follows the methodology of studies that normalize crash counts by population to ensure fair comparisons of relative risk across areas with varying exposure levels \citep{brubacher, cabrera}.
 
-This response variable is modeled alongside the transformed and selected socio-economic and transportation variables detailed in @sec-appA. Together, these variables allow the model to capture both the exposure risk (frequency) and potential cost severity of accidents, aligning with the frameworks used in both insurance \citep{clemente, henckaerts} and traffic safety research \citep{dong}.
+This response variable is modeled alongside the transformed and selected socio-economic and transportation variables detailed in @sec-appB. Together, these variables allow the model to capture both the exposure risk (frequency) and potential cost severity of accidents, aligning with the frameworks used in both insurance \citep{clemente, henckaerts} and traffic safety research \citep{dong}.
 
 #### **Preprocessing**
 
-Crash records from the NYC Open Data MVC dataset are cleaned (removing rows with missing or zero coordinates) and spatially joined to 2020 Census Tracts using official census tract shapefiles. Annual summaries of total crashes, injuries, and fatalities are then aggregated by tract and normalized by tract-level population to compute per-capita crash, injury, and fatality rates. The ACS socio-economic data are harmonized to 2020 tract boundaries (via crosswalks for 2018–2019), binned into interpretable categories, and converted to percentages of total population where applicable. Interaction features-poverty rate and vehicle ownership, as well as unemployment rate and vehicle ownership-were engineered to capture compound effects on risk exposure. 
+Crash records from the NYC Open Data MVC dataset are spatially joined to 2020 Census Tracts using official census tract shapefiles. Annual summaries of total crashes, injuries, and fatalities are then aggregated by tract and normalized by tract-level population to compute annual  per-capita crash rates for each census tract in NYC for each year. 
 
-After examination, a subset of highly correlated variables were removed. Measures of poverty level and population above the poverty line, as well as employment and unemployment percentages, were closely tied to broader income and labor force indicators already included in the model, creating redundancy without improving predictive power. Similarly, metrics describing commuting alone by car and the distribution of vehicle ownership (households with no vehicles, one vehicle, or multiple vehicles) were binned to prevent issues from  being strongly interrelated. The precentage of female share of the population was excluded because of its near-perfect correlation with the male share of the population. The same was true for the share of high-income households (earning above $75,000), which closely overlapped with median income levels. 
+The ACS socio-economic data are harmonized to 2020 tract boundaries (via crosswalks for 2018–2019), binned into interpretable categories, and converted to percentages of total population where applicable. Interaction features-poverty rate and vehicle ownership, as well as unemployment rate and vehicle ownership-were engineered to capture compound effects on risk exposure. 
 
-No categorical encoding besides year or feature standardization was performed, as all ACS predictors are expressed as continuous percentages or numeric values, and gradient boosting models (XGBoost) handle raw scales effectively \citep{henckaerts}. However, the response variable - number of crashes per 1,000 people - was log-transformed to stabilize variance and reduce the impact of extreme values.
+After examination, a subset of highly correlated variables were removed. Measures of poverty level and population above the poverty line, as well as employment and unemployment percentages, were closely tied to broader income and labor force indicators already included in the model, creating redundancy without improving predictive power. Similarly, metrics describing commuting alone by car and the distribution of vehicle ownership were binned to prevent issues from  being strongly interrelated. The precentage of female share of the population was excluded because of its near-perfect correlation with the male share of the population. The same was true for the share of high-income households, which closely overlapped with median income levels. 
+
+No categorical encoding besides `year` or feature standardization was performed, as all ACS predictors are expressed as continuous percentages or numeric values, and gradient boosting models (XGBoost) handle raw scales effectively \citep{henckaerts}. However, the response variable - number of crashes per 1,000 people - was log-transformed to stabilize variance and reduce the impact of extreme values.
 
 ### **Modeling Approach**
 
@@ -181,13 +130,13 @@ Each configuration of Optuna tuning was evaluated using spatial cross-validation
 
 The dataset comprises 13,518 census tract–year observations from 2018 to 2023. Population counts vary widely across tracts, with a median of approximately 42,979 residents and extremes ranging from fewer than 100 to over 220,000. 
 
-![Crash Rate by Borough, by Year](plots/crash_rate_by_borough_plot.png)
+![Crash Rate by Borough, by Year](plots/crash_rate_by_borough_plot.png) {#fig-crashes}
 
-Crash Rate by Borough shows a clear downward trend in crash rates across all boroughs over time, with a sharp reduction during the COVID-19 pandemic period (2020) and gradual stabilization afterward. Bronx and Queens consistently show higher crash rates per 1,000 residents compared to Staten Island and Manhattan. 
+In @fig-crashes, crash rate by borough shows a clear downward trend in crash rates across all boroughs over time, with a sharp reduction during the COVID-19 pandemic period (2020) and gradual stabilization afterward. Bronx and Queens consistently show higher crash rates per 1,000 residents compared to Staten Island and Manhattan. 
 
-![Crash Rate in 2018 vs 2022](plots/2018_2022_comparison.png)
+![Crash Rate in 2018 vs 2022](plots/2018_2022_comparison.png){#fig-heatmap}
 
-The geospatial heatmaps illustrate how crash rates are spatially clustered within the city. In 2018, high crash rates were concentrated in central Brooklyn, the South Bronx, and sections of northern Manhattan, while in 2022, these hotspots persisted but appeared less intense overall, consistent with the downward temporal trend post-Covid-19 pandemic. Applying the same color scale across both maps, it is evident that most census tracts saw a reduction in crash intensity, although isolated high-risk corridors remain.
+The geospatial heatmaps in @fig-heatmap illustrate how crash rates are spatially clustered within the city. In 2018, high crash rates were concentrated in central Brooklyn, the South Bronx, and sections of northern Manhattan, while in 2022, these hotspots persisted but appeared less intense overall, consistent with the downward temporal trend across both total and commuting population post-Covid-19 pandemic. Applying the same color scale across both maps, it is evident that most census tracts saw a reduction in crash intensity, although isolated high-risk corridors remain.
 
 ### **Hyperperameter Tuning**
 
@@ -195,24 +144,24 @@ Optuna hyperparameter tuning \citep{optuna} enhanced the predictive accuracy and
 
 | Action | Parameter  | Value     |
 |---------|-----------|-----------|
-| Learning Rate | `eta`  | 1.549545  |
-| Tree Depth | `max_depth`  | 4 |
-| Row Sampling | `subsample` | 0.5583975 |
-| Feature Sampling | `colsample_bytree` | 0.8797697 |
-| Minimum Child Weight | `min_child_weight` | 3 |
-| Minimum Loss Reduction  | `gamma` | 3.35839 |
-| L2 Regularization | `lambda` | 6.131609 |
-| L1 Regularization | `alpha` | 2.805485 |
+| Learning Rate | `eta`  | 0.2586295  |
+| Tree Depth | `max_depth`  | 12 |
+| Row Sampling | `subsample` | 0.9921435 |
+| Feature Sampling | `colsample_bytree` | 0.5823858 |
+| Minimum Child Weight | `min_child_weight` | 4 |
+| Minimum Loss Reduction  | `gamma` | 0.08316905 |
+| L2 Regularization | `lambda` | 4.260907 |
+| L1 Regularization | `alpha` | 0.2049112 |
 
 : Optimal Parameters as per Optuna
 
-A tree depth of 4 means the model only splits features a few times before making predictions. The socio-economic and crash-rate features capture patterns that can be learned with relatively few decision boundaries.
+The tree depth of 12 allows the model to make much deeper splits, capturing highly granular interactions between socio-economic and crash-related variables. While deep trees can increase the risk of overfitting, this is balanced by the other constraints in the model. The minimum child weight places a threshold on the minimum sum of instance weights required to create a split. This prevents the model from building branches that explain only a small subset of observations, helping to maintain focus on broader patterns in the data.
 
-This high learning rate is unusually high compared to common XGBoost defaults (0.01–0.3), indicating the model is taking larger steps while fitting each tree. The relatively small dataset (13,518 observations) allows a faster convergence without needing a very gradual learning rate. However, high `eta` combined with shallow trees requires careful monitoring for overfitting, which the regularization terms help mitigate.
+The learning rate is moderate, enabling the model to update predictions in steady increments without being overly aggressive. This value strikes a balance between convergence speed and stability.
 
-The subsampling ratios (`subsample = 0.56`, `colsample_bytree = 0.88`) show the model uses just over half of the rows for each boosting iteration and nearly all features. This randomness prevents any one subset of data from dominating the model and improves generalization. This confirms the dataset has sufficient size and diversity to benefit from row sampling, but not so many redundant features that aggressive column sampling is needed.
+The row sampling rate (`subsample = 0.992`) indicates that nearly all rows are used in each boosting iteration, which reduces variance but increases the risk of memorizing noise in the data. In contrast, the feature sampling rate (`colsample_bytree = 0.582`) introduces meaningful randomness by selecting slightly more than half of the features for each tree.
 
-Regularization parameters (`lambda = 6.13`, `alpha = 2.81`, `gamma = 3`.36) are relatively strong regularization values, indicating the model needed constraints to avoid overfitting. In practice, this means there is enough correlation and redundancy among features that despite removing highy correlated variables, the model benefits from being penalized for complex splits or large feature weights.
+Regularization parameters, `lambda` (L2) and `alpha` (L1), apply moderate constraints to the feature weights, discouraging overly complex or extreme splits without overly penalizing flexibility. The minimum loss reduction (`gamma` = 0.083) is relatively low, which allows the model to explore more potential splits during training. This can enhance the model’s ability to capture subtle relationships between features.
 
 ### **Model Performance**
 
@@ -220,13 +169,15 @@ The XGBoost model achieved robust predictive performance on the holdout test set
 
 | Metric  | Score     |
 |---------|-----------|
-| RMSE  | 1.549545  |
-| MAE   | 0.8372956 |
-| $R^2$ | 0.2595503 |
+| RMSE  | 0.3396146  |
+| MAE   | 0.2422538 |
+| $R^2$ | 0.425285 |
 
 : XGBOOST Model Evaluation Metrics
 
-The XGBoost model’s evaluation metrics suggest moderate predictive power with stable error bounds on the holdout test set. An RMSE of 1.55 indicates that the model’s predicted crash rates deviate, on average, by roughly 1.5 crashes per 1,000 residents from observed values, with an MAE of 0.84 confirming that most prediction errors are below 1 crash per 1,000 residents. While the $R^2=0.26$ shows that the model explains only about 26% of the variance in crash rates across census tracts, this is consistent with the high degree of randomness and unobserved factors (e.g., driver behavior, weather) inherent in crash data.
+These metrics indicate solid predictive performance with tight error bounds relative to the normalized crash rate values. An RMSE of 0.34 suggests that predictions deviate by approximately 0.34 crashes per 1,000 residents on average, which is a low margin of error given the variability across census tracts. The MAE of 0.24 confirms that typical prediction errors remain well below half a crash per 1,000 residents.
+
+Most critically, the $R^2$ value of 0.43 means the model explains approximately 43% of the variance in crash rates, a strong result for a model built only on socio-economic and transportation predictors, without direct behavioral or vehicle-level data.
 
 ![Residual Diagnostic Plots](plots/residuals_diagnostic_grid.png)
 
@@ -268,8 +219,7 @@ The PDP for percentage of the population in the workforce indicates that crash r
 
 Th variable marking the interaction of vehicle ownership with poverty rate shows that high poverty rates combined with high vehicle ownership strongly elevate crash risk. This finding suggests that economically vulnerable drivers may face both infrastructure and behavioral risks.
 
-
-![Figure X: Multi-Tree Plot](plots/multi_tree_plot.png)
+Multi-Tree Plot HERE
 
 The multi-tree plot provides a detailed view of how the XGBoost model partitions the socio-economic and transportation variables to predict crash risk, revealing intricate interactions that are not visible in single-variable importance metrics. For insurers and policymakers, this tree-based view offers actionable insights into which combinations of conditions—such as low-income, high-commute areas with dense walking activity—are most predictive of risk. 
 
@@ -301,7 +251,60 @@ The study’s findings also underscore the limitations of using aggregated, publ
 
 Future research should focus on three fronts: (1) integrating behavioral data, such as telematics, and weather patterns-among other possible additions-to bridge the gap between macro-level socio-economic patterns and micro-level driving behavior; (2) developing fairness-aware modeling approaches to mitigate bias from socio-economic proxies; and (3) exploring temporal extensions that incorporate evolving risk factors, including post-pandemic traffic patterns and climate-related hazards. These directions will help transition from descriptive social risk modeling to actionable, ethically sound insurance applications.
 
-## Appendix A: Variables Modeled {#sec-appA}
+## Appendix A: ACS Variables {#sec-appA}
+```{r table1}
+#| echo: false
+#| warning: false
+#| message: false
+library(knitr)
+
+acs_table_summary <- data.frame(
+  `ACS` = c(
+    "B01001", "B08301", "B08303",
+    "B19001", "B25010", "B25044", "C24010",
+    "C24030", "B15003", "B17001", "B02001", "B03002",
+    "B16005", "B23025", "B25064"
+  ),
+  Description = c(
+    "Age and Sex",
+    "Transportation to Work",
+    "Travel Time to Work",
+    "Household Income",
+    "Average Household Size",
+    "Vehicles Available",
+    "Occupation",
+    "Industry",
+    "Education",
+    "Poverty Status",
+    "Race",
+    "Hispanic or Latino ",
+    "Language Spoken at Home",
+    "Employment Status",
+    "Median Gross Rent"
+  ),
+  `Derived Variables` = c(
+    "total_population, male_population, female_population, age_under_18, age_18_34, age_35_64, age_65_plus",
+    "drive_alone, carpool, public_transit, walk, bike, work_from_home",
+    "commute_short, commute_medium, commute_long",
+    "income_under_25k, income_25k_75k, income_75k_plus, median_income",
+    "average_household_size",
+    "no_vehicle, one_vehicle, two_plus_vehicles",
+    "occupation variables (aggregated)",
+    "industry variables (aggregated)",
+    "less_than_hs, hs_diploma, some_college, associates_degree, bachelors_degree, graduate_degree",
+    "below_poverty, above_poverty, poverty_rate",
+    "white_population, black_population, asian_population",
+    "hispanic_population",
+    "foreign_born",
+    "in_labor_force, employed, unemployed, not_in_labor_force, unemployment_rate",
+    "median_gross_rent"
+  )
+)
+
+kable(acs_table_summary, caption = "ACS tables and derived variables.")
+```
+
+## Appendix B: Variables Modeled {#sec-appB}
 ```{r table2}
 #| echo: false
 #| warning: false

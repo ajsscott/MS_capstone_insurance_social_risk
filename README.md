@@ -1,40 +1,69 @@
+# **Auto Insurance Risk Prediction with Gradient Boosting**
 
-# Auto Insurance Risk Prediction with Gradient Boosting
+## **Overview**
 
-## Overview
-This project builds a **comprehensive machine learning pipeline** to predict auto insurance risk by combining **NYC Open Data Motor Vehicle Collisions (MVC)** and **ACS socio-economic data** via APIs. We apply **gradient boosting models (XGBoost and LightGBM)** and **SHAP explainability** to uncover key demographic and transportation-related factors influencing crash-related risks. The project highlights **API-driven ETL, explainable AI, and advanced visualizations** as part of the deliverables.
+This project investigates auto insurance risk proxies by predicting crash rates using publicly available data. We integrated **NYC Motor Vehicle Collisions (MVC)** data (2018–2023) with **ACS socio-economic indicators**, collected via **API calls using R scripts**.
+Key tasks included:
 
----
-
-## Research Question
-**Which socio-economic and transportation-related features most strongly influence auto insurance risk outcomes in New York City?**
-
----
-
-## Features
-- **API-Driven ETL Pipeline:** Automated data ingestion from NYC Open Data and U.S. Census Bureau APIs, orchestrated with Prefect.
-- **Machine Learning:** Gradient boosting models (XGBoost/LightGBM) with hyperparameter tuning (Optuna).
-- **Explainability:** SHAP-based analysis with force plots, decision plots, and feature importance rankings.
-- **Advanced Visualizations:**  
-  - Interactive geospatial dashboards (Folium/Plotly).  
-  - Time-lapse crash density animations (Kepler.gl/Plotly).  
-  - SHAP dashboards for local vs. global feature analysis.  
-  - 3D risk visualizations using Plotly or Pydeck.
+* **Exploratory Data Analysis (EDA):** Trend analysis, geospatial heatmaps, and descriptive statistics.
+* **Modeling:** XGBoost regression optimized with Optuna hyperparameter tuning.
+* **Explainability:** SHAP analysis to identify key socio-economic and transportation-related predictors.
 
 ---
 
-## Deliverables
-1. **API-driven ETL Pipeline:** Python scripts with Prefect orchestration.  
-2. **Feature Engineering and Modeling Scripts:** For XGBoost/LightGBM training and evaluation.  
-3. **Explainability Reports:** SHAP visualizations and feature-level analysis.  
-4. **Advanced Visualization Suite:** Geospatial dashboards, time-lapse animations, and SHAP exploration tools.  
-5. **Interactive Risk Segmentation Dashboard:** Plotly Dash app for borough-level risk exploration.  
-6. **Technical Report & Executive Summary:** Detailed findings and insurance implications.
+## Author
+AJ Strauman-Scott
+Data Scientist | Storyteller | ML & Geospatial Modeling
+ajstraumanscott@pm.me
+[LinkedIn](www.linkedin.com/in/ajstraumanscott) • [GitHub](https://github.com/ajsscott)
+
+##  Quick Links
+-  [Presentation of Results](./straumanscott_resilience-gentrification-NYC-presentation.pdf)
+-  [Academic Report](./straumanscott_resilience-gentrification-NYC-report.pdf)
+-  [Code & Notebooks](./notebooks)
+-  [Source Scripts](./R)
 
 ---
 
-## Tech Stack
-- **Languages & Libraries:** Python, pandas, scikit-learn, XGBoost, LightGBM, SHAP, Plotly, Folium, Pydeck.  
-- **Data Engineering:** Prefect, Dask, or PySpark for scalable ETL.  
-- **Data Sources:** NYC Open Data (MVC), ACS 5-Year API.  
-- **Visualization:** Plotly Dash, Kepler.gl, SHAP interactive plots.  
+## **Research Question**
+
+**Which socio-economic and transportation factors are most predictive of neighborhood-level crash risk in New York City?**
+
+---
+
+## **Key Steps**
+
+* **Data Collection:**
+
+  * Fetched MVC data from NYC Open Data API and ACS 5-year data from the Census Bureau API.
+* **Preprocessing:**
+
+  * Aggregated crashes to the census tract level and normalized per 1,000 residents.
+  * Harmonized ACS variables to 2020 tract boundaries, binned features, and engineered interaction terms (e.g., poverty × vehicle ownership).
+  * Log-transformed crash counts to stabilize variance.
+* **EDA:**
+
+  * Created borough-level crash trends and heatmaps (2018 vs. 2022).
+  * Summarized key variables (e.g., median income, rent, poverty rates).
+* **Modeling:**
+
+  * Trained XGBoost model with spatial cross-validation by borough.
+  * Hyperparameters tuned using Optuna.
+  * Evaluated performance (R²=0.26, RMSE=1.55).
+* **Explainability:**
+
+  * Generated SHAP summary plots, partial dependence plots, and multi-tree visualizations to highlight variable importance.
+
+---
+
+## **Deliverables**
+
+1. **R Scripts:** For API calls, cleaning, and modeling (XGBoost with Optuna).
+2. **Processed Datasets:** Census tract-level crash data combined with socio-economic variables.
+3. **EDA Outputs:** Borough-level crash trends, descriptive statistics, and heatmaps.
+4. **Modeling Results:** Performance metrics (RMSE, MAE, R²) and residual diagnostics.
+5. **Explainability Visuals:** SHAP global feature importance and interaction plots.
+6. **Final Report:** Detailed findings, discussion of socio-economic predictors, and recommendations.
+
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![Built with Quarto](https://img.shields.io/badge/docs-Quarto-orange)

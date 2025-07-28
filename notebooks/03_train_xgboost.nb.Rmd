@@ -176,11 +176,34 @@ set.seed(2025)
 study <- optuna$create_study(direction = "minimize")
 study$optimize(objective, n_trials = 50)
 
-# 5. Train Final Model ----------------------------------------------------
 best_params <- study$best_params
 best_params$objective <- "reg:squarederror"
 print(best_params)
 ```
+$eta
+[1] 0.2586295
+
+$max_depth
+[1] 12
+
+$min_child_weight
+[1] 4
+
+$subsample
+[1] 0.9921435
+
+$colsample_bytree
+[1] 0.5823858
+
+$gamma
+[1] 0.08316905
+
+$lambda
+[1] 4.260907
+
+$alpha
+[1] 0.2049112
+
 
 
 ## TRAIN/TEST SPLIT
@@ -338,10 +361,9 @@ ggsave(
 )
 ```
 Model Evaluation Metrics:
-  RMSE: 1.549545 
-  MAE : 0.8372956 
-  MAPE: Inf %
-  R²  : 0.2595503 
+  RMSE: 0.3396146 
+  MAE : 0.2422538 
+  R²  : 0.425285 
 ## SHAP EXPLAINABILITY
 
 ```{r shap}
@@ -352,10 +374,6 @@ shap_long <- shap.prep(shap_contrib = shap_values$shap_score, X_train = as.matri
 # SHAP summary plot
 print(shap.plot.summary(shap_long))
 
-if (!dir.exists("../plots")) {
-  dir.create("../plots")
-}
-
 shap <- shap.plot.summary(shap_long)
 ggsave("../report/plots/shap_summary_plot.png", shap, width = 10, height = 6, dpi = 300)
 ```
@@ -363,16 +381,11 @@ ggsave("../report/plots/shap_summary_plot.png", shap, width = 10, height = 6, dp
 ## INSPECT TREE ENSEMBLE
 
 ```{r inspect-tree}
-xgb.plot.tree(model = final_model, trees = 0)
-xgb.plot.tree(model = final_model, trees = 1)
-xgb.plot.tree(model = final_model, trees = 2)
 xgb.plot.multi.trees(model = final_model)
 ```
 
 ```{r}
 # SHAP Dependence and Interaction Plots
-
-message("\nGenerating SHAP dependence and interaction plots...")
 
 # Get top features by SHAP importance
 top_features <- shap_long %>%
@@ -422,10 +435,6 @@ if (!exists("shap_interaction_values")) {
 }
 
 # Partial Dependence Plots (PDP)
-message("\nGenerating Partial Dependence Plots...")
-
-# Ensure output directory exists
-dir.create("../report/plots/pdp", recursive = TRUE, showWarnings = FALSE)
 
 # Generate PDP plots
 pdp_plots <- map2(top_features, feature_names, function(f, name) {
@@ -470,9 +479,6 @@ ggsave(
   height = 12,
   dpi = 300
 )
-
-message("PDP grid saved to ../report/plots/pdp/pdp_grid.png")
-
 ```
 
 
