@@ -127,7 +127,7 @@ hist(y, breaks = 50, main = "Log-Transformed Crash Rate", xlab = "log1p(crash_ra
 
 ## HYPERPARAMETER TUNING with Optuna
 
-```{r tune-params}
+```{r tune-params, eval=FALSE}
 ## CONVERT TO DMATRIX
 dtrain_all <- xgb.DMatrix(data = as.matrix(X), label = y)
 
@@ -226,7 +226,7 @@ dtest <- xgb.DMatrix(data = as.matrix(X_test), label = y_test)
 
 ## TRAIN MODEL
 
-```{r train-model}
+```{r train-model, eval=FALSE}
 # Set seed
 set.seed(2025)
 
@@ -253,7 +253,7 @@ final_model <- xgb.train(
 
 ## SAVE MODEL
 
-```{r save-model}
+```{r save-model, eval=FALSE}
 # Create directory if it doesn't exist
 if (!dir.exists("../data/models")) {
   dir.create("../data/models", recursive = TRUE)
@@ -384,22 +384,8 @@ ggsave("../report/plots/shap_summary_plot.png", shap, width = 10, height = 6, dp
 xgb.plot.multi.trees(model = final_model)
 ```
 
-```{r}
+```{r, eval=FALSE}
 # SHAP Dependence and Interaction Plots
-
-# Get top features by SHAP importance
-top_features <- shap_long %>%
-  as_tibble() %>%
-  group_by(variable) %>%
-  summarise(mean_abs_shap = mean(abs(value))) %>%
-  arrange(desc(mean_abs_shap)) %>%
-  pull(variable)
-
-
-top_feature <- head(top_features, 1)
-
-# Dependence plot for top feature
-shap.plot.dependence(data_long = shap_long, x = top_feature, color_feature = top_feature)
 
 # Interaction values
 shap_interaction_values <- predict(
@@ -408,77 +394,103 @@ shap_interaction_values <- predict(
   predinteraction = TRUE
 )
 
-top_features <- head(top_features, 6)
+saveRDS(shap_interaction_values, "../data/models/shap_interactions.rds")
+```
+```{r}
+# Define the specific top features we want to analyze
+selected_features <- c(
+  "post_pandemic",
+  "pct_age_65_plus",
+  "pct_graduate_degree",
+  "pct_in_labor_force",
+  "median_income",
+  "pct_commute_medium"
+)
 
-# Create pretty names for features
-feature_names <- purrr::map_chr(top_features, function(f) {
-  case_when(
-    f == "post_pandemic" ~ "Pre vs Post Pandemic",
-    f == "pct_age_65_plus" ~ "% over 65 years old",
-    f == "pct_hs_diploma" ~ "% with a High School Diploma Only",
-    f == "median_gross_rent" ~ "Median Gross Rent",
-    f == "pct_in_labor_force" ~ "% in the Labor Force",
-    f == "poverty_vehicle_interaction" ~ "Poverty x Vehicle Ownership",
-    TRUE ~ str_to_title(gsub("_", " ", f)) # Default formatting
-  )
-})
+# Create pretty names for the selected features
+feature_names <- c(
+  "Pre vs Post Pandemic",
+  "% Population 65+ Years",
+  "% with Graduate Degree",
+  "% in Labor Force",
+  "Median Income",
+  "% with Medium Commute"
+)
 
-
-# Calculate SHAP interaction values (if needed)
-if (!exists("shap_interaction_values")) {
-  shap_interaction_values <- predict(
-    final_model,
-    as.matrix(X_train),
-    predinteraction = TRUE
-  )
-  saveRDS(shap_interaction_values, "../data/models/shap_interactions.rds")
+# Verify all selected features exist in X_train
+missing_features <- setdiff(selected_features, colnames(X_train))
+if (length(missing_features) > 0) {
+  stop(paste("The following features are missing from X_train:", 
+             paste(missing_features, collapse = ", ")))
 }
 
-# Partial Dependence Plots (PDP)
-
-# Generate PDP plots
-pdp_plots <- map2(top_features, feature_names, function(f, name) {
-  pd <- partial(
-    final_model, 
-    pred.var = f, 
-    train = as.matrix(X_train), 
-    grid.resolution = 30
-  )
-  
-  autoplot(pd) +
-    ggtitle(name) +
-    theme_minimal() +
-    theme(
-      axis.title = element_blank(),
-      axis.text = element_text(size = 8),
-      plot.title = element_text(size = 12, hjust = 0.5)
+# Generate PDP plots with error handling
+pdp_plots <- map2(selected_features, feature_names, function(f, name) {
+  tryCatch({
+    pd <- pdp::partial(
+      final_model, 
+      pred.var = f, 
+      train = as.matrix(X_train), 
+      grid.resolution = 30
     )
+    
+    autoplot(pd) +
+      ggtitle(name) +
+      theme_minimal() +
+      theme(
+        axis.title = element_blank(),
+        axis.text = element_text(size = 8),
+        plot.title = element_text(size = 10, hjust = 0.5),
+        plot.margin = unit(c(1, 1, 1, 1), "lines")
+      )
+  }, error = function(e) {
+    message(paste("Error generating PDP for", f, ":", e$message))
+    return(NULL)
+  })
 })
+
+# Remove any NULL entries from failed plots
+pdp_plots <- purrr::compact(pdp_plots)
+
+# Create directory if it doesn't exist
+if (!dir.exists("../report/plots/pdp")) {
+  dir.create("../report/plots/pdp", recursive = TRUE)
+}
 
 # Save individual plots
-walk2(pdp_plots, top_features, ~{
-  ggsave(
-    filename = paste0("../report/plots/pdp/pdp_", .y, ".png"),
-    plot = .x,
-    width = 5,
-    height = 4,
-    dpi = 300
-  )
+walk2(pdp_plots, selected_features, ~{
+  if (!is.null(.x)) {
+    ggsave(
+      filename = paste0("../report/plots/pdp/pdp_", .y, ".png"),
+      plot = .x,
+      width = 5,
+      height = 4,
+      dpi = 300
+    )
+  }
 })
 
-# Save grid plot
-grid_plot <- gridExtra::grid.arrange(
-  grobs = pdp_plots, 
-  ncol = 2
-)
-
-ggsave(
-  filename = "../report/plots/pdp/pdp_grid.png",
-  plot = grid_plot,
-  width = 10,
-  height = 12,
-  dpi = 300
-)
+# Create and save grid plot
+if (length(pdp_plots) > 0) {
+  grid_plot <- gridExtra::grid.arrange(
+    grobs = pdp_plots, 
+    ncol = 2,
+    top = "Partial Dependence Plots for Key Features"
+  )
+  
+  ggsave(
+    filename = "../report/plots/pdp/pdp_grid.png",
+    plot = grid_plot,
+    width = 10,
+    height = 12,
+    dpi = 300
+  )
+  
+  # Optionally display the grid plot
+  print(grid_plot)
+} else {
+  warning("No PDP plots were successfully generated.")
+}
 ```
 
 
