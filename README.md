@@ -2,7 +2,7 @@
 
 ## **Overview**
 
-This project investigates auto insurance risk proxies by predicting crash rates using publicly available data. We integrated **NYC Motor Vehicle Collisions (MVC)** data (2018–2023) with **ACS socio-economic indicators**, collected via **API calls using R scripts**.
+This project investigates auto insurance risk proxies by predicting crash rates using publicly available data. We integrated NYC Motor Vehicle Collisions (MVC) data (2018–2023) with ACS socio-economic indicators, collected via API calls using R scripts.
 Key tasks included:
 
 * **Exploratory Data Analysis (EDA):** Trend analysis, geospatial heatmaps, and descriptive statistics.
@@ -13,7 +13,7 @@ Key tasks included:
 
 ## Author
 AJ Strauman-Scott
-Data Scientist | Storyteller | ML & Geospatial Modeling
+Data Scientist | Data Storyteling for Impact
 ajstraumanscott@pm.me
 [LinkedIn](www.linkedin.com/in/ajstraumanscott) • [GitHub](https://github.com/ajsscott)
 
@@ -54,14 +54,6 @@ ajstraumanscott@pm.me
 
   * Generated SHAP summary plots, partial dependence plots, and multi-tree visualizations to highlight variable importance.
 
----
-
-## **Deliverables**
-
-1. **R Scripts:** For API calls, cleaning, and modeling (XGBoost with Optuna).
-2. **Processed Datasets:** Census tract-level crash data combined with socio-economic variables.
-3. **EDA Outputs:** Borough-level crash trends, descriptive statistics, and heatmaps.
-4. **Modeling Results:** Performance metrics (RMSE, MAE, R²) and residual diagnostics.
 5. **Explainability Visuals:** SHAP global feature importance and interaction plots.
 6. **Final Report:** Detailed findings, discussion of socio-economic predictors, and recommendations.
 
